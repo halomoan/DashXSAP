@@ -1,0 +1,111 @@
+[{
+	"DashXItemID": "MND001",
+	"Title" : "Room Information",
+	"ItemType": "GEOMAP",
+	"DashXMainMenuID": "MNU001",
+	"Legend" : [{ "name" : "Room Occupied", "color" : "rgba(184,225,245,1.0)" }],
+	
+	"Circles": [{
+		"pos": "103.860650000000;1.300200000000;0",
+		"tooltip": "Room Occupied: 230",
+		"radius": "35",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(0,0,255,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	},{
+		"pos": "103.855800000000;1.310550000000;0",
+		"tooltip": "Room Occupied: 120",
+		"radius": "32",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(0,0,255,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	},{
+		"pos": "101.712458000000;3.144652000000;0",
+		"tooltip": "Room Occupied: 100",
+		"radius": "25",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(0,0,255,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	}],
+	"Spots": [{
+		"pos": "103.860650000000;1.300200000000;0",
+		"name": "PR Kitchener",
+		"tooltip": "Total Room",
+        "type": "Inactive",
+        "text": "320",
+        "DataSet" : [ { "text" : "Room Revenue", "day": 14000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "SGD"},
+        			  { "text" : "Room Occupied", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} 
+        			]
+	},{
+		"pos": "103.855800000000;1.310550000000;0",
+		"name": "PR Beach Road",
+        "tooltip": "Total Room",
+        "type": "Success",
+        "text": "100",
+        "DataSet" : [ { "text" : "Room Revenue", "day": 15000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "SGD"},
+        			  { "text" : "Room Occupied", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} ]
+	},{
+		"pos": "101.712458000000;3.144652000000;0",
+		"name": "PR Kuala Lumpur",
+		"tooltip": "Total Room",
+        "type": "Error",
+        "text": "999",
+        "DataSet" : [ { "text" : "Room Revenue", "day": 16000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "MYR"},
+        			  { "text" : "Room Occupied", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} ]
+	}]
+},
+{
+	"DashXItemID": "MND002",
+	"Title" : "F&B Revenue",
+	"ItemType": "GEOMAP",
+	"DashXMainMenuID": "MNU002",
+	"Legend" : [{ "name" : "F&B Covers", "color" : "rgba(184,225,245,1.0)"}],
+	"Circles": [{
+		"pos": "103.860650000000;1.300200000000;0",
+		"tooltip": "F&B Covers: 20.00",
+		"radius": "35",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(0,0,255,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	},{
+		"pos": "103.855800000000;1.310550000000;0",
+		"tooltip": "F&B Covers: 2,300.00",
+		"radius": "32",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(0,0,255,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	},{
+		"pos": "101.712458000000;3.144652000000;0",
+		"tooltip": "F&B Covers: 2,300.00",
+		"radius": "25",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(0,0,255,1.0)",
+		"hotDeltaColor": "rgba(184,205,245,1.0)"
+	}],
+	"Spots": [{
+		"pos": "103.860650000000;1.300200000000;0",
+		"name": "PR Kitchener",
+		"tooltip": "F&B Revenue",
+        "type": "Inactive",
+        "text": "",
+        "DataSet" : [ { "text" : "F&B Revenue", "day": 14000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "SGD"},
+        			  { "text" : "F&B Covers", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} 
+        			]
+	},{
+		"pos": "103.855800000000;1.310550000000;0",
+		"name": "PR Beach Road",
+        "tooltip": "F&B Revenue: 40,000.00",
+        "type": "Success",
+        "text": "",
+        "DataSet" : [ { "text" : "F&B Revenue", "day": 15000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "SGD"},
+        			  { "text" : "F&B Covers", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} ]
+	},{
+		"pos": "101.712458000000;3.144652000000;0",
+		"name": "PR Kuala Lumpur",
+		"tooltip": "F&B Revenue",
+        "type": "Error",
+        "text": "",
+        "DataSet" : [ { "text" : "F&B Revenue", "day": 16000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "MYR"},
+        			  { "text" : "F&B Covers", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} ]
+	}]
+}]

@@ -1,0 +1,18 @@
+{	"GeoItems": [{
+		"pos": "77.71551999999997;12.979242;0",
+		"type": "Success",
+		"tooltip": "Circle: Bangalore",
+		"radius": "60",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(184,225,245,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	},{
+		"pos": "121.60171600000001;31.201455;0",
+		"type": "Success",
+		"tooltip": "Circle: Shanghai",
+		"radius": "40",
+		"color": "rgba(184,225,245,1.0)",
+		"colorBorder": "rgba(184,225,245,1.0)",
+		"hotDeltaColor": "rgba(184,225,245,1.0)"
+	}]
+}

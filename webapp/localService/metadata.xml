@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="DashXOData">
+            <EntityType Name="DashXMainMenu">
+                <Key>
+                    <PropertyRef Name="DashXMainMenuID"/>
+                </Key>
+                <Property Name="DashXMainMenuID" Nullable="false" Type="Edm.String"/>
+                <Property Name="Text" Type="Edm.String"/>
+                <NavigationProperty FromRole="DashXMainMenus" Name="DashXItems" Relationship="DashXOData.DashXMainMenuDashXItem" ToRole="DashXItems"/>
+            </EntityType>
+            <EntityType Name="DashXItem">
+                <Key>
+                    <PropertyRef Name="DashXItemID"/>
+                </Key>
+                <Property Name="DashXItemID" Nullable="false" Type="Edm.String"/>
+                <Property Name="ItemType" Type="Edm.String"/>
+                <Property Name="GeoItems" Nullable="false" Type="DashXOData.GeoData"/>
+                <Property Name="DashXMainMenuID" Type="Edm.String"/>
+                
+            </EntityType>
+            <ComplexType Name="GeoData">
+                <Property Name="pos" Type="Edm.String"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="tooltip" Type="Edm.String"/>
+                <Property Name="text" Type="Edm.String"/>
+                <Property Name="radius" Type="Edm.String"/>
+                <Property Name="color" Type="Edm.String"/>
+                <Property Name="colorBorder" Type="Edm.String"/>
+                <Property Name="hotDeltaColor" Type="Edm.String"/>
+            </ComplexType>
+            <Association Name="DashXMainMenuDashXItem">
+                <End Multiplicity="1" Role="DashXMainMenus" Type="DashXOData.DashXMainMenu"/>
+                <End Multiplicity="*" Role="DashXItems" Type="DashXOData.DashXItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="DashXMainMenus">
+                        <PropertyRef Name="DashXMainMenuID"/>
+                    </Principal>
+                    <Dependent Role="DashXItems">
+                        <PropertyRef Name="DashXMainMenuID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
+                <EntitySet EntityType="DashXOData.DashXMainMenu" Name="DashXMainMenus"/>
+                <EntitySet EntityType="DashXOData.DashXItem" Name="DashXItems"/>
+                <AssociationSet Association="DashXOData.DashXMainMenuDashXItem" Name="DashXOData.DashXMainMenuDashXItem">
+                    <End EntitySet="DashXMainMenus" Role="DashXMainMenus"/>
+                    <End EntitySet="DashXItems" Role="DashXItems"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

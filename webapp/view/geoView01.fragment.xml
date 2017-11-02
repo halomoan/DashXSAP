@@ -1,0 +1,74 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+   <Dialog
+      id="moreInfoDialog"
+      title="{detailView>/Name}">
+   	  <Table id="idMoreInfoTable"
+		inset="false"
+		items="{
+			path: 'detailView>/spotItems',
+			sorter: {
+				path: 'text'
+			}
+		}">
+   	  	<columns>
+			<Column
+				width="12em">
+				<Text text="" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="{detailView>/yesterday}" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="MTD Actual" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="YTD Actual" />
+			</Column>
+		</columns>	
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text
+						text="{detailView>text}" />
+						
+					<ObjectNumber
+						number="{
+								parts:[{path:'detailView>day'},{path:'detailView>CurrencyCode'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="{detailView>CurrencyCode}"
+							/>	
+					<ObjectNumber
+							number="{
+								parts:[{path:'detailView>MTDActual'},{path:'detailView>CurrencyCode'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="{detailView>CurrencyCode}" />			
+					<ObjectNumber
+							number="{
+								parts:[{path:'detailView>YTDActual'},{path:'detailView>CurrencyCode'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="{detailView>CurrencyCode}" />			
+				</cells>
+			</ColumnListItem>	
+		</items>			
+   	 </Table>
+     <beginButton>
+         <Button
+            text="{i18n>close}"
+            press="onCloseDialog"/>
+      </beginButton>
+	</Dialog>
+</core:FragmentDefinition>
