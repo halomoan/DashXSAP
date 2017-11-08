@@ -1,7 +1,13 @@
 [{
 	"DashXMainMenuID": "MNU001",
-	"Text": "Room Revenue"
+	"Type" : "geomap01",
+	"Text": "Room Analysis (Map)"
 }, {
 	"DashXMainMenuID": "MNU002",
-	"Text": "F&B Revenue"
+	"Type" : "geomap01",
+	"Text": "F&B Analysis (Map)"
+},{
+	"DashXMainMenuID": "MNU003",
+	"Type" : "timeAxis01",
+	"Text": "Room Revenue (Daily)"
 }]

@@ -11,7 +11,7 @@
 			id="page"
 			navButtonPress="onNavBack"
 			showNavButton="{device>/system/phone}"
-			title="{i18n>geoView01Title}"
+			title="{i18n>dashboardName}"
 			busy="{detailView>/busy}"
 			busyIndicatorDelay="{detailView>/delay}">
 

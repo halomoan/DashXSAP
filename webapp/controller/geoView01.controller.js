@@ -2,9 +2,8 @@ sap.ui.define([
 	"sap/ui/dashxsap/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/vbm/AnalyticMap",
-	"sap/ui/Device",
-	'jquery.sap.global'
-], function(BaseController,JSONModel,AnalyticMap,Device,jQuery) {
+	"sap/ui/Device"
+], function(BaseController,JSONModel,AnalyticMap,Device) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.dashxsap.controller.geoView01", {
@@ -38,7 +37,7 @@ sap.ui.define([
 				this.getView().setModel(oDeviceModel, "device");
 				
 				this._oModel = this.getOwnerComponent().getModel();
-				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
+				this.getRouter().getRoute("geoView01").attachPatternMatched(this._onObjectMatched, this);
 				
 				
 			},
@@ -116,8 +115,9 @@ sap.ui.define([
 					    	oView.setModel(oModelJson,"geoData");
 					    
 					    	oViewModel.setProperty("/busy", false);
-							var spots = oView.byId("spots");
-							console.log(spots.getItems());
+							/*var spots = oView.byId("spots");
+							console.log(spots.getItems());*/
+							
 					    },
 					    error: function() {
 							oViewModel.setProperty("/busy", false);

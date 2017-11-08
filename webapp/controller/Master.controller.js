@@ -278,7 +278,17 @@ sap.ui.define([
 			_showSubMaster : function(oItem) {
 			
 				var sObjectId = oItem.getBindingContext().getProperty("DashXMainMenuID");
-				this.getRouter().navTo("object", {objectId : sObjectId}, false);
+				var sType = oItem.getBindingContext().getProperty("Type");
+				
+				switch(sType) {
+					case "geomap01":
+						this.getRouter().navTo("geoView01", {objectId : sObjectId}, false);
+						break;
+					case "timeAxis01" :
+						this.getRouter().navTo("timeAxis01", {objectId : sObjectId}, false);
+						break;
+				} 
+				
 			
 			},
 

@@ -97,17 +97,22 @@
 				{
 					"pattern": "",
 					"name": "master",
-					"target": ["object", "master"]
+					"target": ["geoView01", "master"]
 				},
 				{
 					"pattern": "submaster/{groupId}",
 					"name": "submaster",
-					"target": ["object", "submaster"]
+					"target": ["geoView01", "submaster"]
 				},
 				{
-					"pattern": "Objects/{objectId}",
-					"name": "object",
-					"target": ["master", "object"]
+					"pattern": "geoView01/{objectId}",
+					"name": "geoView01",
+					"target": ["master", "geoView01"]
+				},
+				{
+					"pattern": "timeAxis01/{objectId}",
+					"name": "timeAxis01",
+					"target": ["master", "timeAxis01"]
 				}
 			],
 
@@ -124,9 +129,14 @@
 					"viewId": "submaster",
 					"controlAggregation": "masterPages"
 				},
-				"object": {
+				"geoView01": {
 					"viewName": "geoView01",
 					"viewId": "geoView01",
+					"viewLevel": 2
+				},
+				"timeAxis01": {
+					"viewName": "timeAxis01",
+					"viewId": "timeAxis01",
 					"viewLevel": 2
 				},
 				"detailObjectNotFound": {
