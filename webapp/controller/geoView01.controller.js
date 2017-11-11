@@ -83,7 +83,6 @@ sap.ui.define([
 			},
 			
 			onCloseDialog: function(e){
-				console.log(e);
 				this.getView().byId("moreInfoDialog").close();
 			},
 			

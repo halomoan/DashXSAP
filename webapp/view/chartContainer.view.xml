@@ -1,0 +1,35 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		xmlns:mvc="sap.ui.core.mvc" 
+		xmlns:layout="sap.ui.layout"
+		xmlns:semantic="sap.m.semantic" 
+		xmlns="sap.m" 
+		controllerName="sap.ui.dashxsap.controller.chartContainer">
+	<semantic:DetailPage
+				id="chartContainer"
+				navButtonPress="onNavBack"
+				showNavButton="{device>/system/phone}"
+				title="{i18n>dashboardName}"
+				busy="{detailView>/busy}"
+				busyIndicatorDelay="{detailView>/delay}">
+			<semantic:content>
+				<layout:Grid>
+					<layout:VerticalLayout id="v2">
+						<core:Fragment fragmentName='sap.ui.dashxsap.view.chart02' type='XML' />
+						<layout:layoutData>
+								<layout:GridData
+									span="L8 M8 S12"
+								/>
+						</layout:layoutData>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout id="vl">
+						<core:Fragment fragmentName='sap.ui.dashxsap.view.chart01' type='XML' />
+							<layout:layoutData>
+								<layout:GridData
+									span="L4 M4 S12"
+								/>
+							</layout:layoutData>
+					</layout:VerticalLayout>	
+				</layout:Grid>
+			</semantic:content>	
+	</semantic:DetailPage>		
+</mvc:View>

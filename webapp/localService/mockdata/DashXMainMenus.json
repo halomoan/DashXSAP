@@ -10,4 +10,11 @@
 	"DashXMainMenuID": "MNU003",
 	"Type" : "timeAxis01",
 	"Text": "Room Revenue (Daily)"
+<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
+=======
+},{
+	"DashXMainMenuID": "MNU004",
+	"Type" : "container01",
+	"Text": "Dashboard Rooms "
+>>>>>>> e49ca65 ChartContainer
 }]

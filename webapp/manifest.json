@@ -113,6 +113,15 @@
 					"pattern": "timeAxis01/{objectId}",
 					"name": "timeAxis01",
 					"target": ["master", "timeAxis01"]
+<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
+=======
+				}
+				,
+				{
+					"pattern": "container01/{objectId}",
+					"name": "container01",
+					"target": ["master", "container01"]
+>>>>>>> e49ca65 ChartContainer
 				}
 			],
 
@@ -139,6 +148,14 @@
 					"viewId": "timeAxis01",
 					"viewLevel": 2
 				},
+<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
+=======
+				"container01": {
+					"viewName": "chartContainer",
+					"viewId": "container01",
+					"viewLevel": 2
+				},
+>>>>>>> e49ca65 ChartContainer
 				"detailObjectNotFound": {
 					"viewName": "DetailObjectNotFound",
 					"viewId": "detailObjectNotFound"

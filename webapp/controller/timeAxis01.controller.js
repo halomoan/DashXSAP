@@ -19,6 +19,7 @@ sap.ui.define([
                     key : "0",
                     name : "Column Chart",
                     vizType : "timeseries_line",
+<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
                     value : "{chartData>/Legends/1}",
                     dataset : {
                        dimensions: [{
@@ -31,6 +32,20 @@ sap.ui.define([
                             value: '{chartData>KF1}'
                        },{
                             name: '{chartData>/Legends/1/1}',
+=======
+                    value : "{chartData>/Legends}",
+                    dataset : {
+                       dimensions: [{
+                           name: 'Date',
+                           value: "{chartData>Date}",
+                           dataType:'date'
+                       }],
+                       measures: [{
+                    		name: '{chartData>/Legends/0}',
+                            value: '{chartData>KF1}'
+                       },{
+                            name: '{chartData>/Legends/1}',
+>>>>>>> e49ca65 ChartContainer
                             value: '{chartData>KF2}'
                        }],
                        data: '{chartData>/Data}'

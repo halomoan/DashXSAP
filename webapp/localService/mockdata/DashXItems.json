@@ -108,12 +108,68 @@
 	}]
 },
 {
+<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
 	"DashXItemID": "MND003",
 	"DashXMainMenuID": "MNU003",
 	"MyCoCodeID" :"2001",
 	"FromDate": "2017/01/01",
 	"ToDate": "2017/11/08",
 	"Legends" : [["Room Revenue"],["Room Revenue","Room Occupied"]],
+=======
+	"DashXItemID": "MND004",
+	"DashXMainMenuID": "MNU004",
+	"DataSet" : {
+		"ILineChartPoint": [ { 
+								"text": "Pan Pacific Orchard RevPAR (2017)", 
+								"Data": [{ "label": "May", "value": 33.1 },
+										{ "label": "Jul", "value": 32.1 },
+										{ "label": "Aug", "value": 34.1 },
+										{ "label": "Sep", "value": 35.1 },
+										{ "label": "Oct", "value": 36.1 }]
+							  },
+							  { 
+								"text": "PARKROYAL on Beach Road RevPAR (2017)", 
+								"Data": [{ "label": "May", "value": 33.1 },
+										{ "label": "Jul", "value": 33.1 },
+										{ "label": "Aug", "value": 33.1 },
+										{ "label": "Sep", "value": 33.1 },
+										{ "label": "Oct", "value": 33.1 }]
+							  },
+							  { 
+								"text": "PARKROYAL on Kitchener RevPAR (2017)", 
+								"Data": [{ "label": "May", "value": 33.1 },
+										{ "label": "Jul", "value": 33.1 },
+										{ "label": "Aug", "value": 33.1 },
+										{ "label": "Sep", "value": 33.1 },
+										{ "label": "Oct", "value": 33.1 }]
+							  },
+							  { 
+								"text": "PARKROYAL on Pickering RevPAR (2017)", 
+								"Data": [{ "label": "May", "value": 33.1 },
+										{ "label": "Jul", "value": 33.1 },
+										{ "label": "Aug", "value": 33.1 },
+										{ "label": "Sep", "value": 33.1 },
+										{ "label": "Oct", "value": 33.1 }]
+							  },{ 
+								"text": "Pan Pacific Singapore RevPAR (2017)", 
+								"Data": [{ "label": "May", "value": 33.1 },
+										{ "label": "Jul", "value": 33.1 },
+										{ "label": "Aug", "value": 33.1 },
+										{ "label": "Sep", "value": 33.1 },
+										{ "label": "Oct", "value": 33.1 }]
+							  }
+							 ] 
+	}
+	
+},
+{
+	"DashXItemID": "MND003",
+	"DashXMainMenuID": "MNU003",
+	"MyCoCodeID" :"2001",
+	"FromDate": "2017/01/01",
+	"ToDate": "2017/11/08",
+	"Legends" : ["Room Revenue","Room Occupied"],
+>>>>>>> e49ca65 ChartContainer
 	
 	"Data": [
 	{

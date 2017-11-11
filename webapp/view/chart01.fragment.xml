@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout"
+   xmlns:mc="sap.suite.ui.microchart">
+   
+    <VBox items="{chartData>/DataSet/ILineChartPoint}" >
+    	<items>
+    	
+     
+		<FlexBox width="20rem" height="12rem" direction="Column" alignItems="Center" class="sapUiResponsiveMargin" >
+			<items>
+					
+				<Label text="{chartData>text}" design="Bold" class="sapUiMediumMarginTop"/>	
+				<mc:InteractiveLineChart points="{chartData>Data}">
+						<mc:points>
+							<mc:InteractiveLineChartPoint value="{chartData>value}" label="{chartData>label}"/>
+						</mc:points>
+				</mc:InteractiveLineChart>
+			</items>
+		</FlexBox>
+	
+		</items>
+	</VBox>
+
+</core:FragmentDefinition>
