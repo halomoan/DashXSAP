@@ -280,15 +280,6 @@ sap.ui.define([
 				var sObjectId = oItem.getBindingContext().getProperty("DashXMainMenuID");
 				var sType = oItem.getBindingContext().getProperty("Type");
 				
-<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
-				switch(sType) {
-					case "geomap01":
-						this.getRouter().navTo("geoView01", {objectId : sObjectId}, false);
-						break;
-					case "timeAxis01" :
-						this.getRouter().navTo("timeAxis01", {objectId : sObjectId}, false);
-						break;
-=======
 				sap.ui.getCore().byId("__component0---app--idAppControl").hideMaster();
 				
 				switch(sType) {
@@ -301,7 +292,6 @@ sap.ui.define([
 					case "container01" :
 						this.getRouter().navTo("container01", {objectId : sObjectId}, false);
 						break;	
->>>>>>> e49ca65 ChartContainer
 				} 
 				
 			

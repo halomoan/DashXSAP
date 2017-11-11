@@ -108,14 +108,6 @@
 	}]
 },
 {
-<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
-	"DashXItemID": "MND003",
-	"DashXMainMenuID": "MNU003",
-	"MyCoCodeID" :"2001",
-	"FromDate": "2017/01/01",
-	"ToDate": "2017/11/08",
-	"Legends" : [["Room Revenue"],["Room Revenue","Room Occupied"]],
-=======
 	"DashXItemID": "MND004",
 	"DashXMainMenuID": "MNU004",
 	"DataSet" : {
@@ -169,8 +161,6 @@
 	"FromDate": "2017/01/01",
 	"ToDate": "2017/11/08",
 	"Legends" : ["Room Revenue","Room Occupied"],
->>>>>>> e49ca65 ChartContainer
-	
 	"Data": [
 	{
         "Date": "8/1/2012", 
