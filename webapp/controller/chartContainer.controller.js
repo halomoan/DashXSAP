@@ -4,7 +4,10 @@ sap.ui.define([
 	"sap/ui/Device"
 ], function(BaseController,JSONModel,Device) {
 	"use strict";
-
+    
+    jQuery.sap.require("sap.ui.dashxsap.controller.chart01");
+    jQuery.sap.require("sap.ui.dashxsap.controller.chart02");
+    
 	return BaseController.extend("sap.ui.dashxsap.controller.chartContainer", {
 		selectionChanged: function(oEvent) {
 			alert('Yes');
@@ -15,16 +18,19 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.chartContainer
 		 */
 		_onObjectMatched: function(oEvent){
-			var oViewModel = this.getModel("detailView");
-			var sObjectId =  oEvent.getParameter("arguments").objectId;
+			/*var oViewModel = this.getModel("detailView");
 			var oView = this.getView();
 			var oModelJson = new JSONModel();
+			*/
+			var sObjectId =  oEvent.getParameter("arguments").objectId;
+			
 			
 			this.getModel().metadataLoaded().then( function() {
 				var sObjectPath = this.getModel().createKey("DashXMainMenus", {
 						DashXMainMenuID :  sObjectId
 				});
-				oViewModel.setProperty("/busy", true);
+				this.oCtrl1.refreshData(sObjectPath);
+				/*oViewModel.setProperty("/busy", true);
 				
 				this.getModel().read("/" + sObjectPath + "/DashXItems", {
 				method: "GET",
@@ -41,6 +47,7 @@ sap.ui.define([
 					oViewModel.setProperty("/busy", false);
 				}
 				});
+				*/
 				
 			}.bind(this));
 		},
@@ -54,6 +61,18 @@ sap.ui.define([
 			var oDeviceModel = new JSONModel(Device);
 				oDeviceModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(oDeviceModel, "device");
+			this.oCtrl1 = new sap.ui.dashxsap.controller.chart01();
+			this.oCtrl1.onInit(this);
+			var layout1 = this.byId("v1");
+			var oFragment1 = sap.ui.xmlfragment("sap.ui.dashxsap.view.chart01",this.oCtrl1);
+			layout1.addContent(oFragment1);
+			
+			this.oCtrl2 = new sap.ui.dashxsap.controller.chart02();
+			var layout2 = this.byId("v2");
+			this.oCtrl2.onInit(this);
+			var oFragment2 = sap.ui.xmlfragment("sap.ui.dashxsap.view.chart02",this.oCtrl2);
+			layout2.addContent(oFragment2);
+			
 			this.getRouter().getRoute("container01").attachPatternMatched(this._onObjectMatched, this);	
 		}
 

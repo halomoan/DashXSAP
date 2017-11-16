@@ -14,15 +14,13 @@
 			<semantic:content>
 				<layout:Grid>
 					<layout:VerticalLayout id="v2">
-						<core:Fragment fragmentName='sap.ui.dashxsap.view.chart02' type='XML' />
 						<layout:layoutData>
 								<layout:GridData
 									span="L8 M8 S12"
 								/>
 						</layout:layoutData>
 					</layout:VerticalLayout>
-					<layout:VerticalLayout id="vl">
-						<core:Fragment fragmentName='sap.ui.dashxsap.view.chart01' type='XML' />
+					<layout:VerticalLayout id="v1">
 							<layout:layoutData>
 								<layout:GridData
 									span="L4 M4 S12"

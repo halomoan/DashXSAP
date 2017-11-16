@@ -4,21 +4,23 @@
    xmlns:layout="sap.ui.layout"
    xmlns:mc="sap.suite.ui.microchart">
    
-    <VBox items="{chartData>/DataSet/ILineChartPoint}" >
+    <VBox items="{chart01Data>/DataSet/ILineChartPoint}" 
+    	  busy="{chart01View>/busy}"
+		  busyIndicatorDelay="{chart01View>/delay}" >
     	<items>
     	
-     
-		<FlexBox width="20rem" height="12rem" direction="Column" alignItems="Center" class="sapUiResponsiveMargin" >
+    	<FlexBox width="20rem" height="12rem" direction="Column" alignItems="Center" class="sapUiResponsiveMargin" >
 			<items>
 					
-				<Label text="{chartData>text}" design="Bold" class="sapUiMediumMarginTop"/>	
-				<mc:InteractiveLineChart points="{chartData>Data}">
+				<Label text="{chart01Data>text}" design="Bold" class="sapUiMediumMarginTop" />	
+				<mc:InteractiveLineChart points="{chart01Data>Data}">
 						<mc:points>
-							<mc:InteractiveLineChartPoint value="{chartData>value}" label="{chartData>label}"/>
+							<mc:InteractiveLineChartPoint value="{chart01Data>value}" label="{chart01Data>label}"/>
 						</mc:points>
 				</mc:InteractiveLineChart>
 			</items>
 		</FlexBox>
+	
 	
 		</items>
 	</VBox>

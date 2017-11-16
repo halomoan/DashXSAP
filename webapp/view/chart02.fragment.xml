@@ -1,30 +1,37 @@
 <core:FragmentDefinition
 	  xmlns="sap.m"
-      xmlns:l="sap.ui.layout"
-      xmlns:f="sap.ui.layout.form"
+      xmlns:layout="sap.ui.layout"
       xmlns:core="sap.ui.core"
-      xmlns:mvc="sap.ui.core.mvc">
-        <f:SimpleForm
-            maxContainerCols="2"
-            editable="true"
-            layout="ResponsiveGridLayout"
-                labelSpanL="4"
-                labelSpanM="4"
-                emptySpanL="0"
-                emptySpanM="0"
-                columnsL="2"
-                columnsM="2">
-            <f:content>
-                <core:Title text="A Title" />
-                <Label text="1st label" required="true" />
-                <Input value="Blah" />
+      xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+      xmlns:viz.data="sap.viz.ui5.data"
+      xmlns:viz="sap.viz.ui5.controls" height="100%">
+      <layout:FixFlex id='chartFixFlex' minFlexSize="250">
+      	<layout:flexContent>
+            <viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='bar'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/milk}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{Store Name}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{Revenue}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
 
-                <core:Title text="xx" /> <!-- empty title so it looks like this container belongs to the left one -->
-                <Label text="2nd label" required="true" />
-                <Input value="Blah" />
-                
-                <Label text="2nd label" required="true" />
-                <Input value="Blah" />
-            </f:content>
-        </f:SimpleForm>
-</core:FragmentDefinition>	
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="Store Name" />
+                </viz:feeds>
+            </viz:VizFrame>
+        </layout:flexContent>
+      </layout:FixFlex>
+</core:FragmentDefinition>
