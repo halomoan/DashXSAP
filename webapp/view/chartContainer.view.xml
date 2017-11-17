@@ -12,7 +12,25 @@
 				busy="{detailView>/busy}"
 				busyIndicatorDelay="{detailView>/delay}">
 			<semantic:content>
-				<layout:Grid>
+		
+            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="{detailView>/title}" width="auto">
+                <content>
+                    <HBox class='settingsHBox'>
+                    
+                    <VBox class="sapUiSmallMargin">
+						<Label text = '{i18n>selectRegion}' class='settingsLabel'></Label>
+                        <Select id='selectRegion' class='settingsSelect' selectedKey='{detailView>/selectedRegion}'  change='onRegionChange'
+                            items="{path: '/MyRegions'}">
+                            <items>
+                                <core:Item text="{MyRegionID} - {ShortText}" key="{MyRegionID}" />
+                            </items>
+                        </Select>
+					</VBox>
+					</HBox>
+                </content>
+            </Panel>
+        
+			<layout:Grid>
 					<layout:VerticalLayout id="v2" class="sapUiTinyMargin" width="100%" height="100%">
 						<layout:layoutData>
 								<layout:GridData

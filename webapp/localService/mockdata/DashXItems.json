@@ -111,6 +111,7 @@
 	"DashXItemID": "MND004",
 	"DashXMainMenuID": "MNU004",
 	"ChartType" : "chart02",
+	"Title" : "Revenues",
 	"Region" : "SG",
 	"Legend" : ["Room Revenue","F&B Revenue"],
 	"DataSet" : [{
@@ -141,6 +142,7 @@
 	"DashXMainMenuID": "MNU004",
 	"ChartType" : "chart01",
 	"Region" : "SG",
+	"Title" : "Revenue Per Available Room",
 	"DataSet" : [ { 
 								"text": "Pan Pacific Orchard RevPAR (2017)", 
 								"Data": [{ "label": "May", "value": 33.1 },

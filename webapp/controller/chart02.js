@@ -10,28 +10,31 @@ sap.ui.define([
 	return Controller.extend("sap.ui.dashxsap.controller.chart02", {
 		
 		sChartType : "chart", sRegion : "SG",
-		settingsModel : {
-           series : {
-                name : "Series",
-                defaultSelected : 0,
-                values : [{
-                    name : "1 Series",
-                    value : ["KF1"]
-                }, {
-                    name : '2 Series',
-                    value : ["KF1", "KF2"]
-                }]
-            },
-            dataLabel : {
-                name : "Value Label",
-                defaultState : true
-            },
-            axisTitle : {
-                name : "Axis Title",
-                defaultState : false
-            }
-        },
-        
+		chartSettings : {
+	                plotArea: {
+	                    dataLabel: {
+	                        formatString: ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+	                        visible: true
+	                    }
+	                },
+	                valueAxis: {
+	                    label: {
+	                        formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
+	                    },
+	                    title: {
+	                        visible: false
+	                    }
+	                },
+	                categoryAxis: {
+	                    title: {
+	                        visible: false
+	                    }
+	                },
+	                title: {
+	                    visible: true,
+	                    text: ""
+	                }
+	            },
         oVizFrame : null,
         _createFilter: function(sKey,sValue){
 			return new sap.ui.model.Filter({
@@ -53,31 +56,6 @@ sap.ui.define([
 				Format.numericFormatter(ChartFormatter.getInstance());
            
             	var oVizFrame = this.oVizFrame = sap.ui.core.Fragment.byId(this.sChartType,"idVizFrame");
-				oVizFrame.setVizProperties({
-	                plotArea: {
-	                    dataLabel: {
-	                        formatString: ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
-	                        visible: true
-	                    }
-	                },
-	                valueAxis: {
-	                    label: {
-	                        formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
-	                    },
-	                    title: {
-	                        visible: false
-	                    }
-	                },
-	                categoryAxis: {
-	                    title: {
-	                        visible: false
-	                    }
-	                },
-	                title: {
-	                    visible: false,
-	                    text: 'Revenue by City and Store Name'
-	                }
-	            });
 	            var oPopOver = sap.ui.core.Fragment.byId(this.sChartType,"idPopOver");
             	oPopOver.connect(oVizFrame.getVizUid());
             	oPopOver.setFormatString(ChartFormatter.DefaultPattern.STANDARDFLOAT);
@@ -126,6 +104,8 @@ sap.ui.define([
 			
 					oModelJson.setData(oData.results[0]);
 					oVizFrame.setModel(oModelJson,oThis.sChartType + "Data");
+					oThis.chartSettings.title.text = oModelJson.getProperty("/Title");
+					oVizFrame.setVizProperties(oThis.chartSettings);
 					oViewModel.setProperty("/busy", false);
 				},
 				error: function() {
