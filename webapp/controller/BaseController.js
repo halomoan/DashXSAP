@@ -59,6 +59,24 @@ sap.ui.define([
 				} else {
 					this.getRouter().navTo("master", {}, true);
 				}
+			},
+			
+			dateFormat: function(oDate){
+				var dd = oDate.getDate();
+				var mm = oDate.getMonth() + 1;
+				var yyyy = oDate.getFullYear();
+				mm = mm < 10 ? '0' + mm : mm;
+				dd = dd < 10 ? '0' + dd : dd;
+				
+				return yyyy+"/"+mm+"/" +dd;
+				
+			},
+			createFilter: function(sKey,sOpr,sValue){
+				return new sap.ui.model.Filter({
+							path: sKey,
+	        				operator: sOpr,
+	        				value1: sValue
+				});	
 			}
 
 		});

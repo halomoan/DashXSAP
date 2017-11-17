@@ -7,21 +7,22 @@ sap.ui.define([
 	jQuery.sap.declare("sap.ui.dashxsap.controller.chart01");
 	return Controller.extend("sap.ui.dashxsap.controller.chart01", {
 		
-		sChartType : "chart01",
+		sChartType : "chart",
 		_createFilter: function(sKey,sValue){
 			return new sap.ui.model.Filter({
 						path: sKey,
-        				operator: sap.ui.model.FilterOperator.Contains,
+        				operator: sap.ui.model.FilterOperator.EQ,
         				value1: sValue
 			});	
 		},
-		onInit: function(oThis) {
+		onInit: function(oThis,sId) {
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0
 				});
 				
 				this.oParent = oThis;
+				this.sChartType = sId;
 				this.oParent.setModel(oViewModel, this.sChartType + "View");
 				
 		},

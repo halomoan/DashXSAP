@@ -111,8 +111,37 @@
 	"DashXItemID": "MND004",
 	"DashXMainMenuID": "MNU004",
 	"ChartType" : "chart02",
-	"DataSet" : {
-		"ILineChartPoint": [ { 
+	"Region" : "SG",
+	"Legend" : ["Room Revenue","F&B Revenue"],
+	"DataSet" : [{
+			        "Entity": "Pan Pacific Singapore",
+			        "KF1": 42821.13,
+			        "KF2": 9438.52
+    			 },{
+			        "Entity": "PARKROYAL Beach Road",
+			        "KF1": 42214.13,
+			        "KF2": 9433.52
+    			 },{
+			        "Entity": "PARKROYAL Pickering",
+			        "KF1": 33214.13,
+			        "KF2": 3433.52
+    			 },{
+			        "Entity": "PARKROYAL Kitchener",
+			        "KF1": 32214.13,
+			        "KF2": 3533.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 }
+    ]			 
+},
+{
+	"DashXItemID": "MND004",
+	"DashXMainMenuID": "MNU004",
+	"ChartType" : "chart01",
+	"Region" : "SG",
+	"DataSet" : [ { 
 								"text": "Pan Pacific Orchard RevPAR (2017)", 
 								"Data": [{ "label": "May", "value": 33.1 },
 										{ "label": "Jul", "value": 32.1 },
@@ -122,19 +151,19 @@
 							  },
 							  { 
 								"text": "PARKROYAL on Beach Road RevPAR (2017)", 
-								"Data": [{ "label": "May", "value": 33.1 },
+								"Data": [{ "label": "May", "value": 32.1 },
 										{ "label": "Jul", "value": 33.1 },
-										{ "label": "Aug", "value": 33.1 },
-										{ "label": "Sep", "value": 33.1 },
-										{ "label": "Oct", "value": 33.1 }]
+										{ "label": "Aug", "value": 34.1 },
+										{ "label": "Sep", "value": 35.1 },
+										{ "label": "Oct", "value": 23.1 }]
 							  },
 							  { 
 								"text": "PARKROYAL on Kitchener RevPAR (2017)", 
-								"Data": [{ "label": "May", "value": 33.1 },
-										{ "label": "Jul", "value": 33.1 },
+								"Data": [{ "label": "May", "value": 31.1 },
+										{ "label": "Jul", "value": 32.1 },
 										{ "label": "Aug", "value": 33.1 },
-										{ "label": "Sep", "value": 33.1 },
-										{ "label": "Oct", "value": 33.1 }]
+										{ "label": "Sep", "value": 34.1 },
+										{ "label": "Oct", "value": 35.1 }]
 							  },
 							  { 
 								"text": "PARKROYAL on Pickering RevPAR (2017)", 
@@ -150,11 +179,11 @@
 										{ "label": "Aug", "value": 33.1 },
 										{ "label": "Sep", "value": 33.1 },
 										{ "label": "Oct", "value": 33.1 }]
-							  }
-							 ] 
-	}
+		  }
+	 ] 
 	
-},
+	
+},	
 {
 	"DashXItemID": "MND003",
 	"DashXMainMenuID": "MNU003",

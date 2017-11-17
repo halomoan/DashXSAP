@@ -18,10 +18,7 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.chartContainer
 		 */
 		_onObjectMatched: function(oEvent){
-			/*var oViewModel = this.getModel("detailView");
-			var oView = this.getView();
-			var oModelJson = new JSONModel();
-			*/
+		
 			var sObjectId =  oEvent.getParameter("arguments").objectId;
 			
 			
@@ -30,24 +27,7 @@ sap.ui.define([
 						DashXMainMenuID :  sObjectId
 				});
 				this.oCtrl1.refreshData(sObjectPath);
-				/*oViewModel.setProperty("/busy", true);
-				
-				this.getModel().read("/" + sObjectPath + "/DashXItems", {
-				method: "GET",
-				success: function(oData) {
-					
-					oModelJson.setData(oData.results[0]);
-					
-					oView.setModel(oModelJson,"chartData");
-					
-					oViewModel.setProperty("/busy", false);
-				},
-				error: function() {
-					
-					oViewModel.setProperty("/busy", false);
-				}
-				});
-				*/
+				this.oCtrl2.refreshData(sObjectPath);
 				
 			}.bind(this));
 		},
@@ -61,17 +41,21 @@ sap.ui.define([
 			var oDeviceModel = new JSONModel(Device);
 				oDeviceModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(oDeviceModel, "device");
+				
+				
 			this.oCtrl1 = new sap.ui.dashxsap.controller.chart01();
-			this.oCtrl1.onInit(this);
 			var layout1 = this.byId("v1");
-			var oFragment1 = sap.ui.xmlfragment("sap.ui.dashxsap.view.chart01",this.oCtrl1);
+			
+			var oFragment1 = sap.ui.xmlfragment("chart01","sap.ui.dashxsap.view.chart01",this.oCtrl1);
 			layout1.addContent(oFragment1);
+			this.oCtrl1.onInit(this,"chart01");
 			
 			this.oCtrl2 = new sap.ui.dashxsap.controller.chart02();
 			var layout2 = this.byId("v2");
-			this.oCtrl2.onInit(this);
-			var oFragment2 = sap.ui.xmlfragment("sap.ui.dashxsap.view.chart02",this.oCtrl2);
+			
+			var oFragment2 = sap.ui.xmlfragment("chart02","sap.ui.dashxsap.view.chart02",this.oCtrl2);
 			layout2.addContent(oFragment2);
+			this.oCtrl2.onInit(this,"chart02");
 			
 			this.getRouter().getRoute("container01").attachPatternMatched(this._onObjectMatched, this);	
 		}

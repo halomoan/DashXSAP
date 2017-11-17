@@ -4,32 +4,34 @@
       xmlns:core="sap.ui.core"
       xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
       xmlns:viz.data="sap.viz.ui5.data"
-      xmlns:viz="sap.viz.ui5.controls" height="100%">
-      <layout:FixFlex id='chartFixFlex' minFlexSize="250">
+      xmlns:viz="sap.viz.ui5.controls">
+      <layout:FixFlex id='chartFixFlex' minFlexSize="500" busy="{chart02View>/busy}"
+		  busyIndicatorDelay="{chart02View>/delay}">
       	<layout:flexContent>
+      		
             <viz:Popover id="idPopOver"></viz:Popover>
             <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
                 height='100%' width="100%" vizType='bar'>
                 <viz:dataset>
-                    <viz.data:FlattenedDataset data="{/milk}">
+                    <viz.data:FlattenedDataset data="{chart02Data>/DataSet}">
                         <viz.data:dimensions>
-                            <viz.data:DimensionDefinition name="Store Name"
-                                value="{Store Name}" />
+                            <viz.data:DimensionDefinition name="Entity"
+                                value="{chart02Data>Entity}" />
                         </viz.data:dimensions>
                         <viz.data:measures>
-                            <viz.data:MeasureDefinition name="Revenue"
-                                value="{Revenue}" />
-                            <viz.data:MeasureDefinition name="Cost"
-                                value="{Cost}" />
+                            <viz.data:MeasureDefinition name="{chart02Data>/Legend/0}"
+                                value="{chart02Data>KF1}" />
+                            <viz.data:MeasureDefinition name="{chart02Data>/Legend/1}"
+                                value="{chart02Data>KF2}" />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
                 </viz:dataset>
 
                 <viz:feeds>
                     <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
-                        values="Revenue" />
+                        values="{chart02Data>/Legend}" />
                     <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
-                        values="Store Name" />
+                        values="Entity" />
                 </viz:feeds>
             </viz:VizFrame>
         </layout:flexContent>

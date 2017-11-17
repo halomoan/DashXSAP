@@ -136,32 +136,16 @@ sap.ui.define([
 					
 					
 		},
-		_dateFormat: function(oDate){
-			var dd = oDate.getDate();
-			var mm = oDate.getMonth() + 1;
-			var yyyy = oDate.getFullYear();
-			mm = mm < 10 ? '0' + mm : mm;
-			dd = dd < 10 ? '0' + dd : dd;
-			
-			return yyyy+"/"+mm+"/" +dd;
-			
-		},
-		_createFilter: function(sKey,sValue){
-			return new sap.ui.model.Filter({
-						path: sKey,
-        				operator: sap.ui.model.FilterOperator.Contains,
-        				value1: sValue
-			});	
-		},
 		getOData: function(){
 			var oViewModel = this.getModel("detailView");
 			var oModelJson = this.oModelChart; 
 			var oVizFrame = this.oVizFrame;
 			var oFilters = [];
 			
-			oFilters.push(this._createFilter("MyCoCodeID",this.sCoCode));
-			oFilters.push(this._createFilter("FromDate",this._dateFormat(this.oFromDate)));
-			oFilters.push(this._createFilter("ToDate",this._dateFormat(this.oToDate)));
+			
+			oFilters.push(this.createFilter("MyCoCodeID",sap.ui.model.FilterOperator.Contains,this.sCoCode));
+			oFilters.push(this.createFilter("FromDate",sap.ui.model.FilterOperator.EQ,this.dateFormat(this.oFromDate)));
+			oFilters.push(this.createFilter("ToDate",sap.ui.model.FilterOperator.EQ,this.dateFormat(this.oToDate)));
 			
 			var sObjectPath = this.getModel().createKey("DashXMainMenus", {
 				DashXMainMenuID :  this.sODataId

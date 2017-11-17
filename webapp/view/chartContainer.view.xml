@@ -13,14 +13,14 @@
 				busyIndicatorDelay="{detailView>/delay}">
 			<semantic:content>
 				<layout:Grid>
-					<layout:VerticalLayout id="v2">
+					<layout:VerticalLayout id="v2" class="sapUiTinyMargin" width="100%" height="100%">
 						<layout:layoutData>
 								<layout:GridData
 									span="L8 M8 S12"
 								/>
 						</layout:layoutData>
 					</layout:VerticalLayout>
-					<layout:VerticalLayout id="v1">
+					<layout:VerticalLayout id="v1" class="sapUiTinyMargin" width="100%" >
 							<layout:layoutData>
 								<layout:GridData
 									span="L4 M4 S12"

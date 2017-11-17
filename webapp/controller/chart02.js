@@ -9,23 +9,9 @@ sap.ui.define([
 	jQuery.sap.declare("sap.ui.dashxsap.controller.chart02");
 	return Controller.extend("sap.ui.dashxsap.controller.chart02", {
 		
-		sChartType : "chart01",
+		sChartType : "chart", sRegion : "SG",
 		settingsModel : {
-            dataset : {
-                name: "Dataset",
-                defaultSelected : 1,
-                values : [{
-                    name : "Small",
-                    value : "/small.json"
-                },{
-                    name : "Medium",
-                    value : "/medium.json"
-                },{
-                    name : "Large",
-                    value : "/large.json"
-                }]
-            },
-            series : {
+           series : {
                 name : "Series",
                 defaultSelected : 0,
                 values : [{
@@ -50,54 +36,103 @@ sap.ui.define([
         _createFilter: function(sKey,sValue){
 			return new sap.ui.model.Filter({
 						path: sKey,
-        				operator: sap.ui.model.FilterOperator.Contains,
+        				operator: sap.ui.model.FilterOperator.EQ,
         				value1: sValue
 			});	
 		},
-		onInit: function(oThis) {
+		onInit: function(oThis,sId) {
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0
 				});
 				
 				this.oParent = oThis;
-				this.oParent.setModel(oViewModel, this.sViewModel);
+				this.sChartType = sId;
+				this.oParent.setModel(oViewModel, this.sChartType + "View");
 				
 				Format.numericFormatter(ChartFormatter.getInstance());
-            	var formatPattern = ChartFormatter.DefaultPattern;
-            	
-            	var oVizFrame = this.oVizFrame = this.getView().byId("idVizFrame");
+           
+            	var oVizFrame = this.oVizFrame = sap.ui.core.Fragment.byId(this.sChartType,"idVizFrame");
 				oVizFrame.setVizProperties({
-                plotArea: {
-                    dataLabel: {
-                        formatString: formatPattern.SHORTFLOAT_MFD2,
-                        visible: true
-                    }
-                },
-                valueAxis: {
-                    label: {
-                        formatString: formatPattern.SHORTFLOAT
-                    },
-                    title: {
-                        visible: false
-                    }
-                },
-                categoryAxis: {
-                    title: {
-                        visible: false
-                    }
-                },
-                title: {
-                    visible: false,
-                    text: 'Revenue by City and Store Name'
-                }
-            });
+	                plotArea: {
+	                    dataLabel: {
+	                        formatString: ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+	                        visible: true
+	                    }
+	                },
+	                valueAxis: {
+	                    label: {
+	                        formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
+	                    },
+	                    title: {
+	                        visible: false
+	                    }
+	                },
+	                categoryAxis: {
+	                    title: {
+	                        visible: false
+	                    }
+	                },
+	                title: {
+	                    visible: false,
+	                    text: 'Revenue by City and Store Name'
+	                }
+	            });
+	            var oPopOver = sap.ui.core.Fragment.byId(this.sChartType,"idPopOver");
+            	oPopOver.connect(oVizFrame.getVizUid());
+            	oPopOver.setFormatString(ChartFormatter.DefaultPattern.STANDARDFLOAT);
+            	
+            	
+            	this.initChartSettings();
 		},
-		callMe: function(){
-			alert("Aneh");	
-		},
-		refreshData: function(oParams){
+		initChartSettings : function() {
+            
+            // try to load sap.suite.ui.commons for using ChartContainer
+            // sap.suite.ui.commons is available in sapui5-sdk-dist but not in demokit
+            var bSuiteAvailable = jQuery.sap.sjax({
+                type : "HEAD",
+                url : sap.ui.resource("sap.suite.ui.commons", "library.js")
+            }).success;
+            if (bSuiteAvailable) {
+                sap.ui.getCore().loadLibrary("sap.suite.ui.commons");
+                var vizframe = sap.ui.core.Fragment.byId(this.sChartType,"idVizFrame");
+                var oChartContainerContent = new sap.suite.ui.commons.ChartContainerContent({
+                    icon : "sap-icon://horizontal-bar-chart",
+                    title : "vizFrame Bar Chart Sample",
+                    content : [ vizframe ]
+                });
+                var oChartContainer = new sap.suite.ui.commons.ChartContainer({
+                    content : [ oChartContainerContent ]
+                });
+                oChartContainer.setShowFullScreen(true);
+                oChartContainer.setAutoAdjustHeight(true);
+                sap.ui.core.Fragment.byId(this.sChartType,"chartFixFlex").setFlexContent(oChartContainer);
+            }
+        },
+		refreshData: function(sParam){
+			var oViewModel = this.oParent.getModel(this.sChartType + "View");
+			var oModelJson = new JSONModel();
+			var oVizFrame = this.oVizFrame;
+			var oThis = this;
+			var filters = [];
+			filters.push(this._createFilter("Region",this.sRegion));
+			filters.push(this._createFilter("ChartType",this.sChartType));
 			
+			oViewModel.setProperty("/busy", true);
+			this.oParent.getModel().read("/" + sParam + "/DashXItems", {
+				method: "GET",
+				filters : filters,
+				success: function(oData) {
+			
+					oModelJson.setData(oData.results[0]);
+					oVizFrame.setModel(oModelJson,oThis.sChartType + "Data");
+					oViewModel.setProperty("/busy", false);
+				},
+				error: function() {
+					
+					oViewModel.setProperty("/busy", false);
+				}
+			});
 		}
 	});
 });
