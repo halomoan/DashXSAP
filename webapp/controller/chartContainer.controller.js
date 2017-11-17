@@ -9,8 +9,12 @@ sap.ui.define([
     jQuery.sap.require("sap.ui.dashxsap.controller.chart02");
     
 	return BaseController.extend("sap.ui.dashxsap.controller.chartContainer", {
-		selectionChanged: function(oEvent) {
-			alert('Yes');
+		sRegion : "",
+		sODataKey : "",
+		onRegionChange: function(oEvent) {
+			this.sRegion = oEvent.getSource().getSelectedKey();
+			var oParams = { "ODataKey" : this.sODataKey, "Region" : this.sRegion };
+			this._refreshCharts(oParams);
 		},
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -21,15 +25,24 @@ sap.ui.define([
 		
 			var sObjectId =  oEvent.getParameter("arguments").objectId;
 			
-			
 			this.getModel().metadataLoaded().then( function() {
+				
 				var sObjectPath = this.getModel().createKey("DashXMainMenus", {
 						DashXMainMenuID :  sObjectId
 				});
-				this.oCtrl1.refreshData(sObjectPath);
-				this.oCtrl2.refreshData(sObjectPath);
+				this.sODataKey = sObjectPath;
+			
+				this.byId("selectRegion").getBinding("items").attachEventOnce("dataReceived", function(){
+						this.sRegion = this.byId("selectRegion").getFirstItem().getKey();
+						var oParams = { "ODataKey" : this.sODataKey, "Region" : this.sRegion };
+						this._refreshCharts(oParams);
+				}.bind(this));
 				
 			}.bind(this));
+		},
+		_refreshCharts : function(oParams) {
+			this.oCtrl1.refreshData(oParams);
+			this.oCtrl2.refreshData(oParams);
 		},
 		onInit: function() {
 			var oViewModel = new JSONModel({
@@ -41,7 +54,6 @@ sap.ui.define([
 			var oDeviceModel = new JSONModel(Device);
 				oDeviceModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(oDeviceModel, "device");
-				
 				
 			this.oCtrl1 = new sap.ui.dashxsap.controller.chart01();
 			var layout1 = this.byId("v1");
@@ -58,6 +70,7 @@ sap.ui.define([
 			this.oCtrl2.onInit(this,"chart02");
 			
 			this.getRouter().getRoute("container01").attachPatternMatched(this._onObjectMatched, this);	
+			
 		}
 
 		/**

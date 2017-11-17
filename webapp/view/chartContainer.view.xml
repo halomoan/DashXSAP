@@ -13,7 +13,7 @@
 				busyIndicatorDelay="{detailView>/delay}">
 			<semantic:content>
 		
-            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="{detailView>/title}" width="auto">
+            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="false" headerText="{detailView>/title}" width="auto">
                 <content>
                     <HBox class='settingsHBox'>
                     

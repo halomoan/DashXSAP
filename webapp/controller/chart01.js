@@ -26,16 +26,17 @@ sap.ui.define([
 				this.oParent.setModel(oViewModel, this.sChartType + "View");
 				
 		},
-		refreshData: function(sParam){
+		refreshData: function(oParams){
 			var oModelJson = new JSONModel();
 			var oView = this.oParent.getView();
 			var oThis = this;
 			var oViewModel = this.oParent.getModel(this.sChartType + "View");
 			var filters = [];
 			filters.push(this._createFilter("ChartType",this.sChartType));
+			filters.push(this._createFilter("Region",oParams.Region));
 			
 			oViewModel.setProperty("/busy", true);
-			this.oParent.getModel().read("/" + sParam + "/DashXItems", {
+			this.oParent.getModel().read("/" + oParams.ODataKey + "/DashXItems", {
 					method: "GET",
 					filters : filters,
 					success: function(oData) {

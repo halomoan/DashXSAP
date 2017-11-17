@@ -141,7 +141,7 @@
 	"DashXItemID": "MND004",
 	"DashXMainMenuID": "MNU004",
 	"ChartType" : "chart01",
-	"Region" : "SG",
+	"Region" : "AU",
 	"Title" : "Revenue Per Available Room",
 	"DataSet" : [ { 
 								"text": "Pan Pacific Orchard RevPAR (2017)", 

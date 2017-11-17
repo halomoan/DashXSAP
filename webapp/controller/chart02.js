@@ -9,7 +9,7 @@ sap.ui.define([
 	jQuery.sap.declare("sap.ui.dashxsap.controller.chart02");
 	return Controller.extend("sap.ui.dashxsap.controller.chart02", {
 		
-		sChartType : "chart", sRegion : "SG",
+		sChartType : "chart",
 		chartSettings : {
 	                plotArea: {
 	                    dataLabel: {
@@ -87,17 +87,17 @@ sap.ui.define([
                 sap.ui.core.Fragment.byId(this.sChartType,"chartFixFlex").setFlexContent(oChartContainer);
             }
         },
-		refreshData: function(sParam){
+		refreshData: function(oParams){
 			var oViewModel = this.oParent.getModel(this.sChartType + "View");
 			var oModelJson = new JSONModel();
 			var oVizFrame = this.oVizFrame;
 			var oThis = this;
 			var filters = [];
-			filters.push(this._createFilter("Region",this.sRegion));
+			filters.push(this._createFilter("Region",oParams.Region));
 			filters.push(this._createFilter("ChartType",this.sChartType));
 			
 			oViewModel.setProperty("/busy", true);
-			this.oParent.getModel().read("/" + sParam + "/DashXItems", {
+			this.oParent.getModel().read("/" + oParams.ODataKey + "/DashXItems", {
 				method: "GET",
 				filters : filters,
 				success: function(oData) {
