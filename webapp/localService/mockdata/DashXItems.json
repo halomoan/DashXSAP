@@ -134,6 +134,135 @@
 			        "Entity": "PARKROYAL Orchard",
 			        "KF1": 38214.13,
 			        "KF2": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard1",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard2",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard3",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 }
+    ]			 
+},
+{
+	"DashXItemID": "MND004",
+	"DashXMainMenuID": "MNU004",
+	"ChartType" : "chart03",
+	"Title" : "Revenues",
+	"Region" : "SG",
+	"Legend" : ["Room Revenue"],
+	"DataSet" : [{
+			        "Entity": "Pan Pacific Singapore",
+			        "KF1": 42821.13,
+			        "KF2": 9438.52
+    			 },{
+			        "Entity": "PARKROYAL Beach Road",
+			        "KF1": 12214.13,
+			        "KF2": 9433.52
+    			 },{
+			        "Entity": "PARKROYAL Pickering",
+			        "KF1": 33214.13,
+			        "KF2": 3433.52
+    			 },{
+			        "Entity": "PARKROYAL Kitchener",
+			        "KF1": 32214.13,
+			        "KF2": 3533.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard1",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard2",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard3",
+			        "KF1": 38214.13,
+			        "KF2": 3503.52
+    			 }
+    ]			 
+},
+{
+	"DashXItemID": "MND004",
+	"DashXMainMenuID": "MNU004",
+	"ChartType" : "chart04",
+	"Title" : "F&B Revenues",
+	"Region" : "SG",
+	"Legend" : ["Amount"],
+	"DataSet" : [{
+			        "Entity": "Pan Pacific Singapore",
+					"Dimension" : "Revenue",
+			        "KF1": 42821.13			       
+    			 },{
+			        "Entity": "PARKROYAL Beach Road",
+					"Dimension" : "Revenue",
+			        "KF1": 12214.13
+    			 },{
+			        "Entity": "PARKROYAL Pickering",
+					"Dimension" : "Revenue",
+			        "KF1": 33214.13
+    			 },{
+			        "Entity": "PARKROYAL Kitchener",
+					"Dimension" : "Revenue",
+			        "KF1": 32214.13
+    			 },{
+			        "Entity": "PARKROYAL Orchard",
+					"Dimension" : "Revenue",
+			        "KF1": 38214.13			        
+    			 },{
+			        "Entity": "PARKROYAL Orchard1",
+					"Dimension" : "Revenue",
+			        "KF1": 38214.13
+    			 },{
+			        "Entity": "PARKROYAL Orchard2",
+					"Dimension" : "Revenue",
+			        "KF1": 38214.13
+    			 },{
+			        "Entity": "PARKROYAL Orchard3",
+					"Dimension" : "Revenue",
+			        "KF1": 38214.13
+    			 },
+				 {
+			        "Entity": "Pan Pacific Singapore",
+					"Dimension" : "Cost",
+			        "KF1": 9438.52
+    			 },{
+			        "Entity": "PARKROYAL Beach Road",
+					"Dimension" : "Cost",
+			        "KF1": 9433.52
+    			 },{
+			        "Entity": "PARKROYAL Pickering",
+					"Dimension" : "Cost",
+			        "KF1": 3433.52
+    			 },{
+			        "Entity": "PARKROYAL Kitchener",
+					"Dimension" : "Cost",
+			        "KF1": 3533.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard",
+					"Dimension" : "Cost",
+			        "KF1": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard1",
+					"Dimension" : "Cost",
+			        "KF1": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard2",
+					"Dimension" : "Cost",
+			        "KF1": 3503.52
+    			 },{
+			        "Entity": "PARKROYAL Orchard3",
+					"Dimension" : "Cost",
+			        "KF1": 3503.52			        
     			 }
     ]			 
 },
@@ -141,11 +270,15 @@
 	"DashXItemID": "MND004",
 	"DashXMainMenuID": "MNU004",
 	"ChartType" : "chart01",
-	"Region" : "AU",
+	"Region" : "SG",
 	"Title" : "Revenue Per Available Room",
 	"DataSet" : [ { 
 								"text": "Pan Pacific Orchard RevPAR (2017)", 
-								"Data": [{ "label": "May", "value": 33.1 },
+								"Data": [
+										{ "label": "Mar", "value": 23.1 },
+										{ "label": "Apr", "value": 23.1 },
+										{ "label": "May", "value": 23.1 },
+										{ "label": "Jun", "value": 33.1 },
 										{ "label": "Jul", "value": 32.1 },
 										{ "label": "Aug", "value": 34.1 },
 										{ "label": "Sep", "value": 35.1 },

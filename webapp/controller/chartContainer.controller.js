@@ -7,6 +7,8 @@ sap.ui.define([
     
     jQuery.sap.require("sap.ui.dashxsap.controller.chart01");
     jQuery.sap.require("sap.ui.dashxsap.controller.chart02");
+    jQuery.sap.require("sap.ui.dashxsap.controller.chart03");
+    jQuery.sap.require("sap.ui.dashxsap.controller.chart04");
     
 	return BaseController.extend("sap.ui.dashxsap.controller.chartContainer", {
 		sRegion : "",
@@ -41,11 +43,24 @@ sap.ui.define([
 			}.bind(this));
 		},
 		_refreshCharts : function(oParams) {
+			
+			var oViewModel = this.getModel("detailView");
+			var oSelectedItem = this.byId("selectRegion").getSelectedItem();
+			if (!oSelectedItem) {
+				oSelectedItem = this.byId("selectRegion").getFirstItem();
+			}	
+			
+			var sTitle = this.getResourceBundle().getText("selection", [oSelectedItem.getText()]);
+			oViewModel.setProperty("/panelTitle", sTitle);
+			
 			this.oCtrl1.refreshData(oParams);
 			this.oCtrl2.refreshData(oParams);
+			this.oCtrl3.refreshData(oParams);
+			this.oCtrl4.refreshData(oParams);
 		},
 		onInit: function() {
 			var oViewModel = new JSONModel({
+					panelTitle : this.getResourceBundle().getText("selection", [""]),
 					busy : false,
 					delay : 0
 				});
@@ -68,6 +83,28 @@ sap.ui.define([
 			var oFragment2 = sap.ui.xmlfragment("chart02","sap.ui.dashxsap.view.chart02",this.oCtrl2);
 			layout2.addContent(oFragment2);
 			this.oCtrl2.onInit(this,"chart02");
+			
+			this.oCtrl3 = new sap.ui.dashxsap.controller.chart03();
+			var layout3 = this.byId("v3");
+			
+			var oFragment3 = sap.ui.xmlfragment("chart03","sap.ui.dashxsap.view.chart03",this.oCtrl3);
+			layout3.addContent(oFragment3);
+			this.oCtrl3.onInit(this,"chart03");
+			
+			this.oCtrl4 = new sap.ui.dashxsap.controller.chart04();
+			var layout4 = this.byId("v4");
+			
+			var oFragment4 = sap.ui.xmlfragment("chart04","sap.ui.dashxsap.view.chart04",this.oCtrl4);
+			layout4.addContent(oFragment4);
+			this.oCtrl4.onInit(this,"chart04");
+			
+			
+			/*this.oCtrl2 = new sap.ui.dashxsap.controller.chart02();
+			var layout2 = this.byId("v2");
+			
+			var oFragment2 = sap.ui.xmlfragment("chart02","sap.ui.dashxsap.view.chart02",this.oCtrl2);
+			layout2.addContent(oFragment2);
+			this.oCtrl2.onInit(this,"chart02");*/
 			
 			this.getRouter().getRoute("container01").attachPatternMatched(this._onObjectMatched, this);	
 			

@@ -13,7 +13,7 @@
 				busyIndicatorDelay="{detailView>/delay}">
 			<semantic:content>
 		
-            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="false" headerText="{detailView>/title}" width="auto">
+            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="false" headerText="{detailView>/panelTitle}" width="auto">
                 <content>
                     <HBox class='settingsHBox'>
                     
@@ -31,7 +31,18 @@
             </Panel>
         
 			<layout:Grid>
-					<layout:VerticalLayout id="v2" class="sapUiTinyMargin" width="100%" height="100%">
+					<layout:VerticalLayout class="sapUiTinyMargin" width="100%" height="100%">
+						<layout:VerticalLayout id="v2" width="100%" height="100%">
+							
+						</layout:VerticalLayout>
+						<layout:VerticalLayout id="v3" width="100%" height="100%">
+							
+						</layout:VerticalLayout>
+						
+						<layout:VerticalLayout id="v4" width="100%" height="100%">
+							
+						</layout:VerticalLayout>
+						
 						<layout:layoutData>
 								<layout:GridData
 									span="L8 M8 S12"
