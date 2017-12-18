@@ -7,21 +7,6 @@
       xmlns:viz="sap.viz.ui5.controls">
       <layout:FixFlex id='chartFixFlexchart04' minFlexSize="500" busy="{chart04View>/busy}"
 		  busyIndicatorDelay="{chart04View>/delay}">
-      	<layout:flexContent>
-      		
-      		<HBox class='settingsHBox'>
-      			 <VBox class='settingsBox'>
-                        <Label text='{chart04View>/type/name}' design="Bold" class='settingsLabel'></Label>
-                        <RadioButtonGroup id='typeRadioGroup'
-                            buttons="{path: 'chart04View>/type/values'}" >
-                            <buttons>
-                                <RadioButton class='settingsRadio' text="{chart04View>name}" select='onTypeSelected'/>
-                            </buttons>
-                        </RadioButtonGroup>
-                    </VBox>
-      		</HBox>
-      		
-      	</layout:flexContent>	
       	<layout:flexContent>	
     	   <viz:Popover id="idPopOverchart04"></viz:Popover>	
            <viz:VizFrame id="idVizFramechart04" uiConfig="{applicationSet:'fiori'}"

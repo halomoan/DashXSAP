@@ -1,0 +1,49 @@
+<core:FragmentDefinition
+	  xmlns="sap.m"
+      xmlns:layout="sap.ui.layout"
+      xmlns:commons="sap.suite.ui.commons"
+      xmlns:core="sap.ui.core"
+      xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+      xmlns:viz.data="sap.viz.ui5.data"
+      xmlns:viz="sap.viz.ui5.controls">
+	<commons:ChartContainer showFullScreen="true"
+                                     autoAdjustHeight="false"
+                                     showLegend="true"
+                                     id="chartContainer">
+  		<commons:content>
+  			<commons:ChartContainerContent
+                             icon="sap-icon://horizontal-stacked-chart">
+  			<commons:content>
+  				 <viz:VizFrame id="idVizFramechart05" uiConfig="{applicationSet:'fiori'}"
+	                width="100%" vizType='stacked_bar'>
+	                <viz:dataset>
+	                     <viz.data:FlattenedDataset data="{chart05Data>/DataSet}">
+	                        <viz.data:dimensions>
+	                           <viz.data:DimensionDefinition name="Entity"
+	                                value="{chart05Data>Entity}" />
+	                            <viz.data:DimensionDefinition name="Dimension"
+	                                value="{chart05Data>Dimension}" />
+	                        </viz.data:dimensions>
+	                        <viz.data:measures>
+	                            <viz.data:MeasureDefinition name="{chart05Data>/Legend/0}"
+	                                value="{chart05Data>KF1}" />
+	                        </viz.data:measures>
+	                    </viz.data:FlattenedDataset>
+	                </viz:dataset>
+	
+	                <viz:feeds>
+	                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+	                        values="{chart05Data>/Legend}" />
+	                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+	                        values="Entity" />
+	                    <viz.feeds:FeedItem uid="color" type="Dimension"
+	                        values="Dimension" />
+	                </viz:feeds>
+	            </viz:VizFrame>
+            	<viz:Popover id="idPopOverchart05"></viz:Popover>	
+  			</commons:content>
+  			</commons:ChartContainerContent>
+  		</commons:content>	
+  	</commons:ChartContainer>		
+    
+</core:FragmentDefinition>
