@@ -6,8 +6,8 @@ sap.ui.define([
 ], function(Controller,JSONModel,ChartFormatter,Format) {
 	"use strict";
 	
-	jQuery.sap.declare("sap.ui.dashxsap.controller.chart04");
-	return Controller.extend("sap.ui.dashxsap.controller.chart04", {
+	jQuery.sap.declare("sap.ui.dashxsap.controller.chart05");
+	return Controller.extend("sap.ui.dashxsap.controller.chart05", {
 		
 		sChartType : "chart",
 		chartSettings : 
@@ -57,8 +57,9 @@ sap.ui.define([
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0,
-						type : {
+						 type : {
 			                name : "Stacked Type",
+			                defaultSelected : 0,
 			                values : [{
 			                    name : "Regular",
 			                    vizType : "stacked_bar",
@@ -112,13 +113,12 @@ sap.ui.define([
 				Format.numericFormatter(ChartFormatter.getInstance());
         	
         		 
-            	var oVizFrame = this.oVizFrame = sap.ui.core.Fragment.byId(this.sChartType,"idVizFramechart04");
+            	var oVizFrame = this.oVizFrame = sap.ui.core.Fragment.byId(this.sChartType,"idVizFramechart05");
             	
-           
             	
             	
             	oVizFrame.setVizProperties(this.chartSettings);
-	            var oPopOver = sap.ui.core.Fragment.byId(this.sChartType,"idPopOverchart04");
+	            var oPopOver = sap.ui.core.Fragment.byId(this.sChartType,"idPopOverchart05");
             	oPopOver.connect(oVizFrame.getVizUid());
             	oPopOver.setFormatString(ChartFormatter.DefaultPattern.STANDARDFLOAT);
             	
@@ -127,7 +127,7 @@ sap.ui.define([
             	oTooltip.setFormatString(ChartFormatter.DefaultPattern.STANDARDFLOAT);
             	*/
             	
-            	this.initChartSettings();
+            	//this.initChartSettings();
 		},
 		initChartSettings : function() {
             
@@ -139,48 +139,18 @@ sap.ui.define([
             }).success;
             if (bSuiteAvailable) {
                 sap.ui.getCore().loadLibrary("sap.suite.ui.commons");
-                var vizframe = sap.ui.core.Fragment.byId(this.sChartType,"idVizFramechart04");
+                var vizframe = sap.ui.core.Fragment.byId(this.sChartType,"idVizFramechart05");
                 var oChartContainerContent = new sap.suite.ui.commons.ChartContainerContent({
                     icon : "sap-icon://horizontal-stacked-chart",
                     title : "vizFrame Stacked bar Chart Sample",
                     content : [ vizframe ]
                 });
-                
-                
-                var sView = this.sChartType + "View";
-                var oThis = this;
-                
-                var oSelect = new sap.m.Select({
-                	id:"sel",
-                	items: {
-                		path : sView + ">/type/values",
-	                	template: new sap.ui.core.Item({
-	                    	text: { path: sView + ">name" }
-	                    })
-                    },
-                	forceSelection: false,
-                	change : function(oEvent) {
-						//var selectedKey = oEvent.getSource().getSelectedItem().getKey();
-						var oType = oEvent.getSource().getSelectedItem().getBindingContext(sView);
-						
-            			if(oThis.oVizFrame && oType){
-            				var bindValue = oType.getObject();
-            				oThis.oVizFrame.setVizType(bindValue.vizType);
-                			oThis.oVizFrame.setVizProperties(bindValue.vizProperties);
-            				//console.log(bindValue);	
-            			}
-                    }
-					
-            	});
-            
-            	var oChartContainer = new sap.suite.ui.commons.ChartContainer({
-                    content : [ oChartContainerContent ],
-                    dimensionSelectors : [ oSelect ]
+                var oChartContainer = new sap.suite.ui.commons.ChartContainer({
+                    content : [ oChartContainerContent ]
                 });
-                
                 oChartContainer.setShowFullScreen(true);
                 oChartContainer.setAutoAdjustHeight(true);
-                sap.ui.core.Fragment.byId(this.sChartType,"chartFixFlexchart04").setFlexContent(oChartContainer);
+                sap.ui.core.Fragment.byId(this.sChartType,"chartFixFlexchart05").setFlexContent(oChartContainer);
             }
         },
 		refreshData: function(oParams){
@@ -192,13 +162,13 @@ sap.ui.define([
 			filters.push(this._createFilter("Region",oParams.Region));
 			filters.push(this._createFilter("ChartType",this.sChartType));
 			
-		
-            		
+	
 			oViewModel.setProperty("/busy", true);
 			this.oParent.getModel().read("/" + oParams.ODataKey + "/DashXItems", {
 				method: "GET",
 				filters : filters,
 				success: function(oData) {
+							
 			
 					oThis.dataSort(oData.results[0]);
 					oModelJson.setData(oData.results[0]);
@@ -211,6 +181,9 @@ sap.ui.define([
 		                    text : oModelJson.getProperty("/Title")
 		                }
 		            });
+		            
+		            
+		            	console.log(oVizFrame);	
 					oViewModel.setProperty("/busy", false);
 				},
 				error: function() {
