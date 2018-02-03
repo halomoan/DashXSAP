@@ -1,57 +1,403 @@
 [{
-	"DashXItemID": "MND001",
-	"Title" : "Room Information",
-	"DashXMainMenuID": "MNU001",
-	"Legend" : [{ "name" : "Room Occupied", "color" : "rgba(184,225,245,1.0)" }],
-	
-	"Circles": [{
-		"pos": "103.860650000000;1.300200000000;0",
-		"tooltip": "Room Occupied: 230",
-		"radius": "35",
-		"color": "rgba(184,225,245,1.0)",
-		"colorBorder": "rgba(0,0,255,1.0)",
-		"hotDeltaColor": "rgba(184,225,245,1.0)"
-	},{
-		"pos": "103.855800000000;1.310550000000;0",
-		"tooltip": "Room Occupied: 120",
-		"radius": "32",
-		"color": "rgba(184,225,245,1.0)",
-		"colorBorder": "rgba(0,0,255,1.0)",
-		"hotDeltaColor": "rgba(184,225,245,1.0)"
-	},{
-		"pos": "101.712458000000;3.144652000000;0",
-		"tooltip": "Room Occupied: 100",
-		"radius": "25",
-		"color": "rgba(184,225,245,1.0)",
-		"colorBorder": "rgba(0,0,255,1.0)",
-		"hotDeltaColor": "rgba(184,225,245,1.0)"
-	}],
-	"Spots": [{
-		"pos": "103.860650000000;1.300200000000;0",
-		"name": "PR Kitchener",
-		"tooltip": "Total Room",
-        "type": "Inactive",
-        "text": "320",
-        "DataSet" : [ { "text" : "Room Revenue", "day": 14000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "SGD"},
-        			  { "text" : "Room Occupied", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} 
-        			]
-	},{
-		"pos": "103.855800000000;1.310550000000;0",
-		"name": "PR Beach Road",
-        "tooltip": "Total Room",
-        "type": "Success",
-        "text": "100",
-        "DataSet" : [ { "text" : "Room Revenue", "day": 15000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "SGD"},
-        			  { "text" : "Room Occupied", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} ]
-	},{
-		"pos": "101.712458000000;3.144652000000;0",
-		"name": "PR Kuala Lumpur",
-		"tooltip": "Total Room",
-        "type": "Error",
-        "text": "999",
-        "DataSet" : [ { "text" : "Room Revenue", "day": 16000, "MTDActual" : 2000, "YTDActual" : 3000 , "CurrencyCode" : "MYR"},
-        			  { "text" : "Room Occupied", "day": 140, "MTDActual" : 20, "YTDActual" : 30 , "CurrencyCode" : ""} ]
-	}]
+  "DashXItemID": "MND001",
+  "Title" : "Room Information",
+  "DashXMainMenuID": "MNU001",
+  "legend": [
+    {
+      "name": "Room Occupied",
+      "color": "rgba(184,225,245,1.0)"
+    }
+  ],
+	"circles": [
+		{
+			"pos": "105.850513100000;21.032719200000",
+			"tooltip": "Room Occupied: 189 ",
+			"radius": 28,
+			"color": "rgba(184,225,245,1.0)",
+			"colorborder": "rgba(18,225,245,1.0)",
+			"hotdeltacolor": "rgba(184,25,25,1.0)"
+		},
+		{
+			"pos": "106.672678300000;10.797328400000",
+			"tooltip": "Room Occupied: 84 ",
+			"radius": 18,
+			"color": "rgba(184,225,245,1.0)",
+			"colorborder": "rgba(18,225,245,1.0)",
+			"hotdeltacolor": "rgba(184,25,25,1.0)"
+		}
+	],
+	"spots": [
+		{
+			"pos": "105.850513100000;21.032719200000",
+			"name": "Pan Pacific Hanoi",
+			"type": "Success",
+			"text": "273 ",
+			"dataset": [
+				{
+					"order": 1,
+					"text": "AOR (%) By Available Rm (Gross)",
+					"day": "69.23",
+					"mtdact": "69.23",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "69.23",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "%"
+				},
+				{
+					"order": 2,
+					"text": "AOR (%) by Saleable Rms (Gross)",
+					"day": "77.60",
+					"mtdact": "77.60",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "77.60",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "%"
+				},
+				{
+					"order": 3,
+					"text": "ARR (Gross)",
+					"day": "98.76",
+					"mtdact": "98.76",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "98.76",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00"
+				},
+				{
+					"order": 4,
+					"text": "RevPAR",
+					"day": "70.18",
+					"mtdact": "70.18",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "70.18",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00"
+				},
+				{
+					"order": 6,
+					"text": "F&B Avg. Checks",
+					"day": "26.80",
+					"mtdact": "26.80",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "26.80",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00"
+				},
+				{
+					"order": 7,
+					"text": "Total Room Sales",
+					"day": "20117.12",
+					"mtdact": "20117.12",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "20117.12",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 8,
+					"text": " > Food Sales",
+					"day": "11677.47",
+					"mtdact": "11677.47",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "11677.47",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 9,
+					"text": " > Beverage Sales",
+					"day": "5071.40",
+					"mtdact": "5071.40",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "5071.40",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 10,
+					"text": " > F&B Service Charge",
+					"day": "825.29",
+					"mtdact": "825.29",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "825.29",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 11,
+					"text": " > F&B Other Income",
+					"day": "0.00",
+					"mtdact": "0.00",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "0.00",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 12,
+					"text": "Total F&B Sales",
+					"day": "17574.17",
+					"mtdact": "17574.17",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "17574.17",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 13,
+					"text": "MOD Revenue",
+					"day": "880.27",
+					"mtdact": "880.27",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "880.27",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 14,
+					"text": "TOTAL SALES",
+					"day": "38571.56",
+					"mtdact": "38571.56",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "38571.56",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 15,
+					"text": "Room Occupied",
+					"day": "189",
+					"mtdact": "189",
+					"mtdbgt": "0",
+					"mtdly": "0",
+					"ytdact": "189",
+					"ytdbgt": "0",
+					"ytdly": "0",
+					"unit": "UN"
+				},
+				{
+					"order": 16,
+					"text": "Total Room",
+					"day": "273",
+					"mtdact": "273",
+					"mtdbgt": "0",
+					"mtdly": "0",
+					"ytdact": "273",
+					"ytdbgt": "0",
+					"ytdly": "0",
+					"unit": "UN"
+				}
+			]
+		},
+		{
+			"pos": "106.672678300000;10.797328400000",
+			"name": "PARKROYAL Saigon",
+			"type": "Success",
+			"text": "186 ",
+			"dataset": [
+				{
+					"order": 1,
+					"text": "AOR (%) By Available Rm (Gross)",
+					"day": "45.16",
+					"mtdact": "45.16",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "45.16",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "%"
+				},
+				{
+					"order": 2,
+					"text": "AOR (%) by Saleable Rms (Gross)",
+					"day": "47.85",
+					"mtdact": "47.85",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "47.85",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "%"
+				},
+				{
+					"order": 3,
+					"text": "ARR (Gross)",
+					"day": "63.40",
+					"mtdact": "63.40",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "63.40",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00"
+				},
+				{
+					"order": 4,
+					"text": "RevPAR",
+					"day": "30.34",
+					"mtdact": "30.34",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "30.34",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00"
+				},
+				{
+					"order": 6,
+					"text": "F&B Avg. Checks",
+					"day": "20.13",
+					"mtdact": "20.13",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "20.13",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00"
+				},
+				{
+					"order": 7,
+					"text": "Total Room Sales",
+					"day": "5922.60",
+					"mtdact": "5922.60",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "5922.60",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 8,
+					"text": " > Food Sales",
+					"day": "6645.94",
+					"mtdact": "6645.94",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "6645.94",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 9,
+					"text": " > Beverage Sales",
+					"day": "1427.71",
+					"mtdact": "1427.71",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "1427.71",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 10,
+					"text": " > F&B Service Charge",
+					"day": "435.20",
+					"mtdact": "435.20",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "435.20",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 11,
+					"text": " > F&B Other Income",
+					"day": "3.59",
+					"mtdact": "3.59",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "3.59",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 12,
+					"text": "Total F&B Sales",
+					"day": "8512.44",
+					"mtdact": "8512.44",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "8512.44",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 13,
+					"text": "MOD Revenue",
+					"day": "750.42",
+					"mtdact": "750.42",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "750.42",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 14,
+					"text": "TOTAL SALES",
+					"day": "15185.46",
+					"mtdact": "15185.46",
+					"mtdbgt": "0.00",
+					"mtdly": "0.00",
+					"ytdact": "15185.46",
+					"ytdbgt": "0.00",
+					"ytdly": "0.00",
+					"unit": "VND"
+				},
+				{
+					"order": 15,
+					"text": "Room Occupied",
+					"day": "84",
+					"mtdact": "84",
+					"mtdbgt": "0",
+					"mtdly": "0",
+					"ytdact": "84",
+					"ytdbgt": "0",
+					"ytdly": "0",
+					"unit": "UN"
+				},
+				{
+					"order": 16,
+					"text": "Total Room",
+					"day": "186",
+					"mtdact": "186",
+					"mtdbgt": "0",
+					"mtdly": "0",
+					"ytdact": "186",
+					"ytdbgt": "0",
+					"ytdly": "0",
+					"unit": "UN"
+				}
+			]
+		}
+	]
 },
 {
 	"DashXItemID": "MND002",

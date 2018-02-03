@@ -3,64 +3,94 @@
    xmlns:core="sap.ui.core">
    <Dialog
       id="moreInfoDialog"
+      stretch = "true"
       title="{detailView>/Name}">
    	  <Table id="idMoreInfoTable"
 		inset="false"
 		items="{
 			path: 'detailView>/spotItems',
 			sorter: {
-				path: 'text'
+				path: 'order'
 			}
 		}">
    	  	<columns>
 			<Column
-				width="12em">
+				minScreenWidth="Tablet">
 				<Text text="" />
 			</Column>
 			<Column
 				minScreenWidth="Tablet"
+				hAlign = "End"
 				demandPopin="true">
 				<Text text="{detailView>/yesterday}" />
 			</Column>
 			<Column
 				minScreenWidth="Tablet"
+				hAlign = "End"
 				demandPopin="true">
 				<Text text="MTD Actual" />
 			</Column>
 			<Column
 				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="MTD Budget" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="MTD LY" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
 				demandPopin="true">
 				<Text text="YTD Actual" />
+			</Column>
+				<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="YTD Budget" />
+			</Column>
+				<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="YTD LY" />
 			</Column>
 		</columns>	
 		<items>
 			<ColumnListItem>
 				<cells>
 					<Text
-						text="{detailView>text}" />
+						text="{detailView>text}"
+						renderWhitespace="true"
+						/>
 						
 					<ObjectNumber
-						number="{
-								parts:[{path:'detailView>day'},{path:'detailView>CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}"
-							unit="{detailView>CurrencyCode}"
+						number="{path:'detailView>day'}"
+							unit="{detailView>unit}"
 							/>	
 					<ObjectNumber
-							number="{
-								parts:[{path:'detailView>MTDActual'},{path:'detailView>CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}"
-							unit="{detailView>CurrencyCode}" />			
+							number="{path:'detailView>mtdact'}"
+							unit="{detailView>unit}" />	
 					<ObjectNumber
-							number="{
-								parts:[{path:'detailView>YTDActual'},{path:'detailView>CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}"
-							unit="{detailView>CurrencyCode}" />			
+							number="{path:'detailView>mtdbgt'}"
+							unit="{detailView>unit}" />	
+					<ObjectNumber
+							number="{path:'detailView>mtdly'}"
+							unit="{detailView>unit}" />	
+					<ObjectNumber
+							number="{path:'detailView>ytdact'}"
+							unit="{detailView>unit}" />			
+					<ObjectNumber
+							number="{path:'detailView>ytdbgt'}"
+							unit="{detailView>unit}" />		
+					<ObjectNumber
+							number="{path:'detailView>ytdly'}"
+							unit="{detailView>unit}" />		
 				</cells>
 			</ColumnListItem>	
 		</items>			

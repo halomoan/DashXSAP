@@ -19,20 +19,18 @@
 	<semantic:content>
 		<l:FixFlex class="fixFlexVertical">
 		<l:fixContent>
-			<Panel expandable="true" expanded="{= !${device>/system/phone} }" headerText="Description">
+			<Panel id="topPanel" expandable="true" expanded="{= !${device>/system/phone} }" headerText="Description">
 				<headerToolbar>
 					<Toolbar>
 						<Title text="{geoData>/Title}" />
 						<ToolbarSpacer />
-						<Button id="btnResize" icon="sap-icon://resize" press="onPressResize"
-							tooltip="Restore" />
 					</Toolbar>
 				</headerToolbar>
 				<content>
 					<HBox class='settingsHBox'>
                     	<VBox class='settingsBox'>
                         <Label text="{i18n>SetFocus}" design="Bold" class='settingsLabel'></Label>
-                        <ComboBox items="{path: 'detailView>/countries',sorter: { path: 'detailView>name' }}" change="onSetFocus">
+                        <ComboBox id="setFocus" items="{path: 'detailView>/countries',sorter: { path: 'detailView>name' }}" change="onSetFocus">
                         	<core:Item key="{detailView>coordinate}" text="{detailView>name}"/>
                         </ComboBox>
                     	</VBox>
@@ -46,7 +44,7 @@
 					<vk:ListPanelStack width="230px">
 						<vk:content>
 							<vk:ListPanel headerText="Legend" selectionMode="SingleSelectMaster"
-								headerIcon="sap-icon://legend" expanded="false" items="{geoData>/Legend}">
+								headerIcon="sap-icon://legend" expanded="false" items="{geoData>/legend}">
 								<vk:items >
 										<vk:LegendItem title="{geoData>name}" color="{geoData>color}" click="onLegendClick" />
 									
@@ -63,14 +61,14 @@
 								initialPosition="50;10;0" regionClick="onRegionClick"
 								regionContextMenu="onRegionContextMenu">
 								<vbm:vos>
-									<vbm:Circles id="mainCircle" items="{geoData>/Circles}" click="onClickItem"
+									<vbm:Circles id="mainCircle" items="{geoData>/circles}" click="onClickItem"
 										contextMenu="onContextMenuItem">
 										<vbm:Circle position="{geoData>pos}" tooltip="{geoData>tooltip}" radius="{geoData>radius}"
-											color="{geoData>color}" colorBorder="{geoData>colorBorder}"
-											hotDeltaColor="{geoData>hotDeltaColor}" click="onClickCircle"
+											color="{geoData>color}" colorBorder="{geoData>colorborder}"
+											hotDeltaColor="{geoData>hotdeltacolor}" click="onClickCircle"
 											contextMenu="onContextMenuCircle" />
 									</vbm:Circles>
-									<vbm:Spots id="spots" items="{geoData>/Spots}" click="onClickItem"
+									<vbm:Spots id="spots" items="{geoData>/spots}" click="onClickItem"
 										contextMenu="onContextMenuItem">
 										<vbm:Spot position="{geoData>pos}" type="{geoData>type}" tooltip="{geoData>name} {geoData>tooltip}"
 											text="{geoData>text}" click="onClickSpot" contextMenu="onContextMenuSpot" />
