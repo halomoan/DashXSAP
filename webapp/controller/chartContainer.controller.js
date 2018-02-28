@@ -8,7 +8,8 @@ sap.ui.define([
     jQuery.sap.require("sap.ui.dashxsap.controller.chart01");
     jQuery.sap.require("sap.ui.dashxsap.controller.chart02");
     jQuery.sap.require("sap.ui.dashxsap.controller.chart03");
-    jQuery.sap.require("sap.ui.dashxsap.controller.chart04");
+    jQuery.sap.require("sap.ui.dashxsap.controller.chart04"); //Stacked Chart
+    jQuery.sap.require("sap.ui.dashxsap.controller.chart05");
     
 	return BaseController.extend("sap.ui.dashxsap.controller.chartContainer", {
 		sRegion : "",
@@ -97,6 +98,13 @@ sap.ui.define([
 			var oFragment4 = sap.ui.xmlfragment("chart04","sap.ui.dashxsap.view.chart04",this.oCtrl4);
 			layout4.addContent(oFragment4);
 			this.oCtrl4.onInit(this,"chart04");
+			
+			this.oCtrl5 = new sap.ui.dashxsap.controller.chart05();
+			var layout5 = this.byId("v5");
+			
+			var oFragment5 = sap.ui.xmlfragment("chart05","sap.ui.dashxsap.view.chart05",this.oCtrl5);
+			layout5.addContent(oFragment5);
+			this.oCtrl5.onInit(this,"chart05");
 			
 			
 			/*this.oCtrl2 = new sap.ui.dashxsap.controller.chart02();

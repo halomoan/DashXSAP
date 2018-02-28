@@ -1,7 +1,8 @@
 sap.ui.define([
 		"sap/ui/dashxsap/controller/BaseController",
-		"sap/ui/model/json/JSONModel"
-	], function (BaseController, JSONModel) {
+		"sap/ui/model/json/JSONModel",
+		"sap/ui/Device"
+	], function (BaseController, JSONModel,Device) {
 		"use strict";
 
 		return BaseController.extend("sap.ui.dashxsap.controller.App", {
@@ -17,6 +18,10 @@ sap.ui.define([
 					delay : 0
 				});
 				this.setModel(oViewModel, "appView");
+				
+				var oDeviceModel = new JSONModel(Device);
+				oDeviceModel.setDefaultBindingMode("OneWay");
+				this.setModel(oDeviceModel, "device");
 
 				fnSetAppNotBusy = function() {
 					oViewModel.setProperty("/busy", false);
@@ -32,6 +37,8 @@ sap.ui.define([
 					this.byId("idAppControl").hideMaster();
 				}, this);
 
+				
+					
 				// apply content density mode to root view
 				this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 			}

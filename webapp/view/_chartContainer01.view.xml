@@ -3,11 +3,11 @@
 		xmlns:layout="sap.ui.layout"
 		xmlns:semantic="sap.m.semantic" 
 		xmlns="sap.m" 
-		controllerName="sap.ui.dashxsap.controller.chartContainer">
+		controllerName="sap.ui.dashxsap.controller.chartContainer01">
 	<semantic:DetailPage
-				id="chartContainer"
+				id="chartContainer01"
 				navButtonPress="onNavBack"
-				showNavButton="{device>/system/phone}"
+				showNavButton="true"
 				title="{i18n>dashboardName}"
 				busy="{detailView>/busy}"
 				busyIndicatorDelay="{detailView>/delay}">
@@ -17,7 +17,7 @@
                 <content>
                     <HBox class='settingsHBox'>
                     
-                    <VBox class="sapUiSmallMargin">
+                    <VBox>
 						<Label text = '{i18n>selectRegion}' class='settingsLabel'></Label>
                         <Select id='selectRegion' class='settingsSelect' selectedKey='{detailView>/selectedRegion}'  change='onRegionChange'
                             items="{path: '/MyRegions'}">
@@ -32,35 +32,17 @@
         
 			<layout:Grid>
 					<layout:VerticalLayout class="sapUiTinyMargin" width="100%" height="100%">
-						<layout:VerticalLayout id="v2" width="100%" height="100%">
-							
-						</layout:VerticalLayout>
-						<layout:VerticalLayout id="v3" width="100%" height="100%">
-							
-						</layout:VerticalLayout>
 						
-						<layout:VerticalLayout id="v4" width="100%" height="100%">
+						<layout:VerticalLayout id="v1" width="100%" height="100%">
 							
 						</layout:VerticalLayout>
-						
-						<layout:VerticalLayout id="v5" width="100%" height="100%">
-							
-						</layout:VerticalLayout>
-						
 						
 						<layout:layoutData>
 								<layout:GridData
-									span="L8 M8 S12"
+									span="L12 M12 S12"
 								/>
 						</layout:layoutData>
 					</layout:VerticalLayout>
-					<layout:VerticalLayout id="v1" class="sapUiTinyMargin" width="100%" >
-							<layout:layoutData>
-								<layout:GridData
-									span="L4 M4 S12"
-								/>
-							</layout:layoutData>
-					</layout:VerticalLayout>	
 				</layout:Grid>
 			</semantic:content>	
 	</semantic:DetailPage>		

@@ -6,6 +6,17 @@ sap.ui.define([
 		"use strict";
 
 		return Controller.extend("sap.ui.dashxsap.controller.BaseController", {
+			
+			countries : [{"id": "<ALL>", "name": "<All Countries>","coordinate":"50;10;0"},
+						 {"id": "<SG>", "name": "Singapore","coordinate":"103.855800000000;1.310550000000;10"},
+						 {"id": "<MY>", "name": "Malaysia","coordinate":"101.712458000000;3.144652000000;5"},
+						 {"id": "<CN>", "name": "China","coordinate":"101.712458000000;35.144652000000;4"},
+						 {"id": "<VN>", "name": "Vietnam","coordinate":"101.712458000000;15.144652000000;5"},
+						 {"id": "<MM>", "name": "Myanmar","coordinate":"98.712458000000;22.144652000000;5"},
+						 {"id": "<BD>", "name": "Bangladesh","coordinate":"90.412458000000;23.844652000000;6"},
+						 {"id": "<PH>", "name": "Philippines","coordinate":"122.9842;14.5995;6"},
+						 {"id": "<AU>", "name": "Australia","coordinate":"132.712458000000;-25.144652000000;5"}],
+						 
 			/**
 			 * Convenience method for accessing the router in every controller of the application.
 			 * @public
@@ -61,14 +72,19 @@ sap.ui.define([
 				}
 			},
 			
-			dateFormat: function(oDate){
+			dateFormat: function(oDate,sFormat){
 				var dd = oDate.getDate();
-				var mm = oDate.getMonth() + 1;
+				var MM = oDate.getMonth() + 1;
 				var yyyy = oDate.getFullYear();
-				mm = mm < 10 ? '0' + mm : mm;
+				
+				MM = MM < 10 ? '0' + MM : MM;
 				dd = dd < 10 ? '0' + dd : dd;
 				
-				return yyyy+"/"+mm+"/" +dd;
+				if (sFormat === "yyyy/MM/dd") {
+					return yyyy+"/" + MM + "/" + dd;
+				} else {
+					return dd + "." + MM + "." + yyyy;
+				}
 				
 			},
 			createFilter: function(sKey,sOpr,sValue){

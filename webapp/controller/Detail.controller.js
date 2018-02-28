@@ -8,8 +8,6 @@ sap.ui.define([
 
 		return BaseController.extend("sap.ui.dashxsap.controller.Detail", {
 
-			formatter: formatter,
-
 			/* =========================================================== */
 			/* lifecycle methods                                           */
 			/* =========================================================== */
