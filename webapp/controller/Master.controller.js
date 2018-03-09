@@ -289,8 +289,8 @@ sap.ui.define([
 					case "timeAxis01" :
 						this.getRouter().navTo("timeAxis01", {objectId : sObjectId}, false);
 						break;
-					case "container01" :
-						this.getRouter().navTo("container01", {objectId : sObjectId}, false);
+					case "compareRegion01" :
+						this.getRouter().navTo("compareRegion01", {srcId : sObjectId}, false);
 						break;	
 				} 
 				

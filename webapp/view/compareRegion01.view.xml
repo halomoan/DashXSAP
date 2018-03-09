@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		xmlns:mvc="sap.ui.core.mvc" 
+		xmlns:layout="sap.ui.layout"
+		xmlns:semantic="sap.m.semantic" 
+		xmlns="sap.m" 
+		controllerName="sap.ui.dashxsap.controller.compareRegion01">
+	<semantic:DetailPage
+				id="compareRegion01"
+				navButtonPress="onNavBack"
+				showNavButton="true"
+				title="{i18n>dashboardName}"
+				busy="{detailView>/busy}"
+				busyIndicatorDelay="{detailView>/delay}">
+			<semantic:content>
+		
+            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="false" headerText="{detailView>/panelTitle}" width="auto">
+                <content>
+                    <HBox class='settingsHBox'>
+                    
+                    <VBox>
+						<Label text = '{i18n>selectRegion}' class='settingsLabel'></Label>
+                        <ComboBox id="setFocus" 
+			                        	items="{path: 'detailView>/countries',sorter: { path: 'detailView>name' }}" 
+			                        	selectedKey="{detailView>/region}"
+			                        	change="onSetFocus">
+			                        	<core:ListItem key="{detailView>id}" text="{detailView>name}"/>
+			            </ComboBox>
+					</VBox>
+					</HBox>
+                </content>
+            </Panel>
+        
+			<layout:Grid>
+					<layout:VerticalLayout class="sapUiTinyMargin" width="100%" height="100%">
+						
+						<layout:VerticalLayout id="v1" width="100%" height="100%">
+							
+						</layout:VerticalLayout>
+						
+						<layout:layoutData>
+								<layout:GridData
+									span="L12 M12 S12"
+								/>
+						</layout:layoutData>
+					</layout:VerticalLayout>
+				</layout:Grid>
+			</semantic:content>	
+	</semantic:DetailPage>		
+</mvc:View>

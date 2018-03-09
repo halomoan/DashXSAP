@@ -22,11 +22,7 @@
     {
       "templateId": "ui5template.basicSAPUI5ApplicationComponent",
       "templateVersion": "1.4.0",
-<<<<<<< Upstream, based on 744f4b190c894c235f1bcd0652bc2bc86889f357
-      "dateTimeStamp": "Thu, 02 Nov 2017 07:16:42 GMT"
-=======
-      "dateTimeStamp": "Thu, 09 Nov 2017 04:24:42 GMT"
->>>>>>> e49ca65 ChartContainer
+      "dateTimeStamp": "Tue, 06 Feb 2018 13:57:44 GMT"
     }
   ],
   "translation": {

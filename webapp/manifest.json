@@ -8,8 +8,8 @@
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
-		"title": "",
-		"description": "",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
 		"resources": "resources.json",
 		"ach": "ach",
 		"sourceTemplate": {
@@ -28,7 +28,7 @@
 		}
 	},
 	"sap.ui": {
-		"_version": "1.1.0",
+		"_version": "1.2.0",
 		"technology": "UI5",
 		"icons": {
 			"icon": "",
@@ -43,14 +43,18 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		],
+		"fullWidth": true
 	},
 	"sap.ui5": {
 		"_version": "1.1.0",
 		"rootView": {
 			"viewName": "sap.ui.dashxsap.view.App",
 			"type": "XML",
-			"id":"app"
+			"id": "app"
 		},
 		"dependencies": {
 			"minUI5Version": "1.30.0",
@@ -72,13 +76,19 @@
 				}
 			},
 			"": {
-				"dataSource": "mainService"
+				"dataSource": "mainService",
+				"settings": {
+					"useBatch": false,
+					"defaultBindingMode": "OneWay"
+				}
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -88,40 +98,71 @@
 				"controlId": "idAppControl",
 				"controlAggregation": "detailPages",
 				"bypassed": {
-					"target": ["master", "notFound"]
+					"target": [
+						"master",
+						"notFound"
+					]
 				},
 				"async": true
 			},
-
 			"routes": [
 				{
 					"pattern": "",
 					"name": "master",
-					"target": ["geoView01", "master"]
+					"target": [
+						"geoView01",
+						"master"
+					]
 				},
 				{
 					"pattern": "submaster/{groupId}",
 					"name": "submaster",
-					"target": ["geoView01", "submaster"]
+					"target": [
+						"geoView01",
+						"submaster"
+					]
 				},
 				{
 					"pattern": "geoView01/{objectId}",
 					"name": "geoView01",
-					"target": ["master", "geoView01"]
+					"target": [
+						"master",
+						"geoView01"
+					]
 				},
 				{
 					"pattern": "timeAxis01/{objectId}",
 					"name": "timeAxis01",
-					"target": ["master", "timeAxis01"]
-				}
-				,
+					"target": [
+						"master",
+						"timeAxis01"
+					]
+				},
 				{
-					"pattern": "container01/{objectId}",
-					"name": "container01",
-					"target": ["master", "container01"]
+					"pattern": "compareRegion01/{srcId}",
+					"name": "compareRegion01",
+					"target": [
+						"master",
+						"compareRegion01"
+					]
+				},
+				{
+					"pattern": "compareRegion01/srcId/:srcId:/itemId/:itemId:/date/:date:/region/:region:/kf/:kf:",
+					"name": "compareRegion01",
+					"target": [
+						"master",
+						"compareRegion01"
+					]
+				},
+				{
+					"pattern": "errServer",
+					"name": "errServer",
+					"target": [
+						"master",
+						"detailObjectNotFound"
+					]
 				}
 			],
-
 			"targets": {
 				"master": {
 					"viewName": "Master",
@@ -145,14 +186,15 @@
 					"viewId": "timeAxis01",
 					"viewLevel": 2
 				},
-				"container01": {
-					"viewName": "chartContainer",
-					"viewId": "container01",
+				"compareRegion01": {
+					"viewName": "compareRegion01",
+					"viewId": "compareRegion01",
 					"viewLevel": 2
 				},
 				"detailObjectNotFound": {
 					"viewName": "DetailObjectNotFound",
-					"viewId": "detailObjectNotFound"
+					"viewId": "detailObjectNotFound",
+					"viewLevel": 2
 				},
 				"detailNoObjectsAvailable": {
 					"viewName": "DetailNoObjectsAvailable",

@@ -1,7 +1,11 @@
 <core:FragmentDefinition
    xmlns="sap.m"
    xmlns:core="sap.ui.core">
-   <Table id="idMoreInfoTable"
+   <Dialog
+      id="moreInfoDialog"
+      stretch = "true"
+      title="{detailView>/Name}">
+   	  <Table id="idMoreInfoTable"
 		inset="false"
 		items="{
 			path: 'detailView>/spotItems',
@@ -9,24 +13,16 @@
 				path: 'id'
 			}
 		}">
-   		<headerToolbar>
-			<Toolbar>
-				<content>
-					<Title text="{detailView>/Name}" level="H2"/>
-				</content>
-			</Toolbar>
-		</headerToolbar>
    	  	<columns>
 			<Column
-				>
+				minScreenWidth="Tablet">
 				<Text text="" />
 			</Column>
 			<Column
 				minScreenWidth="Tablet"
 				hAlign = "End"
 				demandPopin="true">
-				<Text text="{path:'detailView>/oDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
-					
+				<Text text="{detailView>/displayDate}" />
 			</Column>
 			<Column
 				minScreenWidth="Tablet"
@@ -69,35 +65,40 @@
 			<ColumnListItem>
 				<cells>
 					<Link
-						wrapping="true"
 						text="{detailView>text}"
 						press="onDetailPopover"
 						/>
 						
 					<ObjectNumber
-							number="{parts:[{path:'detailView>day'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+						number="{path:'detailView>day'}"
 							unit="{detailView>unit}"
 							/>	
 					<ObjectNumber
-							number="{parts:[{path:'detailView>mtdact'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+							number="{path:'detailView>mtdact'}"
 							unit="{detailView>unit}" />	
 					<ObjectNumber
-							number="{parts:[{path:'detailView>mtdbgt'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+							number="{path:'detailView>mtdbgt'}"
 							unit="{detailView>unit}" />	
 					<ObjectNumber
-							number="{parts:[{path:'detailView>mtdly'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+							number="{path:'detailView>mtdly'}"
 							unit="{detailView>unit}" />	
 					<ObjectNumber
-							number="{parts:[{path:'detailView>ytdact'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+							number="{path:'detailView>ytdact'}"
 							unit="{detailView>unit}" />			
 					<ObjectNumber
-							number="{parts:[{path:'detailView>ytdbgt'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+							number="{path:'detailView>ytdbgt'}"
 							unit="{detailView>unit}" />		
 					<ObjectNumber
-							number="{parts:[{path:'detailView>ytdly'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+							number="{path:'detailView>ytdly'}"
 							unit="{detailView>unit}" />		
 				</cells>
 			</ColumnListItem>	
 		</items>			
    	 </Table>
+     <beginButton>
+         <Button
+            text="{i18n>close}"
+            press="onCloseDialog"/>
+      </beginButton>
+	</Dialog>
 </core:FragmentDefinition>

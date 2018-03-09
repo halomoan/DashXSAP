@@ -12,6 +12,6 @@
 	"Text": "Room Revenue (Daily)"
 },{
 	"DashXMainMenuID": "MNU004",
-	"Type" : "container01",
+	"Type" : "compareRegion01",
 	"Text": "Dashboard Rooms "
 }]

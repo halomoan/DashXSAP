@@ -1,0 +1,93 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="sap.ui.dashxsap.controller.DSRtable01"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	  <Table id="idMoreInfoTable"
+		inset="false"
+		items="{
+			path: 'detailView>/spotItems',
+			sorter: {
+				path: 'id'
+			}
+		}">
+   	  	<columns>
+			<Column
+				minScreenWidth="Tablet">
+				<Text text="" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="{detailView>/displayDate}" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="MTD Actual" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="MTD Budget" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="MTD LY" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="YTD Actual" />
+			</Column>
+				<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="YTD Budget" />
+			</Column>
+				<Column
+				minScreenWidth="Tablet"
+				hAlign = "End"
+				demandPopin="true">
+				<Text text="YTD LY" />
+			</Column>
+		</columns>	
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Link
+						text="{detailView>text}"
+						press="onDetailPopover"
+						/>
+						
+					<ObjectNumber
+						number="{path:'detailView>day'}"
+							unit="{detailView>unit}"
+							/>	
+					<ObjectNumber
+							number="{path:'detailView>mtdact'}"
+							unit="{detailView>unit}" />	
+					<ObjectNumber
+							number="{path:'detailView>mtdbgt'}"
+							unit="{detailView>unit}" />	
+					<ObjectNumber
+							number="{path:'detailView>mtdly'}"
+							unit="{detailView>unit}" />	
+					<ObjectNumber
+							number="{path:'detailView>ytdact'}"
+							unit="{detailView>unit}" />			
+					<ObjectNumber
+							number="{path:'detailView>ytdbgt'}"
+							unit="{detailView>unit}" />		
+					<ObjectNumber
+							number="{path:'detailView>ytdly'}"
+							unit="{detailView>unit}" />		
+				</cells>
+			</ColumnListItem>	
+		</items>			
+   	 </Table>
+</mvc:View>
