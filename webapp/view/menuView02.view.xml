@@ -1,0 +1,50 @@
+<mvc:View
+		xmlns="sap.uxap"
+		xmlns:m="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:semantic="sap.m.semantic"
+		xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:vk="sap.ui.vk"
+		xmlns:vbm="sap.ui.vbm" height="100%" displayBlock="true">
+
+	<semantic:DetailPage
+			navButtonPress="onNavBack"
+			showNavButton="{detailView>/showNav}"
+			title="{i18n>dashboardName}"
+			busy="{detailView>/busy}"
+			showFooter="{device>/system/desktop}"
+			busyIndicatorDelay="{detailView>/delay}">
+
+	
+	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" subSectionLayout="TitleOnLeft"
+					  showTitleInHeaderContent="true" showHeaderContent="true">
+		<headerTitle>
+			<ObjectPageHeader objectImageURI=""
+							  objectImageShape="Circle"
+							  objectTitle="Pan Pacific Singapore"
+							  objectSubtitle="Managed Hotel"
+							  objectImageAlt="Hotel"
+							  id="ObjectPageLayoutHeaderTitle"
+							  isObjectIconAlwaysVisible="false"
+							  isObjectTitleAlwaysVisible="false"
+							  isObjectSubtitleAlwaysVisible="false"
+							  isActionAreaAlwaysVisible="true"
+							  
+							  showPlaceholder="true">
+				
+				<actions>
+					<ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://show" text="show state" type="Emphasized"/>
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+		<headerContent>
+			<l:VerticalLayout>
+					<m:NumericContent size="S" scale="M" value="1.75" valueColor="Good" indicator="Up" press="press" />
+			</l:VerticalLayout>
+			
+		</headerContent>
+	</ObjectPageLayout>
+	</semantic:DetailPage>
+</mvc:View>

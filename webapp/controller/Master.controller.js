@@ -283,9 +283,12 @@ sap.ui.define([
 				sap.ui.getCore().byId("__component0---app--idAppControl").hideMaster();
 				
 				switch(sType) {
-					case "geomap01":
-						this.getRouter().navTo("geoView01", {objectId : sObjectId}, false);
+					case "menuView01":
+						this.getRouter().navTo("menuView01", {objectId : sObjectId}, false);
 						break;
+					case "menuView02":
+						this.getRouter().navTo("menuView02", {objectId : sObjectId}, false);
+						break;	
 					case "timeAxis01" :
 						this.getRouter().navTo("timeAxis01", {objectId : sObjectId}, false);
 						break;
@@ -293,6 +296,7 @@ sap.ui.define([
 						this.getRouter().navTo("compareRegion01", {srcId : sObjectId}, false);
 						break;	
 				} 
+				
 				
 			
 			},

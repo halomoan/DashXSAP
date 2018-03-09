@@ -1,10 +1,10 @@
 [{
 	"DashXMainMenuID": "MNU001",
-	"Type" : "geomap01",
+	"Type" : "menuView01",
 	"Text": "Room Analysis (Map)"
 }, {
 	"DashXMainMenuID": "MNU002",
-	"Type" : "geomap01",
+	"Type" : "menuView01",
 	"Text": "F&B Analysis (Map)"
 },{
 	"DashXMainMenuID": "MNU003",
@@ -12,6 +12,6 @@
 	"Text": "Room Revenue (Daily)"
 },{
 	"DashXMainMenuID": "MNU004",
-	"Type" : "compareRegion01",
-	"Text": "Dashboard Rooms "
+	"Type" : "menuView02",
+	"Text": "F&B Department"
 }]

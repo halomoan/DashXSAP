@@ -110,7 +110,7 @@
 					"pattern": "",
 					"name": "master",
 					"target": [
-						"geoView01",
+						"menuView01",
 						"master"
 					]
 				},
@@ -118,16 +118,24 @@
 					"pattern": "submaster/{groupId}",
 					"name": "submaster",
 					"target": [
-						"geoView01",
+						"menuView01",
 						"submaster"
 					]
 				},
 				{
-					"pattern": "geoView01/{objectId}",
-					"name": "geoView01",
+					"pattern": "menuView01/{objectId}",
+					"name": "menuView01",
 					"target": [
 						"master",
-						"geoView01"
+						"menuView01"
+					]
+				},
+				{
+					"pattern": "menuView02/{objectId}",
+					"name": "menuView02",
+					"target": [
+						"master",
+						"menuView02"
 					]
 				},
 				{
@@ -176,9 +184,14 @@
 					"viewId": "submaster",
 					"controlAggregation": "masterPages"
 				},
-				"geoView01": {
-					"viewName": "geoView01",
-					"viewId": "geoView01",
+				"menuView01": {
+					"viewName": "menuView01",
+					"viewId": "menuView01",
+					"viewLevel": 2
+				},
+				"menuView02": {
+					"viewName": "menuView02",
+					"viewId": "menuView02",
 					"viewLevel": 2
 				},
 				"timeAxis01": {
