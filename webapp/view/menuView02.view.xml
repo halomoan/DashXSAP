@@ -20,30 +20,71 @@
 	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" subSectionLayout="TitleOnLeft"
 					  showTitleInHeaderContent="true" showHeaderContent="true">
 		<headerTitle>
-			<ObjectPageHeader objectImageURI=""
-							  objectImageShape="Circle"
+			<ObjectPageHeader objectImageURI="images/PPHGLogo.png"
+							  objectImageShape=""
 							  objectTitle="Pan Pacific Singapore"
-							  objectSubtitle="Managed Hotel"
+							  objectSubtitle="Country: Singapore"
 							  objectImageAlt="Hotel"
 							  id="ObjectPageLayoutHeaderTitle"
 							  isObjectIconAlwaysVisible="false"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
 							  isActionAreaAlwaysVisible="true"
-							  
 							  showPlaceholder="true">
-				
+				<navigationBar>
+					<m:Bar>
+						<m:contentLeft>
+						
+						</m:contentLeft>
+						<m:contentMiddle>
+							<m:Text text="Month To Date"/>
+						</m:contentMiddle>
+					</m:Bar>
+				</navigationBar>
 				<actions>
-					<ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized"/>
-					<ObjectPageHeaderActionButton icon="sap-icon://show" text="show state" type="Emphasized"/>
+					
 				</actions>
 			</ObjectPageHeader>
 		</headerTitle>
 		<headerContent>
 			<l:VerticalLayout>
-					<m:NumericContent size="S" scale="M" value="1.75" valueColor="Good" indicator="Up" press="press" />
+				<m:ObjectStatus title="Total Rooms" text="346"/>
+			</l:VerticalLayout>	
+			<l:VerticalLayout>
+				<m:ObjectStatus title="Occupied Rooms" text="330"/>
+				<m:ObjectStatus title="AOR % Saleable Rooms" text="89%"/>
+				<m:ObjectStatus title="ARR" text="209"/>
+				<m:ObjectStatus title="F&amp;B Avg. Checks" text="63"/>
+			</l:VerticalLayout>	
+			<l:VerticalLayout>
+				<m:Label text="Covers"/>
+				<m:ObjectNumber number="221" numberUnit="UN"></m:ObjectNumber>	
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label text="Room Revenue"/>
+				<m:NumericContent size="S" scale="K" value="566" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label text="F&amp;B Revenue"/>
+				<m:NumericContent size="S" scale="K" value="564" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label text="MOD Revenue"/>
+				<m:NumericContent size="S" scale="K" value="14" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
 			</l:VerticalLayout>
 			
+			<l:VerticalLayout>
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label text="Total Revenues"/>
+				<m:NumericContent size="S" scale="M" value="1.1" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout>
+				<m:Label text=""/>
+				<m:NumericContent scale="K" value="1.75" valueColor="Error" indicator="Down" press="press" class="sapUiTinyMargin" withMargin="false" Tooltips="AC"/>
+			</l:VerticalLayout>
+			
+		
 		</headerContent>
 	</ObjectPageLayout>
 	</semantic:DetailPage>
