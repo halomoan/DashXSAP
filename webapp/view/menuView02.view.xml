@@ -5,6 +5,7 @@
 		xmlns:semantic="sap.m.semantic"
 		xmlns:l="sap.ui.layout"
 		xmlns:core="sap.ui.core"
+		xmlns:tiles="sap.ui.dashxsap.view.menuView02Tiles"
 		xmlns:vk="sap.ui.vk"
 		xmlns:vbm="sap.ui.vbm" height="100%" displayBlock="true">
 
@@ -31,7 +32,7 @@
 							  isObjectSubtitleAlwaysVisible="false"
 							  isActionAreaAlwaysVisible="true"
 							  showPlaceholder="true">
-				<navigationBar>
+				<!--<navigationBar>
 					<m:Bar>
 						<m:contentLeft>
 						
@@ -41,6 +42,7 @@
 						</m:contentMiddle>
 					</m:Bar>
 				</navigationBar>
+				-->
 				<actions>
 					
 				</actions>
@@ -61,21 +63,6 @@
 				<m:ObjectNumber number="221" numberUnit="UN"></m:ObjectNumber>	
 			</l:VerticalLayout>
 			<l:VerticalLayout>
-				<m:Label text="Room Revenue"/>
-				<m:NumericContent size="S" scale="K" value="566" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
-			</l:VerticalLayout>
-			<l:VerticalLayout>
-				<m:Label text="F&amp;B Revenue"/>
-				<m:NumericContent size="S" scale="K" value="564" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
-			</l:VerticalLayout>
-			<l:VerticalLayout>
-				<m:Label text="MOD Revenue"/>
-				<m:NumericContent size="S" scale="K" value="14" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
-			</l:VerticalLayout>
-			
-			<l:VerticalLayout>
-			</l:VerticalLayout>
-			<l:VerticalLayout>
 				<m:Label text="Total Revenues"/>
 				<m:NumericContent size="S" scale="M" value="1.1" valueColor="" class="sapUiTinyMargin" withMargin="false"/>
 			</l:VerticalLayout>
@@ -86,6 +73,17 @@
 			
 		
 		</headerContent>
+		<sections>
+			<ObjectPageSection title="2014 Goals Plan">
+				<subSections>
+					<ObjectPageSubSection title=" ">
+						<blocks>
+							<tiles:menuView02Tiles id="tilesBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
 	</ObjectPageLayout>
 	</semantic:DetailPage>
 </mvc:View>
