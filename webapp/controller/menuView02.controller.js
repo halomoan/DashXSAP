@@ -1,9 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/dashxsap/controller/BaseController",
+	"sap/ui/model/json/JSONModel"
+], function(BaseController,JSONModel) {
 	"use strict";
 
-	return Controller.extend("sap.ui.dashxsap.controller.menuView02", {
+	return BaseController.extend("sap.ui.dashxsap.controller.menuView02", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.

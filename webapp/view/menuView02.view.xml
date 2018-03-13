@@ -5,9 +5,8 @@
 		xmlns:semantic="sap.m.semantic"
 		xmlns:l="sap.ui.layout"
 		xmlns:core="sap.ui.core"
-		xmlns:tiles="sap.ui.dashxsap.view.menuView02Tiles"
-		xmlns:vk="sap.ui.vk"
-		xmlns:vbm="sap.ui.vbm" height="100%" displayBlock="true">
+		xmlns:sections="sap.ui.dashxsap.menuView02B"
+		height="100%" displayBlock="true">
 
 	<semantic:DetailPage
 			navButtonPress="onNavBack"
@@ -78,7 +77,34 @@
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
-							<tiles:menuView02Tiles id="tilesBlock"/>
+							<sections:overview id="overviewBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>room}">
+				<subSections>
+					<ObjectPageSubSection title=" ">
+						<blocks>
+							<sections:room id="roomBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+				<ObjectPageSection title="{i18n>rbe}">
+				<subSections>
+					<ObjectPageSubSection title=" ">
+						<blocks>
+							<sections:rbe id="rbeBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>mod}">
+				<subSections>
+					<ObjectPageSubSection title=" ">
+						<blocks>
+							<sections:mod id="modBlock"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

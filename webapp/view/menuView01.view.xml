@@ -79,7 +79,22 @@
 									<vk:content>
 										<vbm:AnalyticMap id="vbi" width="100%" height="100%"
 											initialPosition="50;10;0" regionClick="onRegionClick"
-											regionContextMenu="onRegionContextMenu">
+											regionContextMenu="onRegionContextMenu"
+											regions="{geoData>/detailset}">
+											
+											<vbm:regions>
+	                        					<vbm:Region 
+			                                        code="{geoData>region}" 
+			                                        tooltip=""
+			                                        select="false"
+			                                        color="#9dc62d"
+			                                        labelText=""
+			                                        labelBgColor="#abdbf2"
+			                                        labelBorderColor="#156489"
+			                                        click=""
+			                                        contextMenu=""
+	                                        	/>
+                                        	</vbm:regions>
 											<vbm:vos>
 												<vbm:Circles id="mainCircle" items="{geoData>/circles}" click="onClickItem"
 													contextMenu="onContextMenuItem">
