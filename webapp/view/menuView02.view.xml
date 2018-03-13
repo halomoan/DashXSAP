@@ -74,7 +74,7 @@
 		
 		</headerContent>
 		<sections>
-			<ObjectPageSection title="2014 Goals Plan">
+			<ObjectPageSection title="{i18n>overview}">
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
