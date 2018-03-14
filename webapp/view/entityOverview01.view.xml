@@ -1,71 +1,17 @@
 <mvc:View 
-	controllerName="sap.ui.dashxsap.controller.entityOverview01"
+	controllerName="sap.ui.dashxsap.controller.menuView02"
 	xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout" xmlns="sap.m" >
-	<layout:VerticalLayout>
-	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Room Revenue" subheader="Incl.Svc.Chg" press="press">
+	
+	<layout:HorizontalLayout allowWrapping="true" content="{dataTiles>/tiles}" busy="{detailView>/overviewBusy}">
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom tileLayout" header="{dataTiles>header}" subheader="{dataTiles>subheader}" press="press">
 		<tileContent>
-			<TileContent unit="SGD" footer="Month To Date">
+			<TileContent unit="{dataTiles>unit}" footer="{dataTiles>footer}">
 				<content>
-					<NumericContent scale="M" value="1.96"
-						valueColor="Error" indicator="Up" />
+					<NumericContent scale="{dataTiles>scale}" value="{dataTiles>value}"
+						valueColor="{dataTiles>valuecolor}" indicator="{dataTiles>indicator}" />
 				</content>
 			</TileContent>
 		</tileContent>
 	</GenericTile>
-	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom tileLayout" header="Room Operation" subheader="COS" press="press">
-		<tileContent>
-			<TileContent unit="Unit">
-				<content>
-					<NumericContent scale="%" value="12"
-						valueColor="Critical" indicator="Up"/>
-				</content>
-			</TileContent>
-		</tileContent>
-	</GenericTile>
-	</layout:VerticalLayout>
-	<layout:VerticalLayout>
-	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="F&amp;B Operation" subheader="Expenses" press="press">
-		<tileContent>
-			<TileContent unit="SGD" footer="Month To Date">
-				<content>
-					<NumericContent scale="M" value="1.96"
-						valueColor="Error" indicator="Up" />
-				</content>
-			</TileContent>
-		</tileContent>
-	</GenericTile>
-	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom tileLayout" header="F&amp;B Operation" subheader="COS" press="press">
-		<tileContent>
-			<TileContent unit="Unit">
-				<content>
-					<NumericContent scale="%" value="12"
-						valueColor="Critical" indicator="Up"/>
-				</content>
-			</TileContent>
-		</tileContent>
-	</GenericTile>
-	</layout:VerticalLayout>
-		<layout:VerticalLayout>
-	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="F&amp;B Operation" subheader="Revenue" press="press">
-		<tileContent>
-			<TileContent unit="SGD" footer="Month To Date">
-				<content>
-					<NumericContent scale="M" value="1.396"
-						valueColor="Error" indicator="Up" />
-				</content>
-			</TileContent>
-		</tileContent>
-	</GenericTile>
-	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom tileLayout" header="F&amp;B Operation" subheader="COS" press="press">
-		<tileContent>
-			<TileContent unit="Unit">
-				<content>
-					<NumericContent scale="%" value="12"
-						valueColor="Critical" indicator="Down"/>
-				</content>
-			</TileContent>
-		</tileContent>
-	</GenericTile>
-	</layout:VerticalLayout>
- 
+	</layout:HorizontalLayout>
 </mvc:View>

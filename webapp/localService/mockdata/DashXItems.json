@@ -9,4 +9,10 @@
   "Title" : "F&B Information",
   "DashXMainMenuID": "MNU002",
   "uri": "http://dbwap01.h800.local/sap(bD1lbiZjPTYwMA==)/bc/bsp/sap/zjson_bexquery/bexdata.xml"
+},
+{
+  "DashXItemID": "MNU004",
+  "Title" : "Hotel Information",
+  "DashXMainMenuID": "MNU004",
+  "uri": "http://dbwap01.h800.local/sap(bD1lbiZjPTYwMA==)/bc/bsp/sap/zjson_bexquery/bexdata.xml"
 }]
