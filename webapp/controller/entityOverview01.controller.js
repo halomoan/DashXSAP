@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(BaseController,JSONModel) {
 	"use strict";
 
-	return BaseController.extend("sap.ui.dashxsap.controller.menuView02", {
+	return BaseController.extend("sap.ui.dashxsap.controller.entityOverview01", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -20,7 +20,7 @@ sap.ui.define([
 				});
 				this.setModel(oViewModel,"detailView");
 				
-				this.getRouter().getRoute("menuView02").attachPatternMatched(this._onObjectMatched, this);
+				//this.getRouter().getRoute("menuView02").attachPatternMatched(this._onObjectMatched, this);
 			},
 			
 			_onObjectMatched: function(oEvent){
@@ -44,7 +44,7 @@ sap.ui.define([
 					    	oViewModel.setProperty("/busy", false);
 							//Global Variable
 							window.rest_url = oData.results[0].uri;
-							oThis._refreshData();
+							oThis._refreshOverview();
 					    },
 					    error: function() {
 							oViewModel.setProperty("/busy", false);
@@ -53,7 +53,14 @@ sap.ui.define([
 				}.bind(this));
 				
 			},
-			_refreshData : function(){
+			
+			_refresh: function(oModel){
+				console.log(this.getModel());
+				this.setModel(oModel,"dataTiles");
+				console.log(this.getModel("dataTiles"));
+				//console.log(sap.ui.getCore().getModel("dataTiles"));
+			},
+			_refreshOverview : function(){
 				var oView = this.getView();
 				var oViewModel = this.getModel("detailView");
 				var oDate = oViewModel.getProperty("/oDate");
@@ -62,6 +69,7 @@ sap.ui.define([
 				
 				var parameters = {
 					"MNU": this.menuId,
+					"SUB": "sub01",
 					"qe": "2000",
 					"qd" : sDate,
 					"qkf" : "mtd"
@@ -70,7 +78,7 @@ sap.ui.define([
 				
 				oModelJson.attachRequestCompleted(function() {
 					oViewModel.setProperty("/busy", false);
-					oView.setModel(oModelJson,"entityData");
+					oView.setModel(oModelJson,"dataTiles");
 				});
 				
 				oModelJson.attachRequestFailed(function() {

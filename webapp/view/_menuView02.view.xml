@@ -7,6 +7,7 @@
 		xmlns:l="sap.ui.layout"
 		xmlns:core="sap.ui.core"
 		xmlns:sections="sap.ui.dashxsap.menuView02B"
+			
 		height="100%" displayBlock="true">
 
 	<semantic:DetailPage
@@ -47,16 +48,15 @@
 					
 				</actions>
 			</ObjectPageHeader>
-			
 		</headerTitle>
 		<headerContent>
 			<l:VerticalLayout>
-				<m:Label text="{entityData>/header/region}"/>
+				<m:Label text="{dataTiles>/dashxitemid}"></m:Label>
 			</l:VerticalLayout>	
 			
 			<l:VerticalLayout>
 				<m:Label text="Total Room"/>
-				<m:ObjectNumber number="{entityData>/header/totalroom}" numberUnit="UN"></m:ObjectNumber>	
+				<m:ObjectNumber number="{headerData>/totalroom}" numberUnit="UN"></m:ObjectNumber>	
 			</l:VerticalLayout>
 			
 			
@@ -67,33 +67,7 @@
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
-							<l:HorizontalLayout
-									id="TileContainerExpanded"
-									allowWrapping="true"
-									content="{entityData>/tiles}">
-									<m:GenericTile
-										header="{entityData>header}"
-										subheader="{entityData>subheader}"
-										state="{=${state} || 'Loaded'}"
-										press="press"
-										class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom">
-										<m:tileContent>
-											<m:TileContent unit="{entityData>unit}" footer="{entityData>footer}">
-												<m:content>
-													<m:NumericContent
-														value="{
-															parts:[{path:'entityData>value'},{path:'entityData>unit'}],
-															type: 'sap.ui.model.type.Currency',
-															formatOptions: {showMeasure: false}
-														}"
-														valueColor="{entityData>valuecolor}"
-														indicator="{entityData>trend}"
-														scale="{entityData>scale}" />
-												</m:content>
-											</m:TileContent>
-										</m:tileContent>
-									</m:GenericTile>
-							</l:HorizontalLayout>
+							<sections:overview id="overviewBlock"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
