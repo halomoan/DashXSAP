@@ -75,7 +75,7 @@
 										header="{entityData>header}"
 										subheader="{entityData>subheader}"
 										state="{=${state} || 'Loaded'}"
-										press="press"
+										press="pressTile"
 										class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom">
 										<m:tileContent>
 											<m:TileContent unit="{entityData>unit}" footer="{entityData>footer}">
@@ -102,7 +102,63 @@
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
-							<sections:room id="roomBlock"/>
+							<m:Table id="idMoreInfoTable" inset="false" 
+							items="{
+								path: 'entityData>/rooms',
+								sorter: {
+									path: 'row'
+								}
+							}">
+							<m:columns>
+									<m:Column>
+										<m:Text text="" />
+									</m:Column>
+									<m:Column
+										hAlign = "End"
+										demandPopin="true">
+										<m:Text text="MTD Actual" />
+									</m:Column>
+									<m:Column
+										hAlign = "End"
+										demandPopin="true">
+										<m:Text text="MTD Budget" />
+									</m:Column>
+									<m:Column
+										hAlign = "End"
+										demandPopin="true">
+										<m:Text text="+/-" />
+									</m:Column>
+									<m:Column
+										hAlign = "End"
+										demandPopin="true">
+										<m:Text text="%" />
+									</m:Column>
+									
+							</m:columns>
+							<m:items>
+								<m:ColumnListItem>
+									<m:cells>
+										<m:Text text="{entityData>row}"></m:Text>
+										<m:ObjectNumber
+											number="{parts:[{path:'entityData>mtdact'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+											unit="{entityData>unit}"
+										/>	
+										<m:ObjectNumber
+											number="{parts:[{path:'entityData>mtdbgt'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+											unit="{entityData>unit}"
+										/>	
+										<m:ObjectNumber
+											number="{parts:[{path:'entityData>mtdvar'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+											unit="{entityData>unit}"
+										/>	
+										<m:ObjectNumber
+											number="{parts:[{path:'entityData>mtdperc'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+											unit="%"
+										/>	
+									</m:cells>	
+								</m:ColumnListItem>
+							</m:items>		
+							</m:Table>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

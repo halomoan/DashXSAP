@@ -4,6 +4,7 @@ sap.ui.define([
 
 		var Formatter = {
 			currencyValue : function (sValue,sUnit) {
+				
 				if (!sValue) {
 					return "";
 				}

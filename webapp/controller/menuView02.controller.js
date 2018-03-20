@@ -1,7 +1,13 @@
 sap.ui.define([
 	"sap/ui/dashxsap/controller/BaseController",
-	"sap/ui/model/json/JSONModel"
-], function(BaseController,JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/m/Dialog",
+	"sap/m/Button",
+	"sap/m/Label",
+	"sap/m/Text",
+	"sap/ui/layout/VerticalLayout",
+	"sap/ui/dashxsap/model/Formatter"
+], function(BaseController,JSONModel,Dialog,Button,Label,Text,VerticalLayout,Formatter) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.dashxsap.controller.menuView02", {
@@ -82,6 +88,67 @@ sap.ui.define([
 				
 				oModelJson.loadData(window.rest_url,parameters,true, "GET", false, false);
 			},
+			
+			pressTile: function(oEvent){
+				var oCtx = oEvent.getSource().getBindingContext("entityData");
+				
+				var dialog = new Dialog({
+					title: oCtx.getProperty("header"),
+					type: "Message",
+					contentWidth: "auto",
+					content: [
+						new sap.ui.layout.Grid({
+						
+							content: [
+								new VerticalLayout({
+									width: "10em",
+									content: [
+										new Label({ text: "Current Actual"}),
+										new Label({ text: Formatter.currencyValue(oCtx.getProperty("kf1"),oCtx.getProperty("unit")), design: "Bold"})
+										.addStyleClass("font150"),
+										new Label({ text: oCtx.getProperty("unit")})
+									],
+									layoutData : new sap.ui.layout.GridData({
+            							 span : "L4 M5 S12"
+            						})
+								}),
+								new VerticalLayout({
+									width: "10em",
+									content: [
+										new Label({ text: " VS ",width: "10em",  textAlign : sap.ui.core.TextAlign.Center})
+									],
+									layoutData : new sap.ui.layout.GridData({
+            							 span : "L4 M2 S12"
+            						})
+								}),
+								new VerticalLayout({
+									width: "10em",
+									content: [
+										new Label({ text: "Last Year Actual", 	width: "10em",  textAlign : sap.ui.core.TextAlign.End}),
+										new Label({ text: Formatter.currencyValue(oCtx.getProperty("kf2"),oCtx.getProperty("unit")), width: "10em", design: "Bold", textAlign : sap.ui.core.TextAlign.End })
+											.addStyleClass("font150"),
+										new Label({ text: oCtx.getProperty("unit"), width: "10em", textAlign : sap.ui.core.TextAlign.End})
+									],
+									layoutData : new sap.ui.layout.GridData({
+            							 span : "L4 M5 S12"
+            						})
+								})
+							]
+						})
+					],
+				beginButton: new Button({
+					text: 'Close',
+					press: function () {
+						dialog.close();
+					}
+				}),			
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+ 
+			dialog.open();
+			},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
@@ -105,7 +172,7 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView02
 		 */
 			onExit: function() {
-		
+				
 			}
 
 	});

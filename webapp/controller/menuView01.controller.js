@@ -4,10 +4,13 @@ sap.ui.define([
 	"sap/ui/dashxsap/model/Formatter"
 ], function(BaseController,JSONModel,Formatter) {
 	"use strict";
-
+	
+	jQuery.sap.require("jquery.sap.storage");
+	
 	return BaseController.extend("sap.ui.dashxsap.controller.menuView01", {
 		   itemId : "",
 		   menuId : "",
+		   oStorage: null,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -30,6 +33,9 @@ sap.ui.define([
 					
 				});
 				
+				this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				this.oStorage.clear();
+				
 				this.setModel(oViewModel, "detailView");
 				
 				this.byId("setFocus").setValue("<All Countries>");
@@ -42,7 +48,6 @@ sap.ui.define([
 				
 				this._oModel = this.getOwnerComponent().getModel();
 				this.getRouter().getRoute("menuView01").attachPatternMatched(this._onObjectMatched, this);
-				
 				
 			},
 			
@@ -212,7 +217,18 @@ sap.ui.define([
 				
 				this.getModel().metadataLoaded().then( function() {
 					
+					
+					var menuid = oThis.oStorage.get("menuId");
+					
+					if (menuid === this.menuId) {
+						return;
+					} else {
+						oThis.oStorage.put("menuId",oThis.menuId);
+					}
+					
+					
 					oViewModel.setProperty("/busy", true);
+					
 					
 					var sObjectPath = this.getModel().createKey("DashXMainMenus", {
 						DashXMainMenuID :  this.menuId
@@ -254,8 +270,11 @@ sap.ui.define([
 				
 				
 				oModelJson.attachRequestCompleted(function() {
-							oView.setModel(oModelJson,"geoData");
-							oViewModel.setProperty("/busy", false);
+					
+					oView.setModel(oModelJson,"geoData");
+					oViewModel.setProperty("/busy", false);
+				
+					
 				});
 				
 				oModelJson.attachRequestFailed(function() {
@@ -280,7 +299,6 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView01
 		 */
 		//	onBeforeRendering: function() {
-		//
 		//	},
 
 		/**
@@ -301,6 +319,11 @@ sap.ui.define([
 				if (this._oDPopover) {
 					this._oDPopover.destroy();
 				}
+				if (this.oStorage) {
+					this.oStorage.clear();
+					this.oStorage = null;
+				}
+				
 			}
 
 	});
