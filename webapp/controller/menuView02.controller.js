@@ -10,6 +10,7 @@ sap.ui.define([
 ], function(BaseController,JSONModel,Dialog,Button,Label,Text,VerticalLayout,Formatter) {
 	"use strict";
 
+	jQuery.sap.require("sap.ui.dashxsap.controller.donut");
 	return BaseController.extend("sap.ui.dashxsap.controller.menuView02", {
 
 		/**
@@ -22,9 +23,20 @@ sap.ui.define([
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0,
-						oDate : oDefDate
+						oDate : oDefDate,
+						cocode : "",
+						cotext : "",
+						kf : "mtd",
+						keyFigures : [{text: "Month To Date"},{text: "Year To Date"}]
 				});
 				this.setModel(oViewModel,"detailView");
+				
+				this.oRBE1controller = new sap.ui.dashxsap.controller.donut();
+				var rbe1 = this.byId("rbe1");
+				
+				var oFragmentRBE1 = sap.ui.xmlfragment("donut","sap.ui.dashxsap.view.donut",this.oRBE1controller);
+				rbe1.addContent(oFragmentRBE1);
+				this.oRBE1controller.onInit(this,"donut");
 				
 				this.getRouter().getRoute("menuView02").attachPatternMatched(this._onObjectMatched, this);
 			},
@@ -50,7 +62,13 @@ sap.ui.define([
 					    	oViewModel.setProperty("/busy", false);
 							//Global Variable
 							window.rest_url = oData.results[0].uri;
-							oThis._refreshData();
+							
+							var cocode = oViewModel.getProperty("/cocode");
+							if (cocode) {
+								oThis._refreshData();
+							} else{
+								oThis.handleCoCodeSelect();
+							}
 					    },
 					    error: function() {
 							oViewModel.setProperty("/busy", false);
@@ -65,18 +83,20 @@ sap.ui.define([
 				var oDate = oViewModel.getProperty("/oDate");
 				var sDate = this.dateFormat(oDate);
 				var oModelJson = new JSONModel();
+				var oThis = this;
 				
 				var parameters = {
 					"MNU": this.menuId,
-					"qe": "2000",
+					"qe": oViewModel.getProperty("/cocode"),
 					"qd" : sDate,
-					"qkf" : "mtd"
+					"qkf" : oViewModel.getProperty("/kf")
 				};
 				
 				
 				oModelJson.attachRequestCompleted(function() {
 					oViewModel.setProperty("/busy", false);
 					oView.setModel(oModelJson,"entityData");
+					oThis.oRBE1controller.refreshData(oModelJson.getData());                         
 				});
 				
 				oModelJson.attachRequestFailed(function() {
@@ -136,19 +156,62 @@ sap.ui.define([
 							]
 						})
 					],
-				beginButton: new Button({
-					text: 'Close',
-					press: function () {
-						dialog.close();
+					beginButton: new Button({
+						text: 'Close',
+						press: function () {
+							dialog.close();
+						}
+					}),			
+					afterClose: function() {
+						dialog.destroy();
 					}
-				}),			
-				afterClose: function() {
-					dialog.destroy();
-				}
-			});
+				});
  
-			dialog.open();
+				dialog.open();
 			},
+			handleOptSelect: function (oEvent) {
+				if (!this._oSelectOpt) {
+					this._oSelectOpt = sap.ui.xmlfragment("sap.ui.dashxsap.view.KFPopover", this);
+					this.getView().addDependent(this._oSelectOpt);
+				}
+				this._oSelectOpt.openBy(oEvent.getParameter("domRef"));
+				this._oSelectOpt.setModel(this.getModel("detailView"),"detailView");
+			},
+			selectKeyFigure : function(oEvent){
+				var oViewModel = this.getModel("detailView");
+				var kf = oEvent.getParameter("listItem").getProperty("title");
+				if (kf === "Year To Date") {
+					oViewModel.setProperty("/kf","ytd");
+				} else{
+					oViewModel.setProperty("/kf","mtd");
+				}
+				
+				this._refreshData();
+				this._oSelectOpt.close();
+			},
+			handleCoCodeSelect: function(){
+				if (!this._oSelectCoCode) {
+					this._oSelectCoCode = sap.ui.xmlfragment("sap.ui.dashxsap.view.myCoCode", this);
+					this._oSelectCoCode.setModel(this.getView().getModel());
+					this._oSelectCoCode.setRememberSelections(true);
+				}
+				this._oSelectCoCode.getBinding("items").filter([]);
+	
+				// toggle compact style
+				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oSelectCoCode);
+				this._oSelectCoCode.open();
+			},
+			selectCoCode: function(oEvent) {
+				var oViewModel = this.getModel("detailView");
+				var aContexts = oEvent.getParameter("selectedContexts");
+				aContexts.map(function(oContext) { 
+					oViewModel.setProperty("/cocode",oContext.getObject().MyCoCodeID);
+					oViewModel.setProperty("/cotext",oContext.getObject().ShortText);
+				});
+				this._refreshData();
+				
+			},
+			
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
@@ -172,6 +235,12 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView02
 		 */
 			onExit: function() {
+				if (this._oSelectCoCode) {
+					this._oSelectCoCode.destroy();
+				}
+				if (this._oSelectOpt) {
+					this._oSelectOpt.destroy();
+				}
 				
 			}
 

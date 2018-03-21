@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core">
+	<ResponsivePopover
+			title="{i18n>selectKeyFigure}"
+			placement="Bottom">
+		<content>
+			<List
+					mode="SingleSelectMaster"
+					includeItemInSelection="true"
+					select="selectKeyFigure"
+					items="{detailView>/keyFigures}">
+				<StandardListItem title="{detailView>text}"/>
+			</List>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

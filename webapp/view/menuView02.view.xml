@@ -23,10 +23,12 @@
 		<headerTitle>
 			<ObjectPageHeader objectImageURI="images/PPHGLogo.png"
 							  objectImageShape=""
-							  objectTitle="Pan Pacific Singapore"
+							  objectTitle="{detailView>/cotext}"
 							  objectSubtitle="Country: {headerData>/country}"
 							  objectImageAlt="Hotel"
 							  id="ObjectPageLayoutHeaderTitle"
+							  showTitleSelector="true"
+							  titleSelectorPress="handleOptSelect"
 							  isObjectIconAlwaysVisible="false"
 							  isObjectTitleAlwaysVisible="false"
 							  isObjectSubtitleAlwaysVisible="false"
@@ -44,7 +46,7 @@
 				</navigationBar>
 				-->
 				<actions>
-					
+					<ObjectPageHeaderActionButton icon="sap-icon://refresh" text="{i18n>/Refresh}" press="handleCoCodeSelect"/>
 				</actions>
 			</ObjectPageHeader>
 			
@@ -52,6 +54,7 @@
 		<headerContent>
 			<l:VerticalLayout>
 				<m:Label text="{entityData>/header/region}"/>
+				<m:Label text="{= ${detailView>/kf} === 'ytd' ? 'Year To Date' : 'Month To Date' }"/>
 			</l:VerticalLayout>	
 			
 			<l:VerticalLayout>
@@ -167,7 +170,23 @@
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
-							<sections:rbe id="rbeBlock"/>
+							<l:Grid class="sapUiNoMargin">
+								<l:VerticalLayout id="rbe1" class="sapUiNoMarginBegin" width="100%" height="100%">
+									
+									<l:layoutData>
+										<l:GridData
+											span="L4 M4 S12"
+										/>
+									</l:layoutData>
+								</l:VerticalLayout>
+								<l:VerticalLayout class="sapUiTinyMargin" width="100%" height="100%">
+									<l:layoutData>
+										<l:GridData
+											span="L8 M8 S12"
+										/>
+									</l:layoutData>
+								</l:VerticalLayout>
+							</l:Grid>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

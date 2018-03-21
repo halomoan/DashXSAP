@@ -7,8 +7,8 @@
 		noDataText="No Company Code Found"
 		title="Select Company Code"
 		search="searchCoCode"
-		confirm="closeCoCode"
-		close="closeCoCode"
+		confirm="selectCoCode"
+		close="selectCoCode"
 		items="{
 			path: '/MyCoCodes'
 		}" >
