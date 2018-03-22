@@ -26,7 +26,7 @@ sap.ui.define([
 						oDate : oDefDate,
 						cocode : "",
 						cotext : "",
-						kf : "mtd",
+						kf : "MTD",
 						keyFigures : [{text: "Month To Date"},{text: "Year To Date"}]
 				});
 				this.setModel(oViewModel,"detailView");
@@ -181,9 +181,9 @@ sap.ui.define([
 				var oViewModel = this.getModel("detailView");
 				var kf = oEvent.getParameter("listItem").getProperty("title");
 				if (kf === "Year To Date") {
-					oViewModel.setProperty("/kf","ytd");
+					oViewModel.setProperty("/kf","YTD");
 				} else{
-					oViewModel.setProperty("/kf","mtd");
+					oViewModel.setProperty("/kf","MTD");
 				}
 				
 				this._refreshData();
@@ -201,6 +201,16 @@ sap.ui.define([
 				jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oSelectCoCode);
 				this._oSelectCoCode.open();
 			},
+			handleDateSelect: function(oEvent) {
+				if (!this._oSelectDate) {
+					this._oSelectDate = sap.ui.xmlfragment("sap.ui.dashxsap.view.calpopover", this);
+					this.getView().addDependent(this._oSelectDate);
+				
+				}	
+				var oControl = oEvent.getSource();
+				this._oSelectDate.openBy(oControl);
+					
+			},
 			selectCoCode: function(oEvent) {
 				var oViewModel = this.getModel("detailView");
 				var aContexts = oEvent.getParameter("selectedContexts");
@@ -210,6 +220,11 @@ sap.ui.define([
 				});
 				this._refreshData();
 				
+			},
+			selectDate: function(oEvent){
+				var oViewModel = this.getModel("detailView");
+				var sValue = oEvent.getParameter("value");
+				this._oSelectDate.close();
 			},
 			
 		/**
@@ -237,6 +252,9 @@ sap.ui.define([
 			onExit: function() {
 				if (this._oSelectCoCode) {
 					this._oSelectCoCode.destroy();
+				}
+				if (this._oSelectDate) {
+					this._oSelectDate.destroy();
 				}
 				if (this._oSelectOpt) {
 					this._oSelectOpt.destroy();

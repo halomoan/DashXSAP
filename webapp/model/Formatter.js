@@ -10,7 +10,7 @@ sap.ui.define([
 				}
 				
 				if (sUnit === "UN") {
-					return parseFloat(sValue).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+					return sValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				} else{
 					return parseFloat(sValue).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 				}
