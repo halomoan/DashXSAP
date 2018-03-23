@@ -19,11 +19,12 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView02
 		 */
 			onInit: function() {
-				var oDefDate = new Date(2016,1,20);
+				var oDefDate = new Date(2015,1,20);
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0,
 						oDate : oDefDate,
+						formattedDate : Formatter.formatDate(oDefDate),
 						cocode : "",
 						cotext : "",
 						kf : "MTD",
@@ -33,6 +34,8 @@ sap.ui.define([
 				
 				this.oRBE1controller = new sap.ui.dashxsap.controller.donut();
 				var rbe1 = this.byId("rbe1");
+				
+			
 				
 				var oFragmentRBE1 = sap.ui.xmlfragment("donut","sap.ui.dashxsap.view.donut",this.oRBE1controller);
 				rbe1.addContent(oFragmentRBE1);
@@ -115,13 +118,14 @@ sap.ui.define([
 				var dialog = new Dialog({
 					title: oCtx.getProperty("header"),
 					type: "Message",
-					contentWidth: "auto",
+					contentWidth: "30em",
 					content: [
 						new sap.ui.layout.Grid({
-						
+						    hSpacing: 0,
+							vSpacing: 0,
 							content: [
 								new VerticalLayout({
-									width: "10em",
+									width: "100%",
 									content: [
 										new Label({ text: "Current Actual"}),
 										new Label({ text: Formatter.currencyValue(oCtx.getProperty("kf1"),oCtx.getProperty("unit")), design: "Bold"})
@@ -133,21 +137,21 @@ sap.ui.define([
             						})
 								}),
 								new VerticalLayout({
-									width: "10em",
+									width: "100%",
 									content: [
-										new Label({ text: " VS ",width: "10em",  textAlign : sap.ui.core.TextAlign.Center})
+										new Label({ text: " VS ",width: "100%", textAlign : sap.ui.core.TextAlign.Center})
 									],
 									layoutData : new sap.ui.layout.GridData({
             							 span : "L4 M2 S12"
             						})
 								}),
 								new VerticalLayout({
-									width: "10em",
+									width: "100%",
 									content: [
-										new Label({ text: "Last Year Actual", 	width: "10em",  textAlign : sap.ui.core.TextAlign.End}),
-										new Label({ text: Formatter.currencyValue(oCtx.getProperty("kf2"),oCtx.getProperty("unit")), width: "10em", design: "Bold", textAlign : sap.ui.core.TextAlign.End })
+										new Label({ text: "Last Year Actual", width: "100%",  textAlign : sap.ui.core.TextAlign.End}),
+										new Label({ text: Formatter.currencyValue(oCtx.getProperty("kf2"),oCtx.getProperty("unit")), width: "100%", design: "Bold",textAlign : sap.ui.core.TextAlign.End})
 											.addStyleClass("font150"),
-										new Label({ text: oCtx.getProperty("unit"), width: "10em", textAlign : sap.ui.core.TextAlign.End})
+										new Label({ text: oCtx.getProperty("unit"), width: "100%", textAlign : sap.ui.core.TextAlign.End})
 									],
 									layoutData : new sap.ui.layout.GridData({
             							 span : "L4 M5 S12"
@@ -224,7 +228,11 @@ sap.ui.define([
 			selectDate: function(oEvent){
 				var oViewModel = this.getModel("detailView");
 				var sValue = oEvent.getParameter("value");
+				oViewModel.setProperty("/formattedDate",sValue);
+				var oDP = oEvent.oSource;
+				oViewModel.setProperty("/oDate",oDP.getDateValue());
 				this._oSelectDate.close();
+				this._refreshData();
 			},
 			
 		/**

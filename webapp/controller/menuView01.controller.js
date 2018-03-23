@@ -27,6 +27,7 @@ sap.ui.define([
 					showNav : sap.ui.Device.system.phone,
 					spotItems :[],
 					oDate : oDefDate,
+					formattedDate: "",
 					region : "<ALL>",
 					countries: this.countries,
 					dcompares: [{"text" : "Compare Current Date Within Region" },{"text" : "Compare M-T-D Within Region"},{"text" : "Compare Y-T-D Within Region"}]

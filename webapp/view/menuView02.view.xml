@@ -6,6 +6,7 @@
 		xmlns:semantic="sap.m.semantic"
 		xmlns:l="sap.ui.layout"
 		xmlns:core="sap.ui.core"
+		xmlns:mc="sap.suite.ui.microchart"
 		xmlns:sections="sap.ui.dashxsap.menuView02B"
 		height="100%" displayBlock="true">
 
@@ -55,12 +56,23 @@
 		<headerContent>
 			<l:VerticalLayout>
 				<m:Label text="{entityData>/header/region}"/>
-				<m:Label text="{= ${detailView>/kf} === 'ytd' ? 'Year To Date' : 'Month To Date' }"/>
+				<m:Label text="{= ${detailView>/kf} === 'ytd' ? 'Year To Date' : 'Month To Date' } - {detailView>/formattedDate}"/>
 			</l:VerticalLayout>	
 			
 			<l:VerticalLayout>
-				<m:Label text="Total Room"/>
+				<m:Label text="{i18n>totroom}"/>
 				<m:ObjectNumber number="{entityData>/header/totalroom}" numberUnit="UN"></m:ObjectNumber>	
+			</l:VerticalLayout>
+			
+			<l:VerticalLayout>
+				<m:Label text="{i18n>revgross}"/>
+				<mc:ComparisonMicroChart size="L" scale="K" class="sapUiSmallMargin" press="press" colorPalette="#5cbae6, #b6d957, #fac364, #8cd3ff, #d998cb, #f2d249, #93b9c6, #ccc5a8, #52bacc, #dbdb46, #98aafb">
+					<mc:data>
+					<mc:ComparisonMicroChartData title="Room" displayValue="SGD 1000" value="1000" color="Good" />
+					<mc:ComparisonMicroChartData title="F&amp;B" displayValue="SGD 200" value="200" color="Good"/>
+					<mc:ComparisonMicroChartData title="MOD"  displayValue="SGD -70" value="-70" color="Error"/>
+					</mc:data>
+				</mc:ComparisonMicroChart>
 			</l:VerticalLayout>
 			
 			
@@ -254,7 +266,7 @@
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
-							<sections:mod id="modBlock"/>
+							<l:VerticalLayout></l:VerticalLayout>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
