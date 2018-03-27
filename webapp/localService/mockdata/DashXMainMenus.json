@@ -1,17 +1,17 @@
 [{
 	"DashXMainMenuID": "MNU001",
-	"Type" : "menuView01",
+	"Type" : "geoChart",
 	"Text": "Room Analysis (Map)"
 }, {
 	"DashXMainMenuID": "MNU002",
-	"Type" : "menuView01",
+	"Type" : "geoChart",
 	"Text": "F&B Analysis (Map)"
 },{
 	"DashXMainMenuID": "MNU003",
-	"Type" : "timeAxis01",
+	"Type" : "Single Hotel",
 	"Text": "Room Revenue (Daily)"
 },{
 	"DashXMainMenuID": "MNU004",
-	"Type" : "menuView02",
+	"Type" : "Single Hotel",
 	"Text": "Hotel Information"
 }]

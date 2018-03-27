@@ -7,7 +7,6 @@
 		xmlns:l="sap.ui.layout"
 		xmlns:core="sap.ui.core"
 		xmlns:mc="sap.suite.ui.microchart"
-		xmlns:sections="sap.ui.dashxsap.menuView02B"
 		height="100%" displayBlock="true">
 
 	<semantic:DetailPage
@@ -201,57 +200,57 @@
 												path: 'order'
 											}
 										}">
-							<m:columns>
-									<m:Column>
-										<m:Text text="" />
-									</m:Column>
-									<m:Column
-										hAlign = "End"
-										demandPopin="true">
-										<m:Text text="{detailView>/kf} Actual" />
-									</m:Column>
-									<m:Column
-										hAlign = "End"
-										demandPopin="true">
-										<m:Text text="{detailView>/kf} Budget" />
-									</m:Column>
-									<m:Column
-										hAlign = "End"
-										demandPopin="true">
-										<m:Text text="+/-" />
-									</m:Column>
-									<m:Column
-										hAlign = "End"
-										demandPopin="true">
-										<m:Text text="%" />
-									</m:Column>
-									
-							</m:columns>
-							<m:items>
-								<m:ColumnListItem>
-									<m:cells>
-										<m:Text text="{entityData>row}"></m:Text>
-										<m:ObjectNumber
-											number="{parts:[{path:'entityData>act'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
-											unit="{entityData>unit}"
-										/>	
-										<m:ObjectNumber
-											number="{parts:[{path:'entityData>bgt'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
-											unit="{entityData>unit}"
-										/>	
-										<m:ObjectNumber
-											number="{parts:[{path:'entityData>var'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
-											unit="{entityData>unit}"
-										/>	
-										<m:ObjectNumber
-											number="{parts:[{path:'entityData>perc'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
-											unit="%"
-										/>	
-									</m:cells>	
-								</m:ColumnListItem>
-							</m:items>		
-							</m:Table>
-									<l:layoutData>
+											<m:columns>
+													<m:Column>
+														<m:Text text="" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="{detailView>/kf} Actual" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="{detailView>/kf} Budget" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="+/-" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="%" />
+													</m:Column>
+													
+											</m:columns>
+											<m:items>
+												<m:ColumnListItem>
+													<m:cells>
+														<m:Text text="{entityData>row}"></m:Text>
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>act'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="{entityData>unit}"
+														/>	
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>bgt'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="{entityData>unit}"
+														/>	
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>var'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="{entityData>unit}"
+														/>	
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>perc'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="%"
+														/>	
+													</m:cells>	
+												</m:ColumnListItem>
+											</m:items>		
+											</m:Table>
+										<l:layoutData>
 										<l:GridData
 											span="L8 M8 S12"
 										/>
@@ -266,7 +265,63 @@
 				<subSections>
 					<ObjectPageSubSection title=" ">
 						<blocks>
-							<l:VerticalLayout></l:VerticalLayout>
+										<m:Table id="modtable" inset="false" 
+										items="{
+											path: 'entityData>/mod',
+											sorter: {
+												path: 'order'
+											}
+										}">
+											<m:columns>
+													<m:Column>
+														<m:Text text="" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="{detailView>/kf} Actual" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="{detailView>/kf} Budget" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="+/-" />
+													</m:Column>
+													<m:Column
+														hAlign = "End"
+														demandPopin="true">
+														<m:Text text="%" />
+													</m:Column>
+													
+											</m:columns>
+											<m:items>
+												<m:ColumnListItem>
+													<m:cells>
+														<m:Text text="{entityData>row}"></m:Text>
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>act'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="{entityData>unit}"
+														/>	
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>bgt'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="{entityData>unit}"
+														/>	
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>var'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="{entityData>unit}"
+														/>	
+														<m:ObjectNumber
+															number="{parts:[{path:'entityData>perc'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															unit="%"
+														/>	
+													</m:cells>	
+												</m:ColumnListItem>
+											</m:items>		
+											</m:Table>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

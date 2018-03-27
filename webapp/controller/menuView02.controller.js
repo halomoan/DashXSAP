@@ -19,7 +19,7 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView02
 		 */
 			onInit: function() {
-				var oDefDate = new Date(2015,1,20);
+				var oDefDate = new Date(2016,1,20);
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0,
@@ -97,6 +97,7 @@ sap.ui.define([
 				
 				
 				oModelJson.attachRequestCompleted(function() {
+					//console.log(oModelJson.getData());
 					oViewModel.setProperty("/busy", false);
 					oView.setModel(oModelJson,"entityData");
 					oThis.oRBE1controller.refreshData(oModelJson.getData());                         

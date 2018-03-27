@@ -99,9 +99,20 @@ sap.ui.define([
 				}
 
 				var sQuery = oEvent.getParameter("query");
-
+		
 				if (sQuery) {
-					this._oListFilterState.aSearch = [new Filter("MaterialGroupName", FilterOperator.Contains, sQuery)];
+					
+					var sQueryLower = sQuery.toLowerCase();
+					var sQueryUpper = sQuery.toUpperCase();
+					var sQueryUpLow = sQuery[0].toUpperCase() + sQuery.substr(1).toLowerCase();
+	
+
+					this._oListFilterState.aSearch = [
+						new Filter("Text", FilterOperator.Contains, sQuery),
+						new Filter("Text", FilterOperator.Contains, sQueryLower),
+						new Filter("Text", FilterOperator.Contains, sQueryUpper),
+						new Filter("Text", FilterOperator.Contains, sQueryUpLow)
+					];
 				} else {
 					this._oListFilterState.aSearch = [];
 				}
@@ -325,7 +336,7 @@ sap.ui.define([
 				this._oList.getBinding("items").filter(aFilters, "Application");
 				// changes the noDataText of the list in case there are no filter results
 				if (aFilters.length !== 0) {
-					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("masterListNoDataWithFilterOrSearchText"));
+					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("mainMenuNotFound"));
 				} else if (this._oListFilterState.aSearch.length > 0) {
 					// only reset the no data text to default when no new search was triggered
 					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("masterListNoDataText"));

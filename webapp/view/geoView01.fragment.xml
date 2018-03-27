@@ -80,7 +80,14 @@
 							/>	
 					<ObjectNumber
 							number="{parts:[{path:'detailView>mtdact'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
-							unit="{detailView>unit}" />	
+							unit="{detailView>unit}"
+							state="{
+								parts: [
+									{path: 'detailView>mtdact'},
+									{path: 'detailView>mtdbgt'}
+								],
+								formatter: 'sap.ui.dashxsap.model.Formatter.weightState'}"
+							/>	
 					<ObjectNumber
 							number="{parts:[{path:'detailView>mtdbgt'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
 							unit="{detailView>unit}" />	
@@ -89,7 +96,13 @@
 							unit="{detailView>unit}" />	
 					<ObjectNumber
 							number="{parts:[{path:'detailView>ytdact'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
-							unit="{detailView>unit}" />			
+							unit="{detailView>unit}"
+							state="{
+								parts: [
+									{path: 'detailView>ytdact'},
+									{path: 'detailView>ytdbgt'}
+								],
+								formatter: 'sap.ui.dashxsap.model.Formatter.weightState'}"/>			
 					<ObjectNumber
 							number="{parts:[{path:'detailView>ytdbgt'},{path:'detailView>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
 							unit="{detailView>unit}" />		

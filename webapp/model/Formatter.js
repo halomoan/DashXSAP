@@ -8,11 +8,12 @@ sap.ui.define([
 				if (!sValue) {
 					return "";
 				}
-				
+			
 				if (sUnit === "UN") {
-					return sValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					return parseInt(sValue).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				} else{
 					return parseFloat(sValue).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+				
 				}
 			},
 			formatDate : function (date) {
@@ -28,6 +29,15 @@ sap.ui.define([
 			  var year = date.getFullYear();
 			
 			  return monthNames[monthIndex] + " " + day + ", " + year;
+			},
+			weightState :  function (sValue,dValue) {
+				if (sValue > dValue) {
+					return "Success";
+				}else if (sValue < dValue) {
+					return "Error";
+				}else{
+					return "None"; 
+				}
 			}
 		};
 		return Formatter;

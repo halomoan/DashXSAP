@@ -76,12 +76,12 @@
 					change="onSort">
 				<core:Item
 						id="masterSort1"
-						key="MaterialGroupName"
-						text="{i18n>masterSort1}"/>
+						key="DashXMainMenuID"
+						text="{i18n>sortByKey}"/>
 				<core:Item
 						id="masterSort2"
-						key="MaterialGroupID"
-						text="{i18n>masterSort2}"/>
+						key="Text"
+						text="{i18n>sortByText}"/>
 			</semantic:SortSelect>
 		</semantic:sort>
 
@@ -99,11 +99,11 @@
 				<core:Item
 						id="masterGroupNone"
 						key="None"
-						text="{i18n>masterGroupNone}"/>
+						text="{i18n>groupbyNone}"/>
 				<core:Item
 						id="masterGroup1"
-						key="MaterialGroupName"
-						text="{i18n>masterGroup1}"/>
+						key="Type"
+						text="{i18n>groupByType}"/>
 			</semantic:GroupSelect>
 		</semantic:group>
 
