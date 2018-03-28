@@ -211,6 +211,7 @@ sap.ui.define([
 			 * @public
 			 */
 			onSelectionChange : function (oEvent) {
+				
 				// get the list item, either from the listItem parameter or from the event's source itself (will depend on the device-dependent mode).
 				this._showDetail(oEvent.getParameter("listItem") || oEvent.getSource());
 			},
@@ -288,10 +289,14 @@ sap.ui.define([
 			
 			_showSubMaster : function(oItem) {
 			
+				
 				var sObjectId = oItem.getBindingContext().getProperty("DashXMainMenuID");
 				var sType = oItem.getBindingContext().getProperty("Type");
 				
+				
 				sap.ui.getCore().byId("__component0---app--idAppControl").hideMaster();
+				
+				
 				
 				switch(sType) {
 					case "menuView01":

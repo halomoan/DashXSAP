@@ -34,6 +34,33 @@ sap.ui.define([
 					
 				});
 				
+				 var oMapConfig = { "MapProvider":
+		            [
+		              {
+		                  "name": "OSM",
+		                  "type": "",
+		                  "description": "",
+		                  "tileX": "256",
+		                  "tileY": "256",
+		                  "maxLOD": "20",
+		                  "copyright": "Tiles Courtesy of OpenMapTiles",
+		                  "Source": [{
+		                      "id": "s1",
+		                      "url": "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png"
+		                  }]
+		              }],
+		            "MapLayerStacks":
+		              [
+		                {
+		                "name": "Default",
+		                "MapLayer":[
+		                    {
+		                    "name": "OSM",
+		                    "refMapProvider": "OSM"
+		                    }]
+		            }]
+		          };
+				
 				this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				this.oStorage.clear();
 				
@@ -41,6 +68,9 @@ sap.ui.define([
 				
 				this.byId("setFocus").setValue("<All Countries>");
 				this.byId("DTP1").setDateValue(oDefDate);
+				
+				var geoMap = this.byId("geovbi");
+				geoMap.setMapConfiguration(oMapConfig);
 				
 				var page2 = this.byId("p2");
 				
@@ -61,6 +91,7 @@ sap.ui.define([
 			
 				var coord = country.coordinate.split(";");
 				this.byId("vbi").zoomToGeoPosition(coord[0],coord[1],coord[2]);
+				this.byId("geovbi").zoomToGeoPosition(coord[0],coord[1],coord[2]);
 				this.byId("settingsPanel").setExpanded(false);
 			},
 			onPressResize: function() {
