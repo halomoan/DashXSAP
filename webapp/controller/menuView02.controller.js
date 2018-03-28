@@ -19,7 +19,7 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView02
 		 */
 			onInit: function() {
-				var oDefDate = new Date(2016,1,20);
+				var oDefDate = new Date(2017,4,31);
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0,

@@ -243,7 +243,7 @@
 															unit="{entityData>unit}"
 														/>	
 														<m:ObjectNumber
-															number="{parts:[{path:'entityData>perc'},{path:'entityData>unit'}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
+															number="{parts:[{path:'entityData>perc'},{path:''}], formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'}"
 															unit="%"
 														/>	
 													</m:cells>	

@@ -6,7 +6,7 @@
       xmlns:viz.data="sap.viz.ui5.data"
       xmlns:viz="sap.viz.ui5.controls"
       height="100%">
-      <layout:FixFlex id='chartFixFlex' minFlexSize="500" busy="{barchartView>/busy}"
+      <layout:FixFlex id='chartFixFlex' minFlexSize="600" busy="{barchartView>/busy}"
 		  busyIndicatorDelay="{barchartView>/delay}">
       	<layout:flexContent>
       		
