@@ -65,7 +65,7 @@
 			
 			<l:VerticalLayout>
 				<m:Label text="{i18n>revgross}"/>
-				<mc:ComparisonMicroChart size="L" scale="K" class="sapUiSmallMargin" press="press" colorPalette="#5cbae6, #b6d957, #fac364, #8cd3ff, #d998cb, #f2d249, #93b9c6, #ccc5a8, #52bacc, #dbdb46, #98aafb"
+				<mc:ComparisonMicroChart size="M" scale="K" class="sapUiTinyMargin" press="press" colorPalette="#5cbae6, #b6d957, #fac364, #8cd3ff, #d998cb, #f2d249, #93b9c6, #ccc5a8, #52bacc, #dbdb46, #98aafb"
 				data="{entityData>/header/compmc}">
 					<mc:data>
 					<mc:ComparisonMicroChartData title="{entityData>title}" displayValue="{
