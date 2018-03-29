@@ -55,7 +55,7 @@
 		<headerContent>
 			<l:VerticalLayout>
 				<m:Label text="{entityData>/header/region}"/>
-				<m:Label text="{= ${detailView>/kf} === 'ytd' ? 'Year To Date' : 'Month To Date' } - {detailView>/formattedDate}"/>
+				<m:Label text="{= ${detailView>/kf} === 'YTD' ? 'Year To Date' : 'Month To Date' } - {detailView>/formattedDate}"/>
 			</l:VerticalLayout>	
 			
 			<l:VerticalLayout>
@@ -65,11 +65,15 @@
 			
 			<l:VerticalLayout>
 				<m:Label text="{i18n>revgross}"/>
-				<mc:ComparisonMicroChart size="L" scale="K" class="sapUiSmallMargin" press="press" colorPalette="#5cbae6, #b6d957, #fac364, #8cd3ff, #d998cb, #f2d249, #93b9c6, #ccc5a8, #52bacc, #dbdb46, #98aafb">
+				<mc:ComparisonMicroChart size="L" scale="K" class="sapUiSmallMargin" press="press" colorPalette="#5cbae6, #b6d957, #fac364, #8cd3ff, #d998cb, #f2d249, #93b9c6, #ccc5a8, #52bacc, #dbdb46, #98aafb"
+				data="{entityData>/header/compmc}">
 					<mc:data>
-					<mc:ComparisonMicroChartData title="Room" displayValue="SGD 1000" value="1000" color="Good" />
-					<mc:ComparisonMicroChartData title="F&amp;B" displayValue="SGD 200" value="200" color="Good"/>
-					<mc:ComparisonMicroChartData title="MOD"  displayValue="SGD -70" value="-70" color="Error"/>
+					<mc:ComparisonMicroChartData title="{entityData>title}" displayValue="{
+															parts:[{path:'entityData>val'},{path:'entityData>unit'}],
+															type: 'sap.ui.model.type.Currency',
+															formatOptions: {showMeasure: true}
+														}"
+					 value="{entityData>val}" color="{entityData>color}" />
 					</mc:data>
 				</mc:ComparisonMicroChart>
 			</l:VerticalLayout>
@@ -100,7 +104,7 @@
 														value="{
 															parts:[{path:'entityData>value'},{path:'entityData>unit'}],
 															type: 'sap.ui.model.type.Currency',
-															formatOptions: {showMeasure: false}
+															formatter:'sap.ui.dashxsap.model.Formatter.currencyValue'
 														}"
 														valueColor="{entityData>valuecolor}"
 														indicator="{entityData>trend}"
@@ -135,18 +139,21 @@
 										<m:Text text="{detailView>/kf} Actual" />
 									</m:Column>
 									<m:Column
+										minScreenWidth = "Tablet"
 										hAlign = "End"
-										demandPopin="true">
+										demandPopin="false">
 										<m:Text text="{detailView>/kf} Budget" />
 									</m:Column>
 									<m:Column
+										minScreenWidth = "Tablet"
 										hAlign = "End"
-										demandPopin="true">
+										demandPopin="false">
 										<m:Text text="+/-" />
 									</m:Column>
 									<m:Column
+										minScreenWidth = "Tablet"
 										hAlign = "End"
-										demandPopin="true">
+										demandPopin="false">
 										<m:Text text="%" />
 									</m:Column>
 									
@@ -210,18 +217,21 @@
 														<m:Text text="{detailView>/kf} Actual" />
 													</m:Column>
 													<m:Column
+														minScreenWidth = "Tablet"
 														hAlign = "End"
-														demandPopin="true">
+														demandPopin="false">
 														<m:Text text="{detailView>/kf} Budget" />
 													</m:Column>
 													<m:Column
+														minScreenWidth = "Tablet"
 														hAlign = "End"
-														demandPopin="true">
+														demandPopin="false">
 														<m:Text text="+/-" />
 													</m:Column>
 													<m:Column
+														minScreenWidth = "Tablet"
 														hAlign = "End"
-														demandPopin="true">
+														demandPopin="false">
 														<m:Text text="%" />
 													</m:Column>
 													
@@ -282,18 +292,21 @@
 														<m:Text text="{detailView>/kf} Actual" />
 													</m:Column>
 													<m:Column
+														minScreenWidth = "Tablet"
 														hAlign = "End"
-														demandPopin="true">
+														demandPopin="false">
 														<m:Text text="{detailView>/kf} Budget" />
 													</m:Column>
 													<m:Column
+														minScreenWidth = "Tablet"
 														hAlign = "End"
-														demandPopin="true">
+														demandPopin="false">
 														<m:Text text="+/-" />
 													</m:Column>
 													<m:Column
+														minScreenWidth = "Tablet"
 														hAlign = "End"
-														demandPopin="true">
+														demandPopin="false">
 														<m:Text text="%" />
 													</m:Column>
 													
