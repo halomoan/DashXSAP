@@ -5,10 +5,10 @@ sap.ui.define([
      'sap/viz/ui5/controls/common/feeds/FeedItem',
      'sap/viz/ui5/format/ChartFormatter',
      'sap/viz/ui5/api/env/Format',
-     'sap/ui/model/Filter',
-     "sap/ui/Device"
+     "sap/ui/Device",
+     "sap/ui/dashxsap/model/Formatter"
      
-], function(BaseController, JSONModel, FlattenedDataset, FeedItem, ChartFormatter, Format,Filter,Device) {
+], function(BaseController, JSONModel, FlattenedDataset, FeedItem, ChartFormatter, Format,Device,Formatter) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.dashxsap.controller.menuView03", {
@@ -61,7 +61,7 @@ sap.ui.define([
                 }]
 			}            
 		},
-		oVizFrame : null, sODataId: null, sCoCode: null, oFromDate: null, oToDate:null, oModelChart: null,
+		oVizFrame : null, menuId: null, sCoCode: null, oFromDate: null, oToDate:null, oModelChart: null,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -70,24 +70,20 @@ sap.ui.define([
 		onInit: function() {
 				
 				// View Model
+				var oDefDate = new Date(2017,4,31);
 				var oViewModel = new JSONModel({
 					busy : false,
 					delay : 0,
 					title : "",
-					delimiterDRS1: "-",
-					dateFromValueDRS1: null,
-					dateToValueDRS1: null,
-					dateFormatDRS1: "yyyy/MM/dd",
+					oDate : oDefDate,
+					formattedDate : Formatter.formatDate(oDefDate),
+					
 					chartTypes: {"defaultSelected": "timeseries_line", "values" : [{"key": "timeseries_line", "type": "Line Chart"},{"key": "timeseries_column", "type": "Bar Chart"}]}
 				});
 				this.setModel(oViewModel, "detailView");
 				
 				this.initPageSettings(this.getView());
 				
-				this.oToDate = new Date();
-				this.oFromDate = new Date(this.oToDate.getFullYear(),0,1);
-				oViewModel.setProperty("/dateFromValueDRS1", this.oFromDate);
-				oViewModel.setProperty("/dateToValueDRS1",this.oToDate);
 				
 				// set the device model
 				var oDeviceModel = new JSONModel(Device);
@@ -113,7 +109,6 @@ sap.ui.define([
 	            });
 	            
 				
-				this.oModelChart = new JSONModel();
 				
 				this.getRouter().getRoute("menuView03").attachPatternMatched(this._onObjectMatched, this);
 
@@ -122,13 +117,13 @@ sap.ui.define([
 		},
 			
 		_onObjectMatched: function(oEvent){
-					this.sODataId =  oEvent.getParameter("arguments").objectId;
+					this.menuId =  oEvent.getParameter("arguments").objectId;
 					
 					
 					this.getModel().metadataLoaded().then( function() {
 					
 						if (this.sCoCode) {
-							this.getOData();
+							this.refreshData();
 						} else {
 							this.handleCoCodeSelect();
 						}	
@@ -136,37 +131,38 @@ sap.ui.define([
 					
 					
 		},
-		getOData: function(){
+		refreshData: function(){
+			var oView = this.getView();
 			var oViewModel = this.getModel("detailView");
-			var oModelJson = this.oModelChart; 
-			var oVizFrame = this.oVizFrame;
-			var oFilters = [];
+			var oModelJson = new JSONModel();
+			var oDate = oViewModel.getProperty("/oDate");
+			var sDate = this.dateFormat(oDate);
 			
-			
-			oFilters.push(this.createFilter("MyCoCodeID",sap.ui.model.FilterOperator.Contains,this.sCoCode));
-			oFilters.push(this.createFilter("FromDate",sap.ui.model.FilterOperator.EQ,this.dateFormat(this.oFromDate)));
-			oFilters.push(this.createFilter("ToDate",sap.ui.model.FilterOperator.EQ,this.dateFormat(this.oToDate)));
-			
-			var sObjectPath = this.getModel().createKey("DashXMainMenus", {
-				DashXMainMenuID :  this.sODataId
-			});
-							
 			oViewModel.setProperty("/busy", true);
-			this.getModel().read("/" + sObjectPath + "/DashXItems", {
-				method: "GET",
-				filters : oFilters,
-				success: function(oData) {
-					
-					oModelJson.setData(oData.results[0]);
-					
-					oVizFrame.setModel(oModelJson,"chartData");
-					oViewModel.setProperty("/busy", false);
-				},
-				error: function() {
-					
-					oViewModel.setProperty("/busy", false);
-				}
+			
+			var parameters = {
+				"MNU": this.menuId,
+				"qe": this.sCoCode,
+				"qd" : sDate,
+				"qkf" : oViewModel.getProperty("/kf")
+			};
+			
+			
+			oModelJson.attachRequestCompleted(function() {
+				//console.log(oModelJson.getData());
+				oViewModel.setProperty("/busy", false);
+				oView.setModel(oModelJson,"entityData");
 			});
+			
+			oModelJson.attachRequestFailed(function() {
+				alert("Failed to contact SAP BW Server!");
+				oViewModel.setProperty("/busy", false);
+			});
+			
+			oViewModel.setProperty("/busy", true);
+			
+			oModelJson.loadData(window.rest_url,parameters,true, "GET", false, false);
+				
 		},
 		handleCoCodeSelect: function(){
 			if (!this._oSelectCoCode) {
@@ -182,7 +178,7 @@ sap.ui.define([
 		},
 		searchCoCode: function(oEvent){
 			var sValue = oEvent.getParameter("value");
-			var oFilter = new Filter("MyCoCodeID", sap.ui.model.FilterOperator.Contains, sValue);
+			var oFilter = new sap.ui.model.Filter("MyCoCodeID", sap.ui.model.FilterOperator.Contains, sValue);
 			var oBinding = oEvent.getSource().getBinding("items");
 			oBinding.filter([oFilter]);
 		},
