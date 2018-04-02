@@ -6,6 +6,10 @@
 	"DashXMainMenuID": "MNU002",
 	"Type" : "menuView01",
 	"Text": "F&B Analysis (Map)"
+},{
+	"DashXMainMenuID": "MNU003",
+	"Type" : "menuView03",
+	"Text": "Daily Monitoring"
 }
 ,{
 	"DashXMainMenuID": "MNU004",

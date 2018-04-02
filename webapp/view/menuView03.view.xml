@@ -1,0 +1,89 @@
+<mvc:View controllerName="sap.ui.dashxsap.controller.menuView03" xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:semantic="sap.m.semantic"
+    xmlns:core="sap.ui.core" xmlns:viz.data="sap.viz.ui5.data" height="100%">
+	
+	<semantic:DetailPage
+			id="page"
+			navButtonPress="onNavBack"
+			showNavButton="{device>/system/phone}"
+			title="{i18n>dashboardName}"
+			busy="{detailView>/busy}"
+			busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>	
+    <layout:FixFlex id='chartFixFlex' minFlexSize="250">
+        <!--Below is the setting panel -->
+        <layout:fixContent>
+            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="{detailView>/title}" width="auto">
+                <content>
+                    <HBox class='settingsHBox'>
+                    
+                    <VBox class="sapUiSmallMargin">
+						<Label text = '{i18n>selectCoCode}' class='settingsLabel'></Label>
+                        <Select id='selectCoCode' class='settingsSelect' selectedKey='{detailView>/selectedCoCode}'  change='onCoCodeChange'
+                            items="{path: '/MyCoCodes'}">
+                            <items>
+                                <core:Item text="{MyCoCodeID} - {ShortText}" key="{MyCoCodeID}" />
+                            </items>
+                        </Select>
+						<Label text="Date Range" labelFor="DRS1"/>
+						<DateRangeSelection
+							id="DRS1"
+							delimiter="{path:'detailView>/delimiterDRS1'}"
+							dateValue="{path:'detailView>/dateFromValueDRS1'}"
+							secondDateValue="{path:'detailView>/dateToValueDRS1'}"
+							displayFormat="{path:'detailView>/dateFormatDRS1'}"
+							change = 'onDateRangeChange'
+						/>
+						<FlexBox
+							alignItems="Start"
+							justifyContent="End">
+						<items>
+						<Button text="Refresh" press="onRefresh"></Button>
+						</items>
+						</FlexBox>
+					</VBox>
+					<VBox class="sapUiSmallMargin">
+                        <Label text = '{i18n>selectChart}' class='settingsLabel'></Label>
+                        <Select id='chartTypeSelect' class='settingsSelect' selectedKey='{detailView>/chartTypes/defaultSelected}'  change='onChartTypeChanged' 
+                            items="{path: 'detailView>/chartTypes/values'}">
+                            <items>
+                                <core:Item text="{detailView>type}" key="{detailView>key}" />
+                            </items>
+                        </Select>
+                    </VBox>
+                    </HBox>
+                </content>
+            </Panel>
+        </layout:fixContent>
+        <layout:flexContent>
+            <viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='timeseries_line'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{chartData>/Data}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Date"
+                                value="{chartData>Date}" dataType="date"/>
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="{chartData>/Legends/0}"
+                                value="{chartData>KF1}" />
+                            <viz.data:MeasureDefinition name="{chartData>/Legends/1}"
+                                value="{chartData>KF2}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="{chartData>/Legends}" />
+                    <viz.feeds:FeedItem uid="timeAxis" type="Dimension"
+                        values="Date" />
+                </viz:feeds>
+            </viz:VizFrame>
+        </layout:flexContent>
+    </layout:FixFlex>
+    </semantic:content>
+	</semantic:DetailPage>
+</mvc:View>

@@ -305,8 +305,8 @@ sap.ui.define([
 					case "menuView02":
 						this.getRouter().navTo("menuView02", {objectId : sObjectId}, false);
 						break;	
-					case "timeAxis01" :
-						this.getRouter().navTo("timeAxis01", {objectId : sObjectId}, false);
+					case "menuView03" :
+						this.getRouter().navTo("menuView03", {objectId : sObjectId}, false);
 						break;
 					case "compareRegion01" :
 						this.getRouter().navTo("compareRegion01", {srcId : sObjectId}, false);

@@ -139,11 +139,11 @@
 					]
 				},
 				{
-					"pattern": "timeAxis01/{objectId}",
-					"name": "timeAxis01",
+					"pattern": "menuView03/{objectId}",
+					"name": "menuView03",
 					"target": [
 						"master",
-						"timeAxis01"
+						"menuView03"
 					]
 				},
 				{
@@ -194,9 +194,9 @@
 					"viewId": "menuView02",
 					"viewLevel": 2
 				},
-				"timeAxis01": {
-					"viewName": "timeAxis01",
-					"viewId": "timeAxis01",
+				"menuView03": {
+					"viewName": "menuView03",
+					"viewId": "menuView03",
 					"viewLevel": 2
 				},
 				"compareRegion01": {
