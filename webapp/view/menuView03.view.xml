@@ -54,28 +54,26 @@
         </layout:fixContent>
         <layout:flexContent>
             <viz:Popover id="idPopOver"></viz:Popover>
-            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+             <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
                 height='100%' width="100%" vizType='timeseries_line'>
                 <viz:dataset>
                     <viz.data:FlattenedDataset data="{chartData>/dataset}">
                         <viz.data:dimensions>
-                            <viz.data:DimensionDefinition name="date"
+                            <viz.data:DimensionDefinition name="Date"
                                 value="{chartData>date}" dataType="date"/>
                         </viz.data:dimensions>
                         <viz.data:measures>
-                            <viz.data:MeasureDefinition name="{chartData>/legend/0}"
+                            <viz.data:MeasureDefinition name="Current Data"
                                 value="{chartData>kf1}" />
-                            <viz.data:MeasureDefinition name="{chartData>/legend/1}"
-                                value="{chartData>kf2}" />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
                 </viz:dataset>
 
                 <viz:feeds>
                     <viz.feeds:FeedItem uid="valueAxis" type="Measure"
-                        values="{chartData>/legend}" />
+                        values="Current Data" />
                     <viz.feeds:FeedItem uid="timeAxis" type="Dimension"
-                        values="date" />
+                        values="Date" />
                 </viz:feeds>
             </viz:VizFrame>
         </layout:flexContent>

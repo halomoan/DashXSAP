@@ -12,41 +12,47 @@ sap.ui.define([
 	"use strict";
 
 	return BaseController.extend("sap.ui.dashxsap.controller.menuView03", {
-		
-	    settingsModel : {
-				chartType : {
-					values: [{
-                    key : "0",
-                    name : "Column Chart",
-                    vizType : "timeseries_line",
-                    value : "{chartData>/legend}",
+	
+		settingsModel : {
+            chartType : {
+                name : "Chart Type",
+                defaultSelected : "3",
+                values : [	
+                	{
+                    key : "6",
+                    name : "Combined Column & Line",
+                    vizType : "timeseries_combination",
+                    value : ["Revenue", "Cost"],
                     dataset : {
-                       dimensions: [{
-                           name: 'Date',
-                           value: "{chartData>date}",
-                           dataType:'date'
-                       }],
-                       measures: [{
-                    		name: '{chartData>/legend/0}',
-                            value: '{chartData>kf1}'
-                       },{
-                            name: '{chartData>/legend/1}',
-                            value: '{chartData>kf2}'
-                       }],
-                       data: '{chartData>/dataset}'
+                        dimensions: [{
+                            name: 'Date',
+                            value: "{chartData>/date}",
+                            dataType:'date'
+                        }],
+                        measures: [{
+                            name: 'Revenue',
+                            value: '{chartData>/kf1}'
+                        },{
+                            name: 'Cost',
+                            value: '{chartData>/kf2}'
+                        }],
+                        data: {
+                            path: "chartData>/dataset"
+                        }
                     },
                     vizProperties : {
                         plotArea: {
-                            dataLabel: {
-                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
-                                visible: false
-                            },
                             window: {
                                 start: "firstDataPoint",
                                 end: "lastDataPoint"
+                            },
+                            dataLabel: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+                                visible: false
                             }
                         },
                         valueAxis: {
+                            visible: true,
                             label: {
                                 formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
                             },
@@ -54,13 +60,26 @@ sap.ui.define([
                                 visible: false
                             }
                         },
+                        timeAxis: {
+                            title: {
+                                visible: false
+                            },
+                            interval : {
+                                unit : ''
+                            }
+                        },
                         title: {
                             visible: false
+                        },
+                        interaction: {
+                            syncValueAxis: false
                         }
                     }
-                }]
-			}            
-		},
+                }
+                ]
+            }
+		}    
+	   ,
 		oVizFrame : null, menuId: null, sCoCode: null, oModelChart: null,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -103,7 +122,7 @@ sap.ui.define([
 				var oVizFrame = this.oVizFrame = this.getView().byId("idVizFrame");
             	oVizFrame.setVizProperties(this.settingsModel.chartType.values[0].vizProperties);
             	
-
+            	
 				var oPopOver = this.getView().byId("idPopOver");
 	            oPopOver.connect(oVizFrame.getVizUid());
 	            oPopOver.setFormatString({
@@ -163,9 +182,11 @@ sap.ui.define([
 		refreshData: function(){
 			var oVizFrame = this.oVizFrame;
 			var oViewModel = this.getModel("detailView");
-			var oModelJson = new JSONModel();
+			
 			var oDate = oViewModel.getProperty("/oDate");
 			var sDate = this.dateFormat(oDate);
+			var oModelJson = new JSONModel();
+
 			
 			oViewModel.setProperty("/busy", true);
 			
@@ -182,9 +203,10 @@ sap.ui.define([
 				
 				console.log(oModelJson.getData());
 				
+				//oThis.oModelChart.setData(oModelJson.getData());
+				
 				oVizFrame.setModel(oModelJson,"chartData");
 				
-				console.log(oVizFrame);
 			
 				oViewModel.setProperty("/busy", false);
 				
@@ -253,7 +275,6 @@ sap.ui.define([
                 var bindValue = this.settingsModel.chartType.values[0];
                
                
-              
                 this.oVizFrame.destroyDataset();
                 this.oVizFrame.destroyFeeds();
                 this.oVizFrame.setVizType(selectedKey);
