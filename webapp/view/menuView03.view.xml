@@ -16,14 +16,14 @@
         <layout:fixContent>
             <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="{detailView>/title}" width="auto">
                 <content>
-                    <HBox class='settingsHBox'>
+                    <HBox class='sapUiNolMargin'>
                     
                     <VBox class="sapUiSmallMargin">
-						<Label text = '{i18n>selectCoCode}' class='settingsLabel'></Label>
-                        <Select id='selectCoCode' class='settingsSelect' selectedKey='{detailView>/selectedCoCode}'  change='onCoCodeChange'
-                            items="{path: '/MyCoCodes'}">
+						<Label text = '{i18n>selectItem}' class='settingsLabel'></Label>
+                        <Select id='selRow' class='settingsSelect' selectedKey='{detailView>/qrow}'  change='onSelRowChange'
+                            items="{path: 'detailView>/submenus'}">
                             <items>
-                                <core:Item text="{MyCoCodeID} - {ShortText}" key="{MyCoCodeID}" />
+                                <core:Item text="{detailView>text}" key="{detailView>text}" />
                             </items>
                         </Select>
 						<Label text="Date Range" labelFor="DRS1"/>
@@ -35,7 +35,7 @@
 							alignItems="Start"
 							justifyContent="End">
 						<items>
-						<Button text="Refresh" press="onRefresh"></Button>
+						<Button text="Refresh" press="refreshData"></Button>
 						</items>
 						</FlexBox>
 					</VBox>
@@ -57,25 +57,25 @@
             <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
                 height='100%' width="100%" vizType='timeseries_line'>
                 <viz:dataset>
-                    <viz.data:FlattenedDataset data="{chartData>/Data}">
+                    <viz.data:FlattenedDataset data="{chartData>/dataset}">
                         <viz.data:dimensions>
-                            <viz.data:DimensionDefinition name="Date"
-                                value="{chartData>Date}" dataType="date"/>
+                            <viz.data:DimensionDefinition name="date"
+                                value="{chartData>date}" dataType="date"/>
                         </viz.data:dimensions>
                         <viz.data:measures>
-                            <viz.data:MeasureDefinition name="{chartData>/Legends/0}"
-                                value="{chartData>KF1}" />
-                            <viz.data:MeasureDefinition name="{chartData>/Legends/1}"
-                                value="{chartData>KF2}" />
+                            <viz.data:MeasureDefinition name="{chartData>/legend/0}"
+                                value="{chartData>kf1}" />
+                            <viz.data:MeasureDefinition name="{chartData>/legend/1}"
+                                value="{chartData>kf2}" />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
                 </viz:dataset>
 
                 <viz:feeds>
                     <viz.feeds:FeedItem uid="valueAxis" type="Measure"
-                        values="{chartData>/Legends}" />
+                        values="{chartData>/legend}" />
                     <viz.feeds:FeedItem uid="timeAxis" type="Dimension"
-                        values="Date" />
+                        values="date" />
                 </viz:feeds>
             </viz:VizFrame>
         </layout:flexContent>

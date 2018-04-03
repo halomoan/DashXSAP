@@ -19,21 +19,21 @@ sap.ui.define([
                     key : "0",
                     name : "Column Chart",
                     vizType : "timeseries_line",
-                    value : "{chartData>/Legends}",
+                    value : "{chartData>/legend}",
                     dataset : {
                        dimensions: [{
                            name: 'Date',
-                           value: "{chartData>Date}",
+                           value: "{chartData>date}",
                            dataType:'date'
                        }],
                        measures: [{
-                    		name: '{chartData>/Legends/0}',
-                            value: '{chartData>KF1}'
+                    		name: '{chartData>/legend/0}',
+                            value: '{chartData>kf1}'
                        },{
-                            name: '{chartData>/Legends/1}',
-                            value: '{chartData>KF2}'
+                            name: '{chartData>/legend/1}',
+                            value: '{chartData>kf2}'
                        }],
-                       data: '{chartData>/Data}'
+                       data: '{chartData>/dataset}'
                     },
                     vizProperties : {
                         plotArea: {
@@ -61,7 +61,7 @@ sap.ui.define([
                 }]
 			}            
 		},
-		oVizFrame : null, menuId: null, sCoCode: null, oFromDate: null, oToDate:null, oModelChart: null,
+		oVizFrame : null, menuId: null, sCoCode: null, oModelChart: null,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -77,7 +77,10 @@ sap.ui.define([
 					title : "",
 					oDate : oDefDate,
 					formattedDate : Formatter.formatDate(oDefDate),
-					
+					cocode: "",
+					kf : "MTD",
+					qrow : "",
+					submenus : [],
 					chartTypes: {"defaultSelected": "timeseries_line", "values" : [{"key": "timeseries_line", "type": "Line Chart"},{"key": "timeseries_column", "type": "Bar Chart"}]}
 				});
 				this.setModel(oViewModel, "detailView");
@@ -119,20 +122,46 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent){
 					this.menuId =  oEvent.getParameter("arguments").objectId;
 					
+					var oViewModel = this.getModel("detailView");
+					var oThis = this;
 					
 					this.getModel().metadataLoaded().then( function() {
 					
-						if (this.sCoCode) {
-							this.refreshData();
-						} else {
-							this.handleCoCodeSelect();
-						}	
+						var sObjectPath = this.getModel().createKey("DashXMainMenus", {
+							DashXMainMenuID :  this.menuId
+						});
+						
+						
+						this.getModel().read("/" + sObjectPath + "/DashXItems", {
+						    method: "GET",
+						    success: function(oData) {
+						    	oViewModel.setProperty("/busy", false);
+								//Global Variable
+								window.rest_url = oData.results[0].uri;
+								
+								
+								var submenus = oData.results[0].submenus;
+							    oViewModel.setProperty("/submenus",submenus);
+							    oViewModel.setProperty("/qrow",submenus[0].text);
+							    
+								var cocode = oViewModel.getProperty("/cocode");
+								if (cocode) {
+									oThis.refreshData();
+								} else{
+									oThis.handleCoCodeSelect();
+								}
+						    },
+						    error: function() {
+								oViewModel.setProperty("/busy", false);
+						    }
+						});
+					
 					}.bind(this));
 					
 					
 		},
 		refreshData: function(){
-			var oView = this.getView();
+			var oVizFrame = this.oVizFrame;
 			var oViewModel = this.getModel("detailView");
 			var oModelJson = new JSONModel();
 			var oDate = oViewModel.getProperty("/oDate");
@@ -144,14 +173,21 @@ sap.ui.define([
 				"MNU": this.menuId,
 				"qe": this.sCoCode,
 				"qd" : sDate,
-				"qkf" : oViewModel.getProperty("/kf")
+				"qkf" : oViewModel.getProperty("/kf"),
+				"qrow" : oViewModel.getProperty("/qrow")
 			};
 			
 			
 			oModelJson.attachRequestCompleted(function() {
-				//console.log(oModelJson.getData());
+				
+				console.log(oModelJson.getData());
+				
+				oVizFrame.setModel(oModelJson,"chartData");
+				
+				console.log(oVizFrame);
+			
 				oViewModel.setProperty("/busy", false);
-				oView.setModel(oModelJson,"entityData");
+				
 			});
 			
 			oModelJson.attachRequestFailed(function() {
@@ -196,29 +232,20 @@ sap.ui.define([
 			}
 			oEvent.getSource().getBinding("items").filter([]);
 			if (this.sCoCode) {
-				this.getOData();
+				this.refreshData();
 			}
 		},
-		onCoCodeChange: function(oEvent){
-			this.sCoCode = oEvent.getSource().getSelectedKey();
-			var text = oEvent.getSource().getSelectedItem().getText();
+		// onCoCodeChange: function(oEvent){
+		// 	this.sCoCode = oEvent.getSource().getSelectedKey();
+		// 	var text = oEvent.getSource().getSelectedItem().getText();
 			
+		// 	var oViewModel = this.getModel("detailView");
+		// 	oViewModel.setProperty("/title",text.substring(7,100) + " (" + this.sCoCode + ") *");
+		// },
+		onSelRowChange : function(oEvent){
+			var key = oEvent.getSource().getSelectedKey();
 			var oViewModel = this.getModel("detailView");
-			oViewModel.setProperty("/title",text.substring(7,100) + " (" + this.sCoCode + ") *");
-		},
-		onDateRangeChange: function(oEvent){
-			this.oFromDate = oEvent.getParameter("from");
-			this.oToDate = oEvent.getParameter("to");
-			//var bValid = oEvent.getParameter("valid");
-			var oViewModel = this.getModel("detailView");
-			var text = this.byId("selectCoCode").getSelectedItem().getText();
-			oViewModel.setProperty("/title",text.substring(7,100) + " (" + this.sCoCode + ") *");
-		},
-		onRefresh: function(){
-			this.getOData();
-			var oViewModel = this.getModel("detailView");
-			var text = this.byId("selectCoCode").getSelectedItem().getText();
-			oViewModel.setProperty("/title",text.substring(7,100) + " (" + this.sCoCode + ")");
+			oViewModel.setProperty("/qrow",key);
 		},
 		onChartTypeChanged : function(oEvent){
 			 if(this.oVizFrame){
