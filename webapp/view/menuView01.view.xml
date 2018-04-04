@@ -12,7 +12,7 @@
 			id="geoView01"
 			navButtonPress="onNavBack"
 			showNavButton="{detailView>/showNav}"
-			title="{i18n>dashboardName}"
+			title="{i18n>mainTitle}"
 			busy="{detailView>/busy}"
 			showFooter="{device>/system/desktop}"
 			busyIndicatorDelay="{detailView>/delay}">

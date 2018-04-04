@@ -8,84 +8,12 @@
 			id="page"
 			navButtonPress="onNavBack"
 			showNavButton="{device>/system/phone}"
-			title="{i18n>detailTitle}"
+			title="{i18n>mainTitle}"
 			busy="{detailView>/busy}"
 			busyIndicatorDelay="{detailView>/delay}">
 
 		<semantic:content>
-			<ObjectHeader
-					id="objectHeader"
-					title="{MaterialText} + {Details/Detail1}"
-					number="{
-								path: 'Quantity',
-								formatter: '.formatter.currencyValue'
-					}"
-					numberUnit="{UnitOfMeasure}">
-			</ObjectHeader>
-			<IconTabBar
-					id="iconTabBar"
-					class="sapUiResponsiveContentPadding">
-				<items>
-					<IconTabFilter
-							id="iconTabBarFilter1"
-							icon="sap-icon://hint"
-							tooltip="{i18n>detailIconTabBarInfo}">
-					</IconTabFilter>
-					<IconTabFilter
-							id="iconTabBarFilter2"
-							icon="sap-icon://attachment"
-							tooltip="{i18n>detailIconTabBarAttachments}">
-					</IconTabFilter>
-				</items>
-			</IconTabBar>
-			<Table
-					id="lineItemsList"
-					width="auto"
-					updateFinished="onListUpdateFinished"
-					noDataText="{i18n>detailLineItemTableNoDataText}"
-					busyIndicatorDelay="{detailView>/lineItemTableDelay}"
-					class="sapUiResponsiveMargin">
-				<headerToolbar>
-					<Toolbar id="lineItemsToolbar">
-						<Title
-								id="lineItemsHeader"
-								text="{detailView>/lineItemListTitle}"/>
-					</Toolbar>
-				</headerToolbar>
-				<columns>
-					<Column>
-						<Text text="{i18n>detailLineItemTableIDColumn}"/>
-					</Column>
-					<Column
-							minScreenWidth="Tablet"
-							demandPopin="true"
-							hAlign="End">
-						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem>
-						<cells>
-							<ObjectIdentifier
-									title="{Details/Detail1}"
-									text="{Details/Detail2}"/>
-							<ObjectNumber
-								number="{
-									path: 'Details/Detail3',
-									formatter: '.formatter.currencyValue'
-								}"
-								unit="{UnitOfMeasure}"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
 		</semantic:content>
-
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction
-					id="shareEmail"
-					press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
 
 	</semantic:DetailPage>
 

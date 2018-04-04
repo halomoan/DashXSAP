@@ -110,7 +110,7 @@
 					"pattern": "",
 					"name": "master",
 					"target": [
-						"menuView01",
+						"detail",
 						"master"
 					]
 				},
@@ -120,6 +120,14 @@
 					"target": [
 						"menuView01",
 						"submaster"
+					]
+				},
+				{
+					"pattern": "home/{objectId}",
+					"name": "home",
+					"target": [
+						"detail",
+						"master"
 					]
 				},
 				{
@@ -183,6 +191,11 @@
 					"viewLevel": 1,
 					"viewId": "submaster",
 					"controlAggregation": "masterPages"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"viewLevel": 2,
+					"viewId": "detail"
 				},
 				"menuView01": {
 					"viewName": "menuView01",

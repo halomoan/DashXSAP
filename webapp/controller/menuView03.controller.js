@@ -207,7 +207,74 @@ sap.ui.define([
                             syncValueAxis: false
                         }
                     }
-                }
+                },
+                {
+                    key : "3",
+                    name : "Lines Chart",
+                    vizType : "dual_line",
+                    value : ["Current Year","Last Year"],
+                    dataset : {
+                        dimensions: [{
+                            name: "Date",
+                            value: "{chartData>date}",
+                            dataType:"date"
+                        }],
+                        measures: [{
+                            name: "Current Year",
+                            value: "{chartData>kf1}"
+                        },{
+                            name: "Last Year",
+                            value: "{chartData>kf2}"
+                        }],
+                        data: {
+                            path: "chartData>/dataset"
+                        }
+                    },
+                    vizProperties : {
+                        plotArea: {
+                            window: {
+                                start: "firstDataPoint",
+                                end: "lastDataPoint"
+                            },
+                            dataLabel: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+                                visible: false
+                            }
+                        },
+                        valueAxis: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+						 valueAxis2: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        categoryAxis: {
+                            title: {
+                                visible: false
+                            },
+                            interval : {
+                                unit : ""
+                            }
+                        },
+                        title: {
+                            visible: false
+                        },
+                        interaction: {
+                            syncValueAxis: false
+                        }
+                    }
+             }
                 ]
             }
 		}    
@@ -234,7 +301,7 @@ sap.ui.define([
 					kfswitch: true,
 					qrow : "",
 					submenus : [],
-					chartTypes: {"defaultSelected": "0", "values" : [{"key": "0", "type": "Current Year"},{"key": "1", "type": "Current/Last Year"},{"key": "2", "type": "Current/Last Year"}]}
+					chartTypes: {"defaultSelected": "0", "values" : [{"key": "0", "type": "Current Year"},{"key": "1", "type": "Current/Last Year"},{"key": "2", "type": "Current/Last Year"},{"key": "3", "type": "Current/Last Year"}]}
 				});
 				this.setModel(oViewModel, "detailView");
 				
@@ -421,7 +488,7 @@ sap.ui.define([
                 }
                 this.oVizFrame.setVizProperties(props);
                 var feedValueAxis, feedValueAxis2, feedActualValues, feedTargetValues;
-                if (selectedKey === "7") {
+                if (selectedKey === "3") {
                     feedValueAxis = new FeedItem({
                         'uid': "valueAxis",
                         'type': "Measure",
@@ -451,22 +518,29 @@ sap.ui.define([
                     });
                 }
 
-                var feedTimeAxis = new FeedItem({
-                    'uid': "timeAxis",
-                    'type': "Dimension",
-                    'values': ["Date"]
-                }),
-                feedBubbleWidth = new FeedItem({
-                    "uid": "bubbleWidth",
-                    "type": "Measure",
-                    "values": ["Current Data"]
-                });
-                
+				if (selectedKey === "3") {
+					var feedTimeAxis = new FeedItem({
+	                    'uid': "categoryAxis",
+	                    'type': "Dimension",
+	                    'values': ["Date"]
+	                });
+				}else{
+	                var feedTimeAxis = new FeedItem({
+	                    'uid': "timeAxis",
+	                    'type': "Dimension",
+	                    'values': ["Date"]
+	                }),
+	                feedBubbleWidth = new FeedItem({
+	                    "uid": "bubbleWidth",
+	                    "type": "Measure",
+	                    "values": ["Current Data"]
+	                });
+				}
                 switch(selectedKey){
-                    case "4":
+                    case "3":
                         this.oVizFrame.addFeed(feedValueAxis);
+                        this.oVizFrame.addFeed(feedValueAxis2);
                         this.oVizFrame.addFeed(feedTimeAxis);
-                        this.oVizFrame.addFeed(feedBubbleWidth);
                         break;
                     case "7":
                         this.oVizFrame.addFeed(feedValueAxis);
