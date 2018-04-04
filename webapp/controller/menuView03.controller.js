@@ -18,6 +18,11 @@ sap.ui.define([
                 name : "Chart Type",
 <<<<<<< HEAD
                 defaultSelected : "0",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                defaultSelected : "0",
+=======
                 values : [	
                 	{
                     key : "0",
@@ -26,12 +31,32 @@ sap.ui.define([
                     value : ["Current Data"],
 =======
                 defaultSelected : "3",
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                 values : [	
                 	{
+                    key : "0",
+                    name : "Line Chart",
+                    vizType : "timeseries_line",
+                    value : ["Current Data"],
+=======
+                defaultSelected : "3",
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+                values : [	
+                	{
+<<<<<<< HEAD
+                    key : "0",
+                    name : "Line Chart",
+                    vizType : "timeseries_line",
+                    value : ["Current Data"],
+=======
                     key : "6",
                     name : "Combined Column & Line",
                     vizType : "timeseries_combination",
                     value : ["Revenue", "Cost"],
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                     dataset : {
                         dimensions: [{
@@ -39,6 +64,14 @@ sap.ui.define([
                             name: "Date",
                             value: "{chartData>date}",
                             dataType:"date"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                            name: "Date",
+                            value: "{chartData>date}",
+                            dataType:"date"
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                         }],
                         measures: [{
                             name: "Current Data",
@@ -47,13 +80,22 @@ sap.ui.define([
                             name: 'Date',
                             value: "{chartData>/date}",
                             dataType:'date'
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                         }],
                         measures: [{
+<<<<<<< HEAD
+                            name: "Current Data",
+                            value: "{chartData>kf1}"
+=======
                             name: 'Revenue',
                             value: '{chartData>/kf1}'
                         },{
                             name: 'Cost',
                             value: '{chartData>/kf2}'
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                         }],
                         data: {
@@ -87,8 +129,11 @@ sap.ui.define([
                             interval : {
 <<<<<<< HEAD
                                 unit : ""
+<<<<<<< HEAD
+=======
 =======
                                 unit : ''
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                             }
                         },
@@ -99,6 +144,151 @@ sap.ui.define([
                             syncValueAxis: false
                         }
                     }
+<<<<<<< HEAD
+                	},
+                	{
+                    key : "1",
+                    name : "Combined Column & Line",
+                    vizType : "timeseries_combination",
+                    value : ["Last Year","Current Year"],
+                    dataset : {
+                        dimensions: [{
+                            name: "Date",
+                            value: "{chartData>date}",
+                            dataType:"date"
+                        }],
+                        measures: [{
+                            name: "Last Year",
+                            value: '{chartData>kf2}'
+                        },{
+                            name: "Current Year",
+                            value: '{chartData>kf1}'
+                        }],
+                        data: {
+                            path: "chartData>/dataset"
+                        }
+                    },
+                    vizProperties : {
+                        plotArea: {
+                            window: {
+                                start: "firstDataPoint",
+                                end: "lastDataPoint"
+                            },
+                            dataLabel: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+                                visible: false
+                            }
+                        },
+                        valueAxis: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        timeAxis: {
+                            title: {
+                                visible: false
+                            },
+                            interval : {
+                                unit : ""
+                            }
+                        },
+                        title: {
+                            visible: false
+                        },
+                        interaction: {
+                            syncValueAxis: false
+                        }
+                    }
+                },
+                {
+                    key : "2",
+                    name : "Bullet",
+                    vizType : "timeseries_bullet",
+                     value : ["Current Year","Last Year"],
+                    dataset : {
+                        dimensions: [{
+                            name: 'Date',
+                             value: "{chartData>date}",
+                            dataType:'date'
+                        }],
+                        measures: [{
+                            name: "Last Year",
+                            value: '{chartData>kf2}'
+                        },{
+                            name: "Current Year",
+                            value: '{chartData>kf1}'
+                        }],
+                        data: {
+                            path: "chartData>/dataset"
+                        }
+                    },
+                    vizProperties : {
+                        plotArea: {
+                            window: {
+                                start: "firstDataPoint",
+                                end: "lastDataPoint"
+                            },
+                            dataLabel: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+                                visible: false
+                            },
+                            dataPointStyle : {
+                                rules : [{
+                                    dataContext : { "Current Year" : "*"},
+                                    properties : {
+                                    	color : "sapUiChartPaletteSequentialHue1Light1"
+                                    },
+                                    displayName : "Current Year",
+                                    dataName : { "Current Year" : "Current Year"}
+                                }]
+                            }
+                        },
+                        valueAxis: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        valueAxis2: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        timeAxis: {
+                            title: {
+                                visible: false
+                            },
+                            interval : {
+                                unit : ""
+=======
+<<<<<<< HEAD
+                                unit : ""
+=======
+                                unit : ''
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+                            }
+                        },
+                        title: {
+                            visible: false
+                        },
+                        interaction: {
+                            syncValueAxis: false
+                        }
+                    }
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 <<<<<<< HEAD
                 	},
                 	{
@@ -354,9 +544,22 @@ sap.ui.define([
 <<<<<<< HEAD
 			this.oModelChart = oModelJson;
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+			this.oModelChart = oModelJson;
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 			
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 			oViewModel.setProperty("/busy", true);
 			
 			var parameters = {
@@ -372,16 +575,35 @@ sap.ui.define([
 				
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 				console.log(oModelJson.getData());
 				
 				//oThis.oModelChart.setData(oModelJson.getData());
 				
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 				oVizFrame.setModel(oModelJson,"chartData");
 <<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 =======
 				
 			
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 				oViewModel.setProperty("/busy", false);
 				

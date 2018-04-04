@@ -82,7 +82,17 @@
 <<<<<<< HEAD
                             <viz.data:MeasureDefinition name="Current Year"
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                            <viz.data:MeasureDefinition name="Current Year"
+=======
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                             <viz.data:MeasureDefinition name="Current Data"
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                                 value="{chartData>kf1}" />
                         </viz.data:measures>
@@ -94,7 +104,17 @@
 <<<<<<< HEAD
                         values="Current Year" />
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                        values="Current Year" />
+=======
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                         values="Current Data" />
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
+=======
 >>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                     <viz.feeds:FeedItem uid="timeAxis" type="Dimension"
                         values="Date" />
