@@ -16,6 +16,15 @@ sap.ui.define([
 		settingsModel : {
             chartType : {
                 name : "Chart Type",
+<<<<<<< HEAD
+                defaultSelected : "0",
+                values : [	
+                	{
+                    key : "0",
+                    name : "Line Chart",
+                    vizType : "timeseries_line",
+                    value : ["Current Data"],
+=======
                 defaultSelected : "3",
                 values : [	
                 	{
@@ -23,8 +32,18 @@ sap.ui.define([
                     name : "Combined Column & Line",
                     vizType : "timeseries_combination",
                     value : ["Revenue", "Cost"],
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                     dataset : {
                         dimensions: [{
+<<<<<<< HEAD
+                            name: "Date",
+                            value: "{chartData>date}",
+                            dataType:"date"
+                        }],
+                        measures: [{
+                            name: "Current Data",
+                            value: "{chartData>kf1}"
+=======
                             name: 'Date',
                             value: "{chartData>/date}",
                             dataType:'date'
@@ -35,6 +54,7 @@ sap.ui.define([
                         },{
                             name: 'Cost',
                             value: '{chartData>/kf2}'
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                         }],
                         data: {
                             path: "chartData>/dataset"
@@ -65,7 +85,11 @@ sap.ui.define([
                                 visible: false
                             },
                             interval : {
+<<<<<<< HEAD
+                                unit : ""
+=======
                                 unit : ''
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                             }
                         },
                         title: {
@@ -75,6 +99,144 @@ sap.ui.define([
                             syncValueAxis: false
                         }
                     }
+<<<<<<< HEAD
+                	},
+                	{
+                    key : "1",
+                    name : "Combined Column & Line",
+                    vizType : "timeseries_combination",
+                    value : ["Last Year","Current Year"],
+                    dataset : {
+                        dimensions: [{
+                            name: "Date",
+                            value: "{chartData>date}",
+                            dataType:"date"
+                        }],
+                        measures: [{
+                            name: "Last Year",
+                            value: '{chartData>kf2}'
+                        },{
+                            name: "Current Year",
+                            value: '{chartData>kf1}'
+                        }],
+                        data: {
+                            path: "chartData>/dataset"
+                        }
+                    },
+                    vizProperties : {
+                        plotArea: {
+                            window: {
+                                start: "firstDataPoint",
+                                end: "lastDataPoint"
+                            },
+                            dataLabel: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+                                visible: false
+                            }
+                        },
+                        valueAxis: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        timeAxis: {
+                            title: {
+                                visible: false
+                            },
+                            interval : {
+                                unit : ""
+                            }
+                        },
+                        title: {
+                            visible: false
+                        },
+                        interaction: {
+                            syncValueAxis: false
+                        }
+                    }
+                },
+                {
+                    key : "2",
+                    name : "Bullet",
+                    vizType : "timeseries_bullet",
+                     value : ["Current Year","Last Year"],
+                    dataset : {
+                        dimensions: [{
+                            name: 'Date',
+                             value: "{chartData>date}",
+                            dataType:'date'
+                        }],
+                        measures: [{
+                            name: "Last Year",
+                            value: '{chartData>kf2}'
+                        },{
+                            name: "Current Year",
+                            value: '{chartData>kf1}'
+                        }],
+                        data: {
+                            path: "chartData>/dataset"
+                        }
+                    },
+                    vizProperties : {
+                        plotArea: {
+                            window: {
+                                start: "firstDataPoint",
+                                end: "lastDataPoint"
+                            },
+                            dataLabel: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+                                visible: false
+                            },
+                            dataPointStyle : {
+                                rules : [{
+                                    dataContext : { "Current Year" : "*"},
+                                    properties : {
+                                    	color : "sapUiChartPaletteSequentialHue1Light1"
+                                    },
+                                    displayName : "Current Year",
+                                    dataName : { "Current Year" : "Current Year"}
+                                }]
+                            }
+                        },
+                        valueAxis: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        valueAxis2: {
+                            visible: true,
+                            label: {
+                                formatString:ChartFormatter.DefaultPattern.SHORTFLOAT
+                            },
+                            title: {
+                                visible: false
+                            }
+                        },
+                        timeAxis: {
+                            title: {
+                                visible: false
+                            },
+                            interval : {
+                                unit : ""
+                            }
+                        },
+                        title: {
+                            visible: false
+                        },
+                        interaction: {
+                            syncValueAxis: false
+                        }
+                    }
+=======
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                 }
                 ]
             }
@@ -97,10 +259,12 @@ sap.ui.define([
 					oDate : oDefDate,
 					formattedDate : Formatter.formatDate(oDefDate),
 					cocode: "",
+					cocodetxt: "",
 					kf : "MTD",
+					kfswitch: true,
 					qrow : "",
 					submenus : [],
-					chartTypes: {"defaultSelected": "timeseries_line", "values" : [{"key": "timeseries_line", "type": "Line Chart"},{"key": "timeseries_column", "type": "Bar Chart"}]}
+					chartTypes: {"defaultSelected": "0", "values" : [{"key": "0", "type": "Current Year"},{"key": "1", "type": "Current/Last Year"},{"key": "2", "type": "Current/Last Year"}]}
 				});
 				this.setModel(oViewModel, "detailView");
 				
@@ -161,7 +325,8 @@ sap.ui.define([
 								
 								var submenus = oData.results[0].submenus;
 							    oViewModel.setProperty("/submenus",submenus);
-							    oViewModel.setProperty("/qrow",submenus[0].text);
+							    oViewModel.setProperty("/qrow",submenus[0].id);
+							    oViewModel.setProperty("/title",submenus[0].text);
 							    
 								var cocode = oViewModel.getProperty("/cocode");
 								if (cocode) {
@@ -186,7 +351,11 @@ sap.ui.define([
 			var oDate = oViewModel.getProperty("/oDate");
 			var sDate = this.dateFormat(oDate);
 			var oModelJson = new JSONModel();
+<<<<<<< HEAD
+			this.oModelChart = oModelJson;
+=======
 
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 			
 			oViewModel.setProperty("/busy", true);
 			
@@ -194,20 +363,26 @@ sap.ui.define([
 				"MNU": this.menuId,
 				"qe": this.sCoCode,
 				"qd" : sDate,
-				"qkf" : oViewModel.getProperty("/kf"),
+				"qkf" : (oViewModel.getProperty("/kfswitch") ? "MTD": "YTD"),
 				"qrow" : oViewModel.getProperty("/qrow")
 			};
 			
 			
 			oModelJson.attachRequestCompleted(function() {
 				
+<<<<<<< HEAD
+=======
 				console.log(oModelJson.getData());
 				
 				//oThis.oModelChart.setData(oModelJson.getData());
 				
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 				oVizFrame.setModel(oModelJson,"chartData");
+<<<<<<< HEAD
+=======
 				
 			
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
 				oViewModel.setProperty("/busy", false);
 				
 			});
@@ -249,7 +424,7 @@ sap.ui.define([
 				aContexts.map(function(oContext) { 
 					this.sCoCode = oContext.getObject().MyCoCodeID;
 					oViewModel.setProperty("/selectedCoCode", oContext.getObject().MyCoCodeID);
-					oViewModel.setProperty("/title",oContext.getObject().ShortText  + " (" +  oContext.getObject().MyCoCodeID + ")");
+					oViewModel.setProperty("/cocodetxt",oContext.getObject().ShortText  + " (" +  oContext.getObject().MyCoCodeID + ")");
 				}.bind(this));
 			}
 			oEvent.getSource().getBinding("items").filter([]);
@@ -266,30 +441,32 @@ sap.ui.define([
 		// },
 		onSelRowChange : function(oEvent){
 			var key = oEvent.getSource().getSelectedKey();
+			var text = oEvent.getSource().getSelectedItem().getText();
 			var oViewModel = this.getModel("detailView");
 			oViewModel.setProperty("/qrow",key);
+			oViewModel.setProperty("/title",text);
+			this.refreshData();
 		},
 		onChartTypeChanged : function(oEvent){
 			 if(this.oVizFrame){
                 var selectedKey = oEvent.getSource().getSelectedKey();
-                var bindValue = this.settingsModel.chartType.values[0];
+                var bindValue = this.settingsModel.chartType.values[selectedKey];
                
                
                 this.oVizFrame.destroyDataset();
                 this.oVizFrame.destroyFeeds();
-                this.oVizFrame.setVizType(selectedKey);
+                this.oVizFrame.setVizType(bindValue.vizType);
                 this.oVizFrame.setModel(this.oModelChart,"chartData");
                 var oDataset = new FlattenedDataset(bindValue.dataset);
                 this.oVizFrame.setDataset(oDataset);
                 
-                
                 var props = bindValue.vizProperties;
-                if (selectedKey !== 8 && props.plotArea) {
+                if (selectedKey !== "2" && props.plotArea) {
                 	props.plotArea.dataPointStyle = null;
                 }
                 this.oVizFrame.setVizProperties(props);
                 var feedValueAxis, feedValueAxis2, feedActualValues, feedTargetValues;
-                if (selectedKey === 7) {
+                if (selectedKey === "7") {
                     feedValueAxis = new FeedItem({
                         'uid': "valueAxis",
                         'type': "Measure",
@@ -300,7 +477,7 @@ sap.ui.define([
                         'type': "Measure",
                         'values': [bindValue.value[1]]
                     });
-                } else if (selectedKey === 8) {
+                } else if (selectedKey === "2") {
                     feedActualValues = new FeedItem({
                         'uid': "actualValues",
                         'type': "Measure",
@@ -327,23 +504,25 @@ sap.ui.define([
                 feedBubbleWidth = new FeedItem({
                     "uid": "bubbleWidth",
                     "type": "Measure",
-                    "values": ["Revenue"]
+                    "values": ["Current Data"]
                 });
+                
                 switch(selectedKey){
-                    case 0:
+                    case "4":
                         this.oVizFrame.addFeed(feedValueAxis);
                         this.oVizFrame.addFeed(feedTimeAxis);
                         this.oVizFrame.addFeed(feedBubbleWidth);
                         break;
-                    case 7:
+                    case "7":
                         this.oVizFrame.addFeed(feedValueAxis);
                         this.oVizFrame.addFeed(feedValueAxis2);
                         this.oVizFrame.addFeed(feedTimeAxis);
                         break;
-                    case 8:
+                    case "2":
                         this.oVizFrame.addFeed(feedActualValues);
                         this.oVizFrame.addFeed(feedTargetValues);
                         this.oVizFrame.addFeed(feedTimeAxis);
+                    	break;
                     default:
                         this.oVizFrame.addFeed(feedValueAxis);
                         this.oVizFrame.addFeed(feedTimeAxis);
@@ -373,11 +552,12 @@ sap.ui.define([
 					var vizframe = oView.byId("idVizFrame");
 					var oChartContainerContent = new sap.suite.ui.commons.ChartContainerContent({
 						icon : "sap-icon://horizontal-bar-chart",
-						title : "vizFrame Bar Chart Sample",
+						title : "Title",
 						content : [ vizframe ]
 					});
 					
 					var oChartContainer = new sap.suite.ui.commons.ChartContainer({
+						title : "{detailView>/title}",
 						content : [ oChartContainerContent ]
 					});
 					oChartContainer.setShowFullScreen(true);

@@ -14,39 +14,55 @@
     <layout:FixFlex id='chartFixFlex' minFlexSize="250">
         <!--Below is the setting panel -->
         <layout:fixContent>
-            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="{detailView>/title}" width="auto">
+            <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" width="auto">
+            		<headerToolbar>
+					<Toolbar height="3rem">
+						<Title text="{detailView>/cocodetxt}" />
+						<!--<ToolbarSpacer />-->
+						<Button icon="sap-icon://refresh" press="handleCoCodeSelect" />
+					</Toolbar>
+				</headerToolbar>
                 <content>
-                    <HBox class='sapUiNolMargin'>
+                    <HBox class='sapUiSmallMargin'>
                     
                     <VBox class="sapUiSmallMargin">
 						<Label text = '{i18n>selectItem}' class='settingsLabel'></Label>
                         <Select id='selRow' class='settingsSelect' selectedKey='{detailView>/qrow}'  change='onSelRowChange'
-                            items="{path: 'detailView>/submenus'}">
+                            items="{path: 'detailView>/submenus'}" width="100%">
                             <items>
-                                <core:Item text="{detailView>text}" key="{detailView>text}" />
+                                <core:Item text="{detailView>text}" key="{detailView>id}" />
                             </items>
                         </Select>
-						<Label text="Date Range" labelFor="DRS1"/>
+						<Label text="{i18n>ChangeDate}" labelFor="DRS1"/>
 						<DatePicker
 							id="DTP1"
 							value="{path:'detailView>/oDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
 							change="onDTP1change"/>
-						<FlexBox
-							alignItems="Start"
-							justifyContent="End">
-						<items>
-						<Button text="Refresh" press="refreshData"></Button>
-						</items>
-						</FlexBox>
+						<!--<FlexBox-->
+						<!--	alignItems="Start"-->
+						<!--	justifyContent="End">-->
+						<!--<items>-->
+						<!--<Button text="Refresh" press="refreshData"></Button>-->
+						<!--</items>-->
+						<!--</FlexBox>-->
 					</VBox>
 					<VBox class="sapUiSmallMargin">
-                        <Label text = '{i18n>selectChart}' class='settingsLabel'></Label>
+                        <Label text = '{i18n>display}' class='settingsLabel'></Label>
                         <Select id='chartTypeSelect' class='settingsSelect' selectedKey='{detailView>/chartTypes/defaultSelected}'  change='onChartTypeChanged' 
                             items="{path: 'detailView>/chartTypes/values'}">
                             <items>
                                 <core:Item text="{detailView>type}" key="{detailView>key}" />
                             </items>
                         </Select>
+                        <Label text=""></Label>
+                        <HBox>
+		                    <Switch state="{detailView>/kfswitch}" customTextOn="MTD" customTextOff="YTD">
+								<layoutData>
+									<FlexItemData growFactor="1" />
+								</layoutData>
+							</Switch>
+						<Button text="{i18n>Refresh}" press="refreshData"></Button>
+					</HBox>
                     </VBox>
                     </HBox>
                 </content>
@@ -63,7 +79,11 @@
                                 value="{chartData>date}" dataType="date"/>
                         </viz.data:dimensions>
                         <viz.data:measures>
+<<<<<<< HEAD
+                            <viz.data:MeasureDefinition name="Current Year"
+=======
                             <viz.data:MeasureDefinition name="Current Data"
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                                 value="{chartData>kf1}" />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
@@ -71,7 +91,11 @@
 
                 <viz:feeds>
                     <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+<<<<<<< HEAD
+                        values="Current Year" />
+=======
                         values="Current Data" />
+>>>>>>> branch 'master' of https://github.com/halomoan/DashXSAP.git
                     <viz.feeds:FeedItem uid="timeAxis" type="Dimension"
                         values="Date" />
                 </viz:feeds>
