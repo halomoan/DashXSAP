@@ -23,7 +23,7 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml"
 				},
-				"uri": "localService/metadata.xml"
+				"uri": "/sap/opu/odata/SAP/ZDASHXSAP_SRV/"
 			}
 		}
 	},

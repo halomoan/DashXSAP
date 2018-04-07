@@ -26,8 +26,8 @@ sap.ui.define([
 					oMainDataSource = oManifest["sap.app"].dataSources.mainService,
 					sMetadataUrl = jQuery.sap.getModulePath(_sAppModulePath + oMainDataSource.settings.localUri.replace(".xml", ""), ".xml"),
 					// ensure there is a trailing slash
-					sMockServerUrl = /.*\/$/.test(oMainDataSource.uri) ? oMainDataSource.uri : oMainDataSource.uri + "/";
-
+					//sMockServerUrl = /.*\/$/.test(oMainDataSource.uri) ? oMainDataSource.uri : oMainDataSource.uri + "/";
+					sMockServerUrl = /.*\/$/.test(sMetadataUrl) ? sMetadataUrl : sMetadataUrl + "/";
 
 
 				oMockServer = new MockServer({
