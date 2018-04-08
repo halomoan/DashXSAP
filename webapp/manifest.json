@@ -24,6 +24,14 @@
 					"localUri": "localService/metadata.xml"
 				},
 				"uri": "/sap/opu/odata/SAP/ZDASHXSAP_SRV/"
+			},
+			"mockService": {
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				},
+				"uri": "localService/metadata.xml"
 			}
 		}
 	},
@@ -48,6 +56,10 @@
 			"sap_bluecrystal"
 		],
 		"fullWidth": true
+	},
+	"sap.platform.abap": {
+		"_version": "1.1.0",
+		"uri": "/sap/bc/ui5_ui5/sap/zdashxsap/webapp"
 	},
 	"sap.ui5": {
 		"_version": "1.1.0",

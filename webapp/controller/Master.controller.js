@@ -162,7 +162,7 @@ sap.ui.define([
 			 */
 			onOpenViewSettings : function () {
 				if (!this._oViewSettingsDialog) {
-					this._oViewSettingsDialog = sap.ui.xmlfragment("sap.ui.demo.masterdetail.view.ViewSettingsDialog", this);
+					this._oViewSettingsDialog = sap.ui.xmlfragment("sap.ui.dashxsap.view.ViewSettingsDialog", this);
 					this.getView().addDependent(this._oViewSettingsDialog);
 					// forward compact/cozy style into Dialog
 					this._oViewSettingsDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());
@@ -291,14 +291,12 @@ sap.ui.define([
 			
 				
 				var sObjectId = oItem.getBindingContext().getProperty("DashXMainMenuID");
-				var sType = oItem.getBindingContext().getProperty("Type");
+				var View = oItem.getBindingContext().getProperty("View");
 				
 				
 				sap.ui.getCore().byId("__component0---app--idAppControl").hideMaster();
 				
-				
-				
-				switch(sType) {
+				switch(View) {
 					case "menuView01":
 						this.getRouter().navTo("menuView01", {objectId : sObjectId}, false);
 						break;

@@ -1,18 +1,86 @@
-[{
-	"DashXMainMenuID": "MNU001",
-	"Type" : "menuView01",
-	"Text": "Room Analysis (Map)"
-},{
-	"DashXMainMenuID": "MNU002",
-	"Type" : "menuView01",
-	"Text": "F&B Analysis (Map)"
-},{
-	"DashXMainMenuID": "MNU003",
-	"Type" : "menuView03",
-	"Text": "Daily Monitoring"
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU001')",
+          "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU001')",
+          "type" : "DashXOData.DashXMainMenu"
+        },
+        "DashXMainMenuID" : "MNU001",
+        "Text" : "Room Analysis (Map)",
+        "View" : "menuView01",
+        "DashXItems" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU001')/DashXItems"
+          }
+        },
+        "DashXSelect" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU001')/DashXSelect"
+          }
+        }
+      },
+      {
+        "__metadata" : {
+          "id" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU002')",
+          "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU002')",
+          "type" : "DashXOData.DashXMainMenu"
+        },
+        "DashXMainMenuID" : "MNU002",
+        "Text" : "F&B Analysis (Map)",
+        "View" : "menuView01",
+        "DashXItems" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU002')/DashXItems"
+          }
+        },
+        "DashXSelect" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU002')/DashXSelect"
+          }
+        }
+      },
+      {
+        "__metadata" : {
+          "id" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU003')",
+          "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU003')",
+          "type" : "DashXOData.DashXMainMenu"
+        },
+        "DashXMainMenuID" : "MNU003",
+        "Text" : "Daily Monitoring",
+        "View" : "menuView03",
+        "DashXItems" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU003')/DashXItems"
+          }
+        },
+        "DashXSelect" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU003')/DashXSelect"
+          }
+        }
+      },
+      {
+        "__metadata" : {
+          "id" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU004')",
+          "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU004')",
+          "type" : "DashXOData.DashXMainMenu"
+        },
+        "DashXMainMenuID" : "MNU004",
+        "Text" : "Hotel Information",
+        "View" : "menuView02",
+        "DashXItems" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU004')/DashXItems"
+          }
+        },
+        "DashXSelect" : {
+          "__deferred" : {
+            "uri" : "http://dbwap01.H800.local/sap/opu/odata/SAP/ZDASHXSAP_SRV/DashXMainMenus('MNU004')/DashXSelect"
+          }
+        }
+      }
+    ]
+  }
 }
-,{
-	"DashXMainMenuID": "MNU004",
-	"Type" : "menuView02",
-	"Text": "Hotel Information"
-}]

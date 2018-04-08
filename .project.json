@@ -34,10 +34,14 @@
   },
   "dataBinding": {},
   "mockpreview": {
-    "mockUri": "localService/metadata.xml",
+    "mockUri": "/sap/opu/odata/SAP/ZDASHXSAP_SRV/",
     "metadataFilePath": "localService/metadata.xml",
     "loadJSONFiles": true,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
+  },
+  "deploy": {
+    "destination": "b30",
+    "name": "ZDASHXSAP"
   }
 }

@@ -14,8 +14,7 @@
   "DashXItemID": "MNU003",
   "Title" : "Daily Monitoring",
   "DashXMainMenuID": "MNU003",
-  "uri": "http://dbwap01.h800.local/sap(bD1lbiZjPTYwMA==)/bc/bsp/sap/zjson_bexquery/bexdata.xml",
-  "submenus" : [{"id": "Covers","text": "Covers"},{"id": "FBREV","text": "F&B Revenue"},{"id": "ROOMREV","text": "Room Revenue"}]
+  "uri": "http://dbwap01.h800.local/sap(bD1lbiZjPTYwMA==)/bc/bsp/sap/zjson_bexquery/bexdata.xml"
 },
 {
   "DashXItemID": "MNU004",

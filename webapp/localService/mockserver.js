@@ -29,7 +29,6 @@ sap.ui.define([
 					//sMockServerUrl = /.*\/$/.test(oMainDataSource.uri) ? oMainDataSource.uri : oMainDataSource.uri + "/";
 					sMockServerUrl = /.*\/$/.test(sMetadataUrl) ? sMetadataUrl : sMetadataUrl + "/";
 
-
 				oMockServer = new MockServer({
 					
 					rootUri : sMockServerUrl

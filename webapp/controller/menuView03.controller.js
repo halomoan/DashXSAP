@@ -358,12 +358,6 @@ sap.ui.define([
 						    	oViewModel.setProperty("/busy", false);
 								//Global Variable
 								window.rest_url = oData.results[0].uri;
-								
-								
-								var submenus = oData.results[0].submenus;
-							    oViewModel.setProperty("/submenus",submenus);
-							    oViewModel.setProperty("/qrow",submenus[0].id);
-							    oViewModel.setProperty("/title",submenus[0].text);
 							    
 								var cocode = oViewModel.getProperty("/cocode");
 								if (cocode) {
@@ -371,6 +365,21 @@ sap.ui.define([
 								} else{
 									oThis.handleCoCodeSelect();
 								}
+						    },
+						    error: function() {
+								oViewModel.setProperty("/busy", false);
+						    }
+						});
+						
+						this.getModel().read("/" + sObjectPath + "/DashXSelect", {
+						    method: "GET",
+						    success: function(oData) {
+						    	oViewModel.setProperty("/busy", false);
+
+								var submenus = oData.results;
+							    oViewModel.setProperty("/submenus",submenus);
+							    oViewModel.setProperty("/qrow",submenus[0].id);
+							    oViewModel.setProperty("/title",submenus[0].text);
 						    },
 						    error: function() {
 								oViewModel.setProperty("/busy", false);
