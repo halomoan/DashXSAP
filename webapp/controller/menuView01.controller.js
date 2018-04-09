@@ -19,7 +19,7 @@ sap.ui.define([
 			onInit: function() {
 				
 				// View Model
-				var oDefDate = new Date(2016,1,20);
+				var oDefDate = new Date(new Date().setDate(new Date().getDate()-1));
 				var oViewModel = new JSONModel({
 					busy : false,
 					delay : 0,
@@ -27,7 +27,7 @@ sap.ui.define([
 					showNav : sap.ui.Device.system.phone,
 					spotItems :[],
 					oDate : oDefDate,
-					formattedDate: "",
+					formattedDate: Formatter.formatDate(oDefDate),
 					region : "<ALL>",
 					countries: this.countries,
 					dcompares: [{"text" : "Compare Current Date Within Region" },{"text" : "Compare M-T-D Within Region"},{"text" : "Compare Y-T-D Within Region"}]
@@ -64,6 +64,7 @@ sap.ui.define([
 				this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				this.oStorage.clear();
 				
+			
 				this.setModel(oViewModel, "detailView");
 				
 				this.byId("setFocus").setValue("<All Countries>");
@@ -157,7 +158,7 @@ sap.ui.define([
 			
 	
 			onContextMenuCircle: function ( oEvent )	{
-				alert("Circle onContextMenu");
+				//alert("Circle onContextMenu");
 			},
 			onDetailPopover : function (oEvent){
 				if (!this._oDPopover) {
@@ -271,7 +272,8 @@ sap.ui.define([
 					    success: function(oData) {
 					       
 							//Global Variable
-							window.rest_url = oData.results[0].uri;
+							oThis.oStorage.put("rest_url",oData.results[0].uri);
+							//window.rest_url = oData.results[0].uri;
 					    	oThis._refreshGeo();
 					    	
 					    },
@@ -310,12 +312,18 @@ sap.ui.define([
 				});
 				
 				oModelJson.attachRequestFailed(function() {
-					alert("Failed to contact SAP BW Server!");
+					sap.m.MessageToast.show("Failed to contact SAP BW Server!");
 					oViewModel.setProperty("/busy", false);
 				});
 				oViewModel.setProperty("/busy", true);
 				
-				oModelJson.loadData(window.rest_url,parameters,true, "GET", false, false);
+				var rest_url = this.oStorage.get("rest_url");
+				
+				var oHeaders = {
+    				"Authorization": "Basic " +  btoa("khalomoan:sap2218")
+				};
+				
+				oModelJson.loadData(rest_url,parameters,true, "GET", false, false,oHeaders);
 				/*var oHeaders = {
     				"Authorization": "Basic " +  btoa("khalomoan:n3tw0rk1")
 				};

@@ -288,7 +288,7 @@ sap.ui.define([
 		onInit: function() {
 				
 				// View Model
-				var oDefDate = new Date(2017,4,31);
+				var oDefDate = new Date(new Date().setDate(new Date().getDate()-1));
 				var oViewModel = new JSONModel({
 					busy : false,
 					delay : 0,
@@ -313,6 +313,8 @@ sap.ui.define([
 				oDeviceModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(oDeviceModel, "device");
 				
+				this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				this.oStorage.clear();
 				
 				Format.numericFormatter(ChartFormatter.getInstance());
 				 // set explored app's demo model on this sample
@@ -357,7 +359,7 @@ sap.ui.define([
 						    success: function(oData) {
 						    	oViewModel.setProperty("/busy", false);
 								//Global Variable
-								window.rest_url = oData.results[0].uri;
+							    oThis.oStorage.put("rest_url",oData.results[0].uri);
 							    
 								var cocode = oViewModel.getProperty("/cocode");
 								if (cocode) {
@@ -419,13 +421,14 @@ sap.ui.define([
 			});
 			
 			oModelJson.attachRequestFailed(function() {
-				alert("Failed to contact SAP BW Server!");
+				sap.m.MessageToast.show("Failed to contact SAP BW Server!");
 				oViewModel.setProperty("/busy", false);
 			});
 			
 			oViewModel.setProperty("/busy", true);
 			
-			oModelJson.loadData(window.rest_url,parameters,true, "GET", false, false);
+			var rest_url = this.oStorage.get("rest_url");
+			oModelJson.loadData(rest_url,parameters,true, "GET", false, false);
 				
 		},
 		handleCoCodeSelect: function(){

@@ -19,7 +19,7 @@ sap.ui.define([
 		 * @memberOf sap.ui.dashxsap.view.menuView02
 		 */
 			onInit: function() {
-				var oDefDate = new Date(2017,4,31);
+				var oDefDate = new Date(new Date().setDate(new Date().getDate()-1));
 				var oViewModel = new JSONModel({
 						busy : false,
 						delay : 0,
@@ -35,7 +35,8 @@ sap.ui.define([
 				this.oRBE1controller = new sap.ui.dashxsap.controller.donut();
 				var rbe1 = this.byId("rbe1");
 				
-			
+				this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				this.oStorage.clear();
 				
 				var oFragmentRBE1 = sap.ui.xmlfragment("donut","sap.ui.dashxsap.view.donut",this.oRBE1controller);
 				rbe1.addContent(oFragmentRBE1);
@@ -64,7 +65,7 @@ sap.ui.define([
 					    success: function(oData) {
 					    	oViewModel.setProperty("/busy", false);
 							//Global Variable
-							window.rest_url = oData.results[0].uri;
+							oThis.oStorage.put("rest_url",oData.results[0].uri);
 							
 							var cocode = oViewModel.getProperty("/cocode");
 							if (cocode) {
@@ -104,13 +105,14 @@ sap.ui.define([
 				});
 				
 				oModelJson.attachRequestFailed(function() {
-					alert("Failed to contact SAP BW Server!");
+					sap.m.MessageToast.show("Failed to contact SAP BW Server!");
 					oViewModel.setProperty("/busy", false);
 				});
 				
 				oViewModel.setProperty("/busy", true);
+				var rest_url = this.oStorage.get("rest_url");
 				
-				oModelJson.loadData(window.rest_url,parameters,true, "GET", false, false);
+				oModelJson.loadData(rest_url,parameters,true, "GET", false, false);
 			},
 			
 			pressTile: function(oEvent){
@@ -162,7 +164,7 @@ sap.ui.define([
 						})
 					],
 					beginButton: new Button({
-						text: 'Close',
+						text: "Close",
 						press: function () {
 							dialog.close();
 						}

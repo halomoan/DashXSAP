@@ -2,7 +2,7 @@
   "DashXItemID": "MNU001",
   "Title" : "Room Information",
   "DashXMainMenuID": "MNU001",
-  "uri": "http://dbwap01.h800.local/sap(bD1lbiZjPTYwMA==)/bc/bsp/sap/zjson_bexquery/bexdata.xml"
+  "uri": "http://jack.uol.com.sg:8082/sap(bD1lbiZjPTYwMA==)/bc/bsp/sap/zjson_bexquery/bexdata.xml"
 },
 {
   "DashXItemID": "MNU002",
